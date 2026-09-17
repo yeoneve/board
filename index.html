@@ -30,6 +30,8 @@ body{margin:0;background:#FAFAFA;font-family:-apple-system,BlinkMacSystemFont,"A
 .summary-extra{width:50%;padding:5px 3px;font-size:11px;text-align:center;white-space:nowrap}
 .summary-guide{background:#F5FAFF}
 .summary-line{background:#FFF6FA;border-left:1px solid #EEE}
+.summary-edu{background:#FFF3E6}
+.summary-empty{background:#fff;border-left:1px solid #EEE}
 .card{background:#fff;border:1px solid #E8E8E8;border-radius:14px;overflow:hidden;margin-bottom:10px;box-shadow:0 2px 10px rgba(0,0,0,.035)}
 .title{padding:8px 10px 8px 18px;font-size:17px;font-weight:700;border-bottom:1px solid #F0F0F0;position:relative}
 .title:before{content:"";position:absolute;left:8px;top:9px;bottom:9px;width:4px;border-radius:10px}
@@ -100,7 +102,7 @@ input[type=number]::-webkit-inner-spin-button,input[type=number]::-webkit-outer-
 <div class="wrap">
 <div class="summary">
 <div class="summary-col summary-ob"><div class="summary-head">상온 OB</div><div class="summary-body" id="sum-ob"></div><div class="summary-bottom"><div class="summary-extra summary-guide" id="sum-guide">인솔 : 0</div><div class="summary-extra summary-line" id="sum-line">줄 : 0</div></div></div>
-<div class="summary-col summary-ib"><div class="summary-head">상온 IB</div><div class="summary-body" id="sum-ib"></div></div>
+<div class="summary-col summary-ib"><div class="summary-head">상온 IB</div><div class="summary-body" id="sum-ib"></div><div class="summary-bottom"><div class="summary-extra summary-edu" id="sum-edu">교육장 : 0</div><div class="summary-extra summary-empty"></div></div></div>
 <div class="summary-col summary-cold"><div class="summary-head">냉장 IB</div><div class="summary-body" id="sum-cold"></div></div>
 </div>
 <div id="app"></div>
@@ -137,7 +139,12 @@ ${x.title} 13시30분 인원투입 공유
 총 투입 인원 : ${x.planned+x.extension}명`}
 function card(x){return `<section class="card ${x.key}"><div class="title">${x.title}</div><div class="body"><div class="left"><div class="people-row"><div class="people-title">인솔담당</div><div class="people">${names.map(n=>`<label class="person"><input type="checkbox" data-person="${n}" data-key="${x.key}" ${x.selected.includes(n)?"checked":""}>${n}</label>`).join("")}</div></div>${labels.map(([k,l])=>`<div class="field"><label>${l}</label><div class="stepper"><input inputmode="numeric" type="number" min="0" value="${x[k]}" data-field="${k}" data-key="${x.key}"><div class="step-controls"><button type="button" class="step-btn" data-step="-1" data-step-field="${k}" data-key="${x.key}">−</button><button type="button" class="step-btn" data-step="1" data-step-field="${k}" data-key="${x.key}">+</button></div></div></div>`).join("")}</div><div class="right"><div class="preview" id="preview-${x.key}"></div><button class="copy" data-copy="${x.key}">📋 복사</button></div></div></section>`}
 document.getElementById("app").innerHTML=data.map(card).join("");
-function update(key){const x=item(key),detailTotal=x.existing+x.newcomer+x.training,mismatch=detailTotal!==x.planned;document.getElementById("preview-"+key).textContent=report(x);const sum=document.getElementById("sum-"+key);sum.innerHTML=`<table class="sum-table ${mismatch?"mismatch":""}"><tr><th>T</th><th>기</th><th>신</th><th>재</th></tr><tr><td>${x.target}/${x.planned}</td><td>${x.existing}</td><td class="${x.newcomer>0?'positive-purple':''}">${x.newcomer}</td><td class="${x.training>0?'positive-purple':''}">${x.training}</td></tr></table>`;["existing","newcomer","training"].forEach(field=>{const el=document.querySelector(`[data-field="${field}"][data-key="${key}"]`);if(el)el.classList.toggle("mismatch",mismatch)});if(key==="ob"){document.getElementById("sum-guide").textContent=`인솔 : ${x.selected.length}`;document.getElementById("sum-line").textContent=`줄 : ${Math.max(0,x.existing-x.selected.length)}`}}
+function update(key){const x=item(key),detailTotal=x.existing+x.newcomer+x.training,mismatch=detailTotal!==x.planned;
+  const edu=document.getElementById("sum-edu");
+  if(edu){
+    const eduTotal=data.reduce((t,r)=>t+(Number(r.newcomer)||0)+(Number(r.training)||0),0);
+    edu.textContent=`교육장 : ${eduTotal}`;
+  }document.getElementById("preview-"+key).textContent=report(x);const sum=document.getElementById("sum-"+key);sum.innerHTML=`<table class="sum-table ${mismatch?"mismatch":""}"><tr><th>T</th><th>기</th><th>신</th><th>재</th></tr><tr><td>${x.target}/${x.planned}</td><td>${x.existing}</td><td class="${x.newcomer>0?'positive-purple':''}">${x.newcomer}</td><td class="${x.training>0?'positive-purple':''}">${x.training}</td></tr></table>`;["existing","newcomer","training"].forEach(field=>{const el=document.querySelector(`[data-field="${field}"][data-key="${key}"]`);if(el)el.classList.toggle("mismatch",mismatch)});if(key==="ob"){document.getElementById("sum-guide").textContent=`인솔 : ${x.selected.length}`;document.getElementById("sum-line").textContent=`줄 : ${Math.max(0,x.existing-x.selected.length)}`}}
 data.forEach(x=>update(x.key));
 document.querySelectorAll("[data-field]").forEach(el=>el.addEventListener("input",()=>{const x=item(el.dataset.key);x[el.dataset.field]=Number(el.value)||0;update(x.key);saveData()}));
 document.querySelectorAll("[data-step]").forEach(btn=>btn.addEventListener("click",()=>{const x=item(btn.dataset.key),field=btn.dataset.stepField,next=Math.max(0,(Number(x[field])||0)+Number(btn.dataset.step));x[field]=next;const input=document.querySelector(`[data-field="${field}"][data-key="${x.key}"]`);if(input)input.value=next;update(x.key);saveData()}));
