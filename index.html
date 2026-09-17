@@ -33,9 +33,9 @@ body{margin:0;background:#FAFAFA;font-family:-apple-system,BlinkMacSystemFont,"A
 .body{display:flex;gap:8px;padding:8px;background:#fff}
 .left{width:39%;min-width:0;border-right:1px solid #F0F0F0;padding-right:8px}
 .right{width:61%;min-width:0}
-.people-row{display:flex;align-items:center;margin-bottom:7px}
-.people-title{width:58px;flex:none;font-size:12px;font-weight:700}
-.people{flex:1;margin:0}
+.people-row{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:7px}
+.people-title{flex:none;font-size:12px;font-weight:700;padding-top:1px}
+.people{width:81px;flex:none;margin:0}
 .person{display:block;font-size:11px;margin:0 0 4px 0;white-space:nowrap}
 .person input{width:15px;height:15px;margin:0 3px 0 0;vertical-align:-3px}
 .field{display:flex;align-items:center;justify-content:space-between;margin:4px 0}
@@ -64,7 +64,8 @@ input[type=number]::-webkit-inner-spin-button,input[type=number]::-webkit-outer-
   .body{gap:6px;padding:7px}
   .left{width:42%;padding-right:6px}
   .right{width:58%}
-  .people-title{width:52px;font-size:11px}
+  .people-title{font-size:11px}
+  .people{width:77px}
   .person{font-size:10.5px}
   .field label{font-size:10px}
   .field input{width:40px;height:27px;font-size:16px}
@@ -76,7 +77,7 @@ input[type=number]::-webkit-inner-spin-button,input[type=number]::-webkit-outer-
 @media(max-width:375px){
   .left{width:44%}
   .right{width:56%}
-  .people-title{width:48px}
+  .people{width:72px}
   .field input{width:37px}
   .step-btn{width:16px}
   .preview{font-size:9.2px}
