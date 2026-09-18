@@ -930,6 +930,23 @@ input[type=number]::-webkit-inner-spin-button,input[type=number]::-webkit-outer-
 
 /* v44 연장 3개 뒤 줄바꿈 */
 .report-options .report-option-break{flex-basis:100%;width:0;height:0}
+
+/* v47 보고용 연장 옵션 - 주간조 포인트 컬러 */
+#opt-ob-extension,
+#opt-ib-extension,
+#opt-cold-extension{
+  accent-color:#705CBE;
+}
+.report-options label:has(#opt-ob-extension),
+.report-options label:has(#opt-ib-extension),
+.report-options label:has(#opt-cold-extension){
+  background:#EEE9FF;
+  color:#5F4EAA;
+  border:1px solid #DDD5FF;
+  border-radius:8px;
+  padding:6px 9px;
+  font-weight:800;
+}
 </style>
 </head>
 <body>
