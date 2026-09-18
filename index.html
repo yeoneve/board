@@ -927,6 +927,9 @@ input[type=number]::-webkit-inner-spin-button,input[type=number]::-webkit-outer-
 /* v41 메모 위치 */
 .line-grand-row{margin-bottom:8px}
 .line-note{margin:0}
+
+/* v44 연장 3개 뒤 줄바꿈 */
+.report-options .report-option-break{flex-basis:100%;width:0;height:0}
 </style>
 </head>
 <body>
@@ -951,7 +954,10 @@ input[type=number]::-webkit-inner-spin-button,input[type=number]::-webkit-outer-
       <div class="report-heading">퇴근</div>
       <div class="report-item"><div class="report-text" data-kind="out"></div><button class="report-copy" data-copy-kind="out">복사</button></div>
       <div class="report-options">
+        <label><input type="checkbox" id="opt-ob-extension"> 상온OB 연장</label>
+        <label><input type="checkbox" id="opt-ib-extension"> 상온IB 연장</label>
         <label><input type="checkbox" id="opt-cold-extension"> 냉장IB 연장</label>
+        <span class="report-option-break"></span>
         <label><input type="checkbox" id="opt-early"> 조퇴</label>
         <label><input type="checkbox" id="opt-nosign"> 퇴근 미서명</label>
         <label><input type="checkbox" id="opt-wage"> 임금공제동의서</label>
@@ -1108,9 +1114,15 @@ function reportDate(){
 function reportMessages(){
   const dateLine=`컬리K팀 ${reportDate()}`;
   const coldExtension=document.getElementById("opt-cold-extension").checked;
+  const obExtension=document.getElementById("opt-ob-extension").checked;
+  const ibExtension=document.getElementById("opt-ib-extension").checked;
   const inHeader=`${dateLine}\n상온OB, IB, 냉장IB 13시30분조`;
-  const outAreas=coldExtension ? "상온OB, IB" : "상온OB, IB, 냉장IB";
-  const outHeader=`${dateLine}\n${outAreas} 13시30분조`;
+  const outAreaList=[];
+  if(!obExtension) outAreaList.push("상온OB");
+  if(!ibExtension) outAreaList.push(obExtension ? "상온IB" : "IB");
+  if(!coldExtension) outAreaList.push("냉장IB");
+  const outAreas=outAreaList.join(", ");
+  const outHeader=`${dateLine}\n${outAreas}${outAreas ? " " : ""}13시30분조`;
   const extras=[];
   if(document.getElementById("opt-early").checked) extras.push("•조퇴 1명(000)");
   if(document.getElementById("opt-nosign").checked) extras.push("•퇴근 미서명 1명(000)");
@@ -1125,7 +1137,7 @@ function drawReport(){
   document.querySelector('[data-kind="in"]').textContent=m.in;
   document.querySelector('[data-kind="out"]').textContent=m.out;
 }
-["opt-cold-extension","opt-early","opt-nosign","opt-wage"].forEach(id=>{
+["opt-cold-extension","opt-ob-extension","opt-ib-extension","opt-early","opt-nosign","opt-wage"].forEach(id=>{
   document.getElementById(id).addEventListener("change",drawReport);
 });
 drawReport();
