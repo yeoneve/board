@@ -896,6 +896,37 @@ input[type=number]::-webkit-inner-spin-button,input[type=number]::-webkit-outer-
   font-weight:800;
 }
 #line-reset:active{background:#F2F3F6}
+
+/* v40 줄 자유 메모칸 */
+.line-note{
+  margin:0 0 8px;
+}
+#line-note-input{
+  width:100%;
+  height:43px;
+  box-sizing:border-box;
+  padding:0 13px;
+  border:1px solid #E3E5EA;
+  border-radius:10px;
+  outline:none;
+  background:#F7F8FA;
+  color:#34363D;
+  font-size:13px;
+  font-weight:700;
+}
+#line-note-input::placeholder{
+  color:#A1A4AC;
+  font-weight:600;
+}
+#line-note-input:focus{
+  border-color:#CFC6F8;
+  background:#fff;
+  box-shadow:0 0 0 3px rgba(112,92,190,.07);
+}
+
+/* v41 메모 위치 */
+.line-grand-row{margin-bottom:8px}
+.line-note{margin:0}
 </style>
 </head>
 <body>
@@ -1002,6 +1033,9 @@ input[type=number]::-webkit-inner-spin-button,input[type=number]::-webkit-outer-
     <div class="line-grand-row">
       <div class="line-grand-value"><span>총</span><strong id="line-grand">0</strong></div>
       <div id="line-check" class="line-check ok">차이 0</div>
+    </div>
+    <div class="line-note">
+      <input id="line-note-input" type="text" placeholder="메모" autocomplete="off">
     </div>
   </div>
 </div></div>
@@ -1118,6 +1152,7 @@ document.querySelectorAll("[data-copy-kind]").forEach(btn=>{
     "line1-main","line1-sub","line2-main","line2-sub",
     "line-attendance-input","line-guide","line-training"
   ];
+  const noteId="line-note-input";
 
   function dateKey(){
     const d=new Date();
@@ -1150,13 +1185,16 @@ document.querySelectorAll("[data-copy-kind]").forEach(btn=>{
   function saveLine(){
     const values={};
     inputIds.forEach(id=>values[id]=value(id));
-    try{localStorage.setItem(LINE_KEY,JSON.stringify({date:dateKey(),values}))}catch(e){}
+    const note=document.getElementById(noteId)?.value || "";
+    try{localStorage.setItem(LINE_KEY,JSON.stringify({date:dateKey(),values,note}))}catch(e){}
   }
   function resetLine(save=true){
     inputIds.forEach(id=>{
       const el=document.getElementById(id);
       if(el) el.value=0;
     });
+    const note=document.getElementById(noteId);
+    if(note) note.value="";
     calculate();
     if(save) saveLine();
   }
@@ -1171,6 +1209,8 @@ document.querySelectorAll("[data-copy-kind]").forEach(btn=>{
         const el=document.getElementById(id);
         if(el) el.value=Math.max(0,Number(saved.values?.[id])||0);
       });
+      const note=document.getElementById(noteId);
+      if(note) note.value=saved.note || "";
     }catch(e){
       resetLine(false);
     }
@@ -1194,6 +1234,9 @@ document.querySelectorAll("[data-copy-kind]").forEach(btn=>{
       saveLine();
     });
   });
+
+  const note=document.getElementById(noteId);
+  if(note) note.addEventListener("input",saveLine);
 
   const resetBtn=document.getElementById("line-reset");
   if(resetBtn) resetBtn.addEventListener("click",()=>resetLine(true));
