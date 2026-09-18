@@ -96,16 +96,915 @@ input[type=number]::-webkit-inner-spin-button,input[type=number]::-webkit-outer-
   .step-btn{width:21px;height:21px;font-size:11px}
   .preview{font-size:8.8px}
 }
+
+.top-tabs{display:flex;gap:6px;margin-bottom:10px}
+.top-tab{flex:1;height:40px;border:1px solid #E3E3E6;border-radius:11px;background:#fff;color:#777;font-size:14px;font-weight:800}
+.top-tab.active{background:#161616;color:#fff;border-color:#161616}
+.board-page{display:none}.board-page.active{display:block}
+.report-list{display:grid;gap:10px}
+.report-section{background:#fff;border:1px solid #E7E7E9;border-radius:14px;overflow:hidden}
+.report-heading{padding:10px 12px;font-size:17px;font-weight:900}
+.report-section.in .report-heading{background:#DCEFFD;color:#095CC5}
+.report-section.out .report-heading{background:#F7DCE8;color:#B000C8}
+.report-item{padding:8px 10px;border-top:1px solid #EEEEF0;display:flex;align-items:stretch;gap:7px}
+.report-text{flex:1;min-width:0;white-space:pre-wrap;background:#F7F7F8;border:1px solid #E7E7E9;border-radius:9px;padding:8px;font-size:12px;line-height:1.45}
+.report-copy{flex:0 0 58px;width:58px;min-width:58px;margin:0;border:0;border-radius:8px;background:#D9D9DC;color:#444;font-size:12px;font-weight:800}
+
+
+.report-options{display:flex;gap:5px;padding:8px 10px 0;flex-wrap:wrap}
+.report-options label{display:flex;align-items:center;gap:4px;background:#F2F2F3;border:1px solid #E0E0E2;border-radius:7px;padding:6px 8px;font-size:11px;font-weight:700;color:#555}
+.report-options input{accent-color:#777}
+
+/* 보고용 - 주간조 디자인 톤과 통일 */
+#reportBoard{padding-bottom:8px}
+.report-list{gap:8px}
+.report-section{
+  background:#fff;
+  border:1px solid #E6E6E8;
+  border-radius:12px;
+  box-shadow:none;
+  overflow:hidden;
+}
+.report-heading{
+  background:#fff !important;
+  color:#222 !important;
+  padding:10px 12px 7px;
+  font-size:14px;
+  font-weight:800;
+  border-bottom:1px solid #EEEEF0;
+}
+.report-item{
+  padding:8px 10px;
+  display:flex;
+  align-items:stretch;
+  gap:6px;
+  border-top:0;
+}
+.report-text{
+  flex:1;
+  min-width:0;
+  padding:8px 9px;
+  background:#F4F4F5;
+  border:1px solid #E3E3E5;
+  border-radius:7px;
+  font-size:12px;
+  line-height:1.45;
+}
+.report-copy{
+  flex:0 0 58px;
+  width:58px;
+  min-width:58px;
+  margin:0;
+  border:1px solid #D4D4D7;
+  border-radius:7px;
+  background:#E5E5E7;
+  color:#444;
+  font-size:12px;
+  font-weight:800;
+}
+.report-options{
+  display:flex;
+  flex-wrap:wrap;
+  gap:6px;
+  padding:0 10px 9px;
+}
+.report-options label{
+  min-height:30px;
+  display:flex;
+  align-items:center;
+  gap:5px;
+  padding:5px 8px;
+  background:#F3F3F4;
+  border:1px solid #E1E1E3;
+  border-radius:7px;
+  color:#555;
+  font-size:11px;
+  font-weight:700;
+}
+.report-options input{
+  width:15px;
+  height:15px;
+  margin:0;
+  accent-color:#7D22FF;
+}
+
+/* 줄 탭 */
+.jul-card{background:#fff;border:1px solid #E6E6E8;border-radius:12px;padding:12px}
+.jul-date{text-align:center;font-size:13px;font-weight:700;margin-bottom:12px}
+.jul-main-title{text-align:center;font-size:12px;font-weight:800;color:#666;margin-bottom:5px}
+.jul-main-control{display:flex;align-items:center;justify-content:center;gap:7px;margin-bottom:12px}
+.jul-btn{width:36px;height:36px;border:1px solid #D8D8DB;border-radius:8px;background:#F1F1F2;font-size:22px;font-weight:700;color:#555}
+.jul-main-input{width:92px;height:52px;border:1px solid #CFCFD2;border-radius:8px;background:#F4F4F5;text-align:center;font-size:30px;font-weight:800}
+.jul-row{display:grid;grid-template-columns:72px 1fr;align-items:center;border-top:1px solid #EEEEF0;padding:9px 0}
+.jul-label{font-size:12px;font-weight:800;color:#555}
+.jul-value{font-size:20px;font-weight:800}
+.jul-subgrid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:5px}
+.jul-sub{background:#F4F4F5;border-radius:8px;padding:9px;text-align:center}
+.jul-sub span{display:block;font-size:11px;font-weight:700;color:#666;margin-bottom:3px}
+.jul-sub strong{font-size:23px}
+
+/* 줄 탭 - 원본 시트 위치 구성 */
+.line-sheet{background:#fff;border:1px solid #E6E6E8;border-radius:12px;padding:18px 10px 14px}
+.line-top{display:grid;grid-template-columns:1fr 34px 1fr;align-items:end;gap:6px;width:calc(100% - 88px);margin:0 0 10px 88px}
+.line-group{text-align:center}
+.line-num-label{font-size:15px;margin-bottom:4px}
+.line-box{border:1px solid #333;background:#F2F2F2}
+.line-step{position:relative;border-bottom:1px dotted #777;min-height:54px;display:flex;align-items:center;justify-content:center}
+.line-big-input{width:68px;height:52px;border:0;background:transparent;text-align:center;font-size:31px;outline:0}
+.line-small-input{width:100%;height:45px;border:0;background:transparent;text-align:center;font-size:28px;outline:0}
+.line-pm{position:absolute;top:50%;transform:translateY(-50%);width:27px;height:27px;border:1px solid #D0D0D3;border-radius:6px;background:#fff;color:#555;font-size:18px;line-height:1}
+.line-pm[data-delta="-1"]{left:4px}.line-pm[data-delta="1"]{right:4px}
+.line-multi{display:flex;flex-direction:column;justify-content:flex-end;gap:35px;padding-bottom:14px;text-align:center;font-size:12px}
+.line-result-row{display:grid;grid-template-columns:44px 1fr 1fr 34px 1fr;gap:0;width:100%;margin:8px 0 0;background:transparent;color:#fff;align-items:stretch}
+.line-result-title{height:50px;box-sizing:border-box;display:flex;align-items:center;justify-content:center;text-align:center;font-size:16px;font-weight:800;border-right:1px dotted #fff;background:#6D6D6D}
+.line-result-main{height:50px;box-sizing:border-box;display:flex;align-items:center;justify-content:center;text-align:center;font-size:27px;font-weight:900;font-style:italic;background:#6D6D6D}
+.line-result-part{height:50px;box-sizing:border-box;display:flex;align-items:center;justify-content:center;text-align:center;font-size:24px;background:#6D6D6D}
+.line-attendance-row{display:grid;grid-template-columns:88px 1fr;align-items:center;margin-bottom:22px}
+.line-attendance-row span{font-size:12px;padding:8px 4px}
+.line-attendance-row strong{font-size:24px;font-weight:500;color:#CF6666}
+.line-bottom{display:grid;grid-template-columns:1.3fr .8fr .9fr;gap:10px;align-items:end}
+.line-total-wrap{display:grid;grid-template-columns:42px 1fr;align-items:center;border:1px solid #333;height:48px}
+.line-total-wrap span{text-align:center;font-size:15px;border-right:1px dotted #555}
+.line-total-wrap input{width:100%;height:46px;border:0;background:#fff;text-align:center;font-size:27px;font-weight:800;font-style:italic;outline:0}
+.line-stat{text-align:center}
+.line-stat span{display:block;font-size:15px;font-weight:700;margin-bottom:4px}
+.line-stat input{width:100%;height:44px;border:0;background:#F1F1F1;text-align:center;font-size:25px;outline:0}
+@media(max-width:380px){
+ .line-sheet{padding-left:6px;padding-right:6px}
+ .line-top{grid-template-columns:1fr 28px 1fr}
+ .line-pm{width:24px;height:24px;font-size:16px}
+ .line-big-input{width:54px}
+ .line-result-row{grid-template-columns:44px 1fr 1fr 34px 1fr}
+}
+
+.line-sub-step{position:relative;height:45px;display:flex;align-items:center;justify-content:center}
+.line-sub-step .line-small-input{width:58px;height:43px}
+.line-sub-pm{top:50%}
+.line-result-blank{height:50px;background:#6D6D6D}
+.line-final-row{display:grid;grid-template-columns:88px 1fr;align-items:center;margin:-14px 0 22px}
+.line-final-row span{font-size:12px;padding:8px 4px;font-weight:800}
+.line-final-row strong{font-size:27px;font-weight:900;font-style:italic}
+
+/* 줄 탭 최종 디자인 - 주간조 톤 */
+#lineBoard{}
+#julBoard{padding-bottom:8px}
+.line-sheet{
+  background:transparent;
+  border:0;
+  border-radius:0;
+  padding:2px 0 10px;
+}
+.line-top{
+  width:100%;
+  margin:0 0 8px;
+  grid-template-columns:1fr 30px 1fr;
+  gap:7px;
+}
+.line-group{
+  background:#fff;
+  border:1px solid #E6E6E8;
+  border-radius:12px;
+  padding:8px;
+}
+.line-num-label{
+  margin:0 0 7px;
+  font-size:13px;
+  font-weight:800;
+  color:#333;
+}
+.line-box{
+  border:0;
+  background:transparent;
+}
+.line-step,.line-sub-step{
+  height:40px;
+  min-height:40px;
+  margin-bottom:6px;
+  border:0;
+  border-radius:8px;
+  background:#F2F2F3;
+}
+.line-sub-step{margin-bottom:0}
+.line-big-input,.line-small-input,
+.line-sub-step .line-small-input{
+  width:52px;
+  height:38px;
+  font-size:22px;
+  font-weight:800;
+  background:transparent;
+}
+.line-pm{
+  width:29px;
+  height:29px;
+  border:0;
+  border-radius:7px;
+  background:#E7E1FF;
+  color:#6D3BEA;
+  font-size:18px;
+  font-weight:900;
+}
+.line-pm[data-delta="-1"]{left:5px}
+.line-pm[data-delta="1"]{right:5px}
+.line-multi{
+  gap:29px;
+  padding-bottom:14px;
+  color:#777;
+  font-size:11px;
+  font-weight:800;
+}
+.line-result-row{
+  width:100%;
+  grid-template-columns:42px 1fr 1fr 30px 1fr;
+  margin:0 0 7px;
+}
+.line-result-title,.line-result-blank,.line-result-main,.line-result-part{
+  height:44px;
+}
+.line-result-title,.line-result-blank{
+  background:#707073;
+}
+.line-result-title{
+  border-radius:9px 0 0 9px;
+  font-size:13px;
+}
+.line-result-blank{border-radius:0 9px 9px 0}
+.line-result-part{
+  border-radius:9px;
+  background:#707073;
+  font-size:21px;
+  font-weight:800;
+}
+.line-attendance-row{
+  grid-template-columns:72px 1fr;
+  min-height:42px;
+  margin:0 0 8px;
+  padding:0 9px;
+  border:1px solid #E6E6E8;
+  border-radius:10px;
+  background:#fff;
+}
+.line-attendance-row span{
+  padding:0;
+  font-size:12px;
+  font-weight:800;
+  color:#555;
+}
+.line-attendance-row strong{
+  font-size:20px;
+  font-weight:800;
+  color:#D26767;
+}
+.line-final-row{
+  grid-template-columns:72px 1fr;
+  min-height:46px;
+  margin:0 0 9px;
+  padding:0 9px;
+  border-radius:10px;
+  background:#F1ECFF;
+}
+.line-final-row span{
+  padding:0;
+  font-size:12px;
+  font-weight:800;
+  color:#6542B8;
+}
+.line-final-row strong{
+  font-size:24px;
+  color:#4D2BA4;
+  font-style:normal;
+}
+.line-bottom{
+  grid-template-columns:1.15fr .9fr .9fr;
+  gap:7px;
+}
+.line-total-wrap,.line-stat{
+  min-height:62px;
+  box-sizing:border-box;
+  border:1px solid #E6E6E8;
+  border-radius:10px;
+  background:#fff;
+}
+.line-total-wrap{
+  height:62px;
+  grid-template-columns:38px 1fr;
+  overflow:hidden;
+}
+.line-total-wrap span{
+  height:100%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-right:1px solid #EEEEF0;
+  font-size:12px;
+  font-weight:800;
+  color:#555;
+}
+.line-total-wrap input{
+  height:60px;
+  font-size:23px;
+  font-style:normal;
+  background:#F5F5F6;
+}
+.line-stat{
+  padding:7px 6px 6px;
+}
+.line-stat span{
+  margin:0 0 4px;
+  font-size:11px;
+  color:#555;
+}
+.line-stat input{
+  height:34px;
+  border-radius:7px;
+  background:#F2F2F3;
+  font-size:20px;
+  font-weight:800;
+}
+@media(max-width:380px){
+ .line-top{grid-template-columns:1fr 26px 1fr}
+ .line-result-row{grid-template-columns:38px 1fr 1fr 26px 1fr}
+ .line-group{padding:7px 5px}
+ .line-pm{width:26px;height:26px}
+}
+
+/* 줄 탭 간격 축소 */
+.line-sheet{padding:0 0 6px}
+.line-top{grid-template-columns:1fr 24px 1fr;gap:5px;margin-bottom:5px}
+.line-group{padding:6px;border-radius:10px}
+.line-num-label{margin-bottom:4px;font-size:12px}
+.line-step,.line-sub-step{height:36px;min-height:36px;margin-bottom:4px;border-radius:7px}
+.line-sub-step{margin-bottom:0}
+.line-big-input,.line-small-input,.line-sub-step .line-small-input{height:34px;font-size:20px}
+.line-pm{width:25px;height:25px;border-radius:6px;font-size:16px}
+.line-pm[data-delta="-1"]{left:4px}.line-pm[data-delta="1"]{right:4px}
+.line-multi{gap:24px;padding-bottom:10px;font-size:10px}
+
+/* 1번/2번 합계는 위 카드와 같은 열에 바로 정렬 */
+.line-result-row{
+  display:grid;
+  grid-template-columns:1fr 24px 1fr;
+  gap:5px;
+  width:100%;
+  margin:0 0 5px;
+}
+.line-result-part{
+  height:38px;
+  border-radius:8px;
+  background:#707073;
+  font-size:19px;
+}
+.line-result-spacer{height:38px}
+
+.line-attendance-row{
+  grid-template-columns:64px 1fr;
+  min-height:36px;
+  margin-bottom:5px;
+  padding:0 7px;
+  border-radius:8px;
+}
+.line-attendance-row span{font-size:11px}
+.line-attendance-row strong{font-size:18px}
+
+.line-final-row{
+  grid-template-columns:64px 1fr;
+  min-height:38px;
+  margin:0 0 6px;
+  padding:0 7px;
+  border-radius:8px;
+}
+.line-final-row span{font-size:11px}
+.line-final-row strong{font-size:21px}
+
+.line-bottom{gap:5px}
+.line-total-wrap,.line-stat{min-height:54px;border-radius:8px}
+.line-total-wrap{height:54px;grid-template-columns:34px 1fr}
+.line-total-wrap input{height:52px;font-size:21px}
+.line-total-wrap span{font-size:11px}
+.line-stat{padding:5px}
+.line-stat span{margin-bottom:2px;font-size:10px}
+.line-stat input{height:31px;border-radius:6px;font-size:18px}
+
+@media(max-width:380px){
+ .line-top,.line-result-row{grid-template-columns:1fr 20px 1fr}
+ .line-group{padding:5px 4px}
+}
+
+/* 줄 탭 v31 - compact clean */
+#julBoard{padding-bottom:6px}
+.line-sheet{padding:0;background:transparent}
+.line-top{grid-template-columns:1fr 22px 1fr;gap:5px;margin-bottom:5px}
+.line-group{
+  padding:6px;
+  border:1px solid #E7E7EC;
+  border-radius:10px;
+  background:#fff;
+}
+.line-group:first-child{box-shadow:inset 0 3px 0 #DDE8FF}
+.line-group:last-child{box-shadow:inset 0 3px 0 #F1E3FF}
+.line-num-label{margin-bottom:4px;font-size:12px;font-weight:900;color:#3F4148}
+.line-step,.line-sub-step{
+  height:35px;min-height:35px;margin-bottom:4px;
+  border:0;border-radius:7px;background:#F5F5F7
+}
+.line-sub-step{margin-bottom:0}
+.line-big-input,.line-small-input,.line-sub-step .line-small-input{
+  height:33px;width:50px;font-size:20px;font-weight:900;color:#25262B
+}
+.line-pm{
+  width:25px;height:25px;border:0;border-radius:6px;
+  background:#E9E5FF;color:#6952C8;font-size:16px;font-weight:900
+}
+.line-pm[data-delta="-1"]{left:4px}.line-pm[data-delta="1"]{right:4px}
+.line-multi{gap:23px;padding-bottom:9px;font-size:10px;font-weight:900;color:#96969E}
+
+.line-result-row{
+  grid-template-columns:1fr 22px 1fr;
+  gap:5px;margin:0 0 5px;width:100%
+}
+.line-result-part{
+  height:37px;border-radius:8px;
+  background:#ECECF0;color:#33343A;
+  font-size:19px;font-weight:900
+}
+.line-result-spacer{height:37px}
+
+/* 출근부 + 합 : 같은 줄 반반 */
+.line-half-row{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:5px;
+  margin-bottom:5px
+}
+.line-half-card{
+  height:45px;
+  display:grid;
+  grid-template-columns:auto 1fr;
+  align-items:center;
+  gap:6px;
+  padding:0 8px;
+  box-sizing:border-box;
+  border:1px solid #E5E5EA;
+  border-radius:9px;
+  background:#fff
+}
+.line-half-card span{
+  font-size:11px;font-weight:900;color:#62636A;white-space:nowrap
+}
+.line-half-card input{
+  width:100%;min-width:0;height:31px;
+  border:0;border-radius:6px;
+  background:#F3F3F5;text-align:center;
+  font-size:18px;font-weight:900;outline:0
+}
+.line-half-card.sum{
+  background:#F2EEFF;border-color:#E4DCFF
+}
+.line-half-card.sum span{color:#6952C8}
+.line-half-card.sum strong{
+  text-align:center;font-size:21px;font-weight:900;color:#5B45B5
+}
+
+/* 하단 */
+.line-bottom{grid-template-columns:1.1fr .9fr .9fr;gap:5px}
+.line-total-wrap,.line-stat{
+  min-height:51px;border:1px solid #E6E6EB;
+  border-radius:9px;background:#fff
+}
+.line-total-wrap{height:51px;grid-template-columns:32px 1fr;overflow:hidden}
+.line-total-wrap span{
+  height:100%;display:flex;align-items:center;justify-content:center;
+  border-right:1px solid #ECECEF;font-size:11px;font-weight:900;color:#5E6067
+}
+.line-total-wrap input{
+  height:49px;background:#F5F5F7;font-size:20px;font-weight:900;font-style:normal
+}
+.line-stat{padding:4px 5px}
+.line-stat span{margin:0 0 2px;font-size:10px;color:#65666D}
+.line-stat input{
+  height:29px;border-radius:6px;background:#F4F4F6;
+  font-size:18px;font-weight:900
+}
+@media(max-width:380px){
+ .line-top,.line-result-row{grid-template-columns:1fr 18px 1fr}
+ .line-group{padding:5px 4px}
+ .line-half-card{padding:0 6px}
+}
+
+.line-sum-center{
+  width:48%;
+  height:42px;
+  margin:0 auto 5px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 12px;
+  box-sizing:border-box;
+  border-radius:9px;
+  background:#F0ECFF;
+  color:#5D49B5;
+}
+.line-sum-center span{font-size:11px;font-weight:900}
+.line-sum-center strong{font-size:21px;font-weight:900}
+
+.line-input-three{
+  display:grid;
+  grid-template-columns:1fr 1fr 1fr;
+  gap:5px;
+  margin-bottom:5px;
+}
+.line-input-three .line-stat{
+  min-height:51px;
+  padding:4px 5px;
+  border:1px solid #E6E6EB;
+  border-radius:9px;
+  background:#fff;
+}
+.line-input-three .line-stat span{
+  display:block;
+  margin:0 0 2px;
+  text-align:center;
+  font-size:10px;
+  font-weight:800;
+  color:#65666D;
+}
+.line-input-three .line-stat input{
+  width:100%;
+  height:29px;
+  border:0;
+  border-radius:6px;
+  background:#F4F4F6;
+  text-align:center;
+  font-size:18px;
+  font-weight:900;
+  outline:0;
+}
+
+.line-grand-row{
+  height:45px;
+  display:grid;
+  grid-template-columns:1fr 72px;
+  gap:5px;
+}
+.line-grand-value{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 12px;
+  border-radius:9px;
+  background:#292A2E;
+  color:#fff;
+}
+.line-grand-value span{font-size:12px;font-weight:900}
+.line-grand-value strong{font-size:22px;font-weight:900}
+.line-check{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:9px;
+  font-size:11px;
+  font-weight:900;
+}
+.line-check.ok{background:#EAF7EF;color:#27854A}
+.line-check.bad{background:#FDECEC;color:#D24A4A}
+
+/* v33 - 입력 편의성 / 합 강조 */
+.line-sheet{padding:4px 0 12px}
+.line-top{gap:7px;margin-bottom:8px}
+.line-group{padding:9px 8px;border-radius:11px}
+.line-num-label{margin-bottom:6px;font-size:13px}
+.line-step,.line-sub-step{
+  height:46px;
+  min-height:46px;
+  margin-bottom:7px;
+  border-radius:8px;
+}
+.line-sub-step{margin-bottom:0}
+.line-big-input,.line-small-input,.line-sub-step .line-small-input{
+  height:44px;
+  font-size:23px;
+}
+.line-pm{
+  width:32px;height:32px;
+  border-radius:7px;
+  font-size:19px;
+}
+.line-multi{gap:34px;padding-bottom:13px;font-size:11px}
+
+.line-result-row{gap:7px;margin-bottom:8px}
+.line-result-part,.line-result-spacer{height:43px}
+.line-result-part{font-size:21px;border-radius:9px}
+
+/* 합은 가운데 전체 폭 */
+.line-sum-center{
+  width:100%;
+  height:50px;
+  margin:0 0 8px;
+  padding:0 16px;
+  border-radius:10px;
+  background:#EEE9FF;
+}
+.line-sum-center span{font-size:12px}
+.line-sum-center strong{font-size:24px}
+
+/* 출근부 / 인솔 / 교육장 입력 높이 확대 */
+.line-input-three{gap:7px;margin-bottom:8px}
+.line-input-three .line-stat{
+  min-height:66px;
+  padding:7px;
+  border-radius:10px;
+}
+.line-input-three .line-stat span{
+  margin-bottom:5px;
+  font-size:11px;
+}
+.line-input-three .line-stat input{
+  height:37px;
+  border-radius:7px;
+  font-size:21px;
+}
+
+/* 마지막 총 + 합/출근부 차이 */
+.line-grand-row{
+  height:53px;
+  grid-template-columns:1fr 92px;
+  gap:7px;
+}
+.line-grand-value{
+  padding:0 15px;
+  border-radius:10px;
+}
+.line-grand-value span{font-size:13px}
+.line-grand-value strong{font-size:24px}
+.line-check{
+  border-radius:10px;
+  font-size:12px;
+}
+.line-check.ok{background:#EEF7F1;color:#3B7D53}
+.line-check.bad{background:#FFF0F0;color:#D25555}
+
+/* v36 총/비교 표시 색상 */
+.line-grand-value{
+  background:#667085;
+  color:#fff;
+}
+.line-check.ok{
+  background:#EEF4FF;
+  color:#4D6B9B;
+}
+.line-check.bad{
+  background:#FFF1F1;
+  color:#D25555;
+}
+
+/* v37 줄 탭 디자인 디테일 정리 */
+.line-group{
+  border-color:#E4E6EC;
+  box-shadow:0 1px 3px rgba(30,35,50,.04);
+}
+.line-group:first-child{box-shadow:inset 0 3px 0 #BFD3FF,0 1px 3px rgba(30,35,50,.04)}
+.line-group:last-child{box-shadow:inset 0 3px 0 #D9C7FF,0 1px 3px rgba(30,35,50,.04)}
+
+.line-step,.line-sub-step{background:#F6F7F9}
+.line-pm{
+  background:#ECE9FF;
+  color:#6553B8;
+  box-shadow:0 1px 2px rgba(65,50,130,.08);
+}
+
+/* 배수 표시는 가운데 작은 배지 형태 */
+.line-multi{
+  height:100%;
+  align-self:stretch;
+  justify-content:center;
+  gap:28px;
+  padding:20px 0 9px;
+  box-sizing:border-box;
+}
+.line-multi span{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  width:26px;
+  height:22px;
+  border-radius:7px;
+  background:#F0F1F4;
+  color:#777A84;
+  font-size:11px;
+  font-weight:900;
+  letter-spacing:-.3px;
+}
+
+.line-result-part{
+  background:#E9EBF0;
+  color:#30323A;
+  box-shadow:inset 0 0 0 1px #E0E2E8;
+}
+
+.line-sum-center{
+  background:linear-gradient(90deg,#F0EDFF,#EDE9FF);
+  box-shadow:inset 0 0 0 1px #E1DAFF;
+}
+.line-sum-center strong{font-size:25px}
+
+.line-input-three .line-stat{
+  box-shadow:0 1px 3px rgba(30,35,50,.035);
+}
+.line-input-three .line-stat input{background:#F5F6F8}
+
+/* 총 영역은 블루그레이보다 조금 더 부드러운 인디고 */
+.line-grand-value{
+  background:#68749A;
+  box-shadow:0 2px 5px rgba(68,78,120,.10);
+}
+
+/* 비교 숫자도 총 숫자와 비슷한 크기로 */
+.line-check{
+  font-size:21px;
+  font-weight:900;
+  letter-spacing:-.5px;
+}
+.line-check.ok{
+  background:#EEF4FF;
+  color:#5270A8;
+}
+.line-check.bad{
+  background:#FFF0F1;
+  color:#D45862;
+}
+
+/* v38 위치/정렬 보정 */
+
+/* 줄 탭 내용이 상단에 너무 붙지 않도록 전체를 아래로 */
+#julBoard{
+  padding-top:18px;
+}
+.line-sheet{
+  width:96%;
+  margin:0 auto;
+}
+
+/* 합: 라벨은 왼쪽 유지, 숫자만 정확히 중앙 */
+.line-sum-center{
+  position:relative;
+  display:flex;
+  align-items:center;
+  justify-content:flex-start;
+}
+.line-sum-center strong{
+  position:absolute;
+  left:50%;
+  transform:translateX(-50%);
+  text-align:center;
+}
+
+/* 총: 라벨은 왼쪽 유지, 숫자만 정확히 중앙 */
+.line-grand-value{
+  position:relative;
+  justify-content:flex-start;
+}
+.line-grand-value strong{
+  position:absolute;
+  left:50%;
+  transform:translateX(-50%);
+  text-align:center;
+}
+
+/* 위/아래 요소들의 좌우 중심과 여백 통일 */
+.line-top,
+.line-result-row,
+.line-sum-center,
+.line-input-three,
+.line-grand-row{
+  box-sizing:border-box;
+}
+
+/* v39 줄 초기화 버튼 */
+.line-reset-wrap{
+  width:96%;
+  margin:0 auto 7px;
+  display:flex;
+  justify-content:flex-end;
+}
+#line-reset{
+  height:31px;
+  padding:0 12px;
+  border:1px solid #E1E3E8;
+  border-radius:8px;
+  background:#fff;
+  color:#737680;
+  font-size:11px;
+  font-weight:800;
+}
+#line-reset:active{background:#F2F3F6}
 </style>
 </head>
 <body>
 <div class="wrap">
+<div class="top-tabs"><button class="top-tab active" data-target="weeklyBoard">주간조</button><button class="top-tab" data-target="reportBoard">보고용</button><button class="top-tab" data-target="julBoard">줄</button></div>
+<div id="weeklyBoard" class="board-page active">
 <div class="summary">
 <div class="summary-col summary-ob"><div class="summary-head">상온 OB</div><div class="summary-body" id="sum-ob"></div><div class="summary-bottom"><div class="summary-extra summary-guide" id="sum-guide">인솔 : 0</div><div class="summary-extra summary-line" id="sum-line">줄 : 0</div></div></div>
 <div class="summary-col summary-ib"><div class="summary-head">상온 IB</div><div class="summary-body" id="sum-ib"></div><div class="summary-bottom"><div class="summary-extra summary-edu" id="sum-edu">교육장 : 0</div><div class="summary-extra summary-empty"></div></div></div>
 <div class="summary-col summary-cold"><div class="summary-head">냉장 IB</div><div class="summary-body" id="sum-cold"></div></div>
 </div>
 <div id="app"></div>
+</div>
+
+<div id="reportBoard" class="board-page">
+  <div class="report-list">
+    <section class="report-section in">
+      <div class="report-heading">출근</div>
+      <div class="report-item"><div class="report-text" data-kind="in"></div><button class="report-copy" data-copy-kind="in">복사</button></div>
+      <div class="report-options">
+        <label><input type="checkbox" id="opt-cold-extension"> 냉장IB 연장</label>
+      </div>
+    </section>
+    <section class="report-section out">
+      <div class="report-heading">퇴근</div>
+      <div class="report-item"><div class="report-text" data-kind="out"></div><button class="report-copy" data-copy-kind="out">복사</button></div>
+      <div class="report-options">
+        <label><input type="checkbox" id="opt-early"> 조퇴</label>
+        <label><input type="checkbox" id="opt-nosign"> 퇴근 미서명</label>
+        <label><input type="checkbox" id="opt-wage"> 임금공제동의서</label>
+      </div>
+    </section>
+  </div>
+</div>
+
+<div id="julBoard" class="board-page">
+  <div class="line-reset-wrap"><button type="button" id="line-reset">초기화</button></div>
+  <div class="line-sheet">
+    <div class="line-top">
+      <div class="line-group">
+        <div class="line-num-label">1</div>
+        <div class="line-box">
+          <div class="line-step">
+            <button type="button" class="line-pm" data-for="line1-main" data-delta="-1">−</button>
+            <input id="line1-main" class="line-big-input" type="number" inputmode="numeric" value="0">
+            <button type="button" class="line-pm" data-for="line1-main" data-delta="1">＋</button>
+          </div>
+          <div class="line-sub-step">
+<button type="button" class="line-pm line-sub-pm" data-for="line1-sub" data-delta="-1">−</button>
+<input id="line1-sub" class="line-small-input" type="number" inputmode="numeric" value="0">
+<button type="button" class="line-pm line-sub-pm" data-for="line1-sub" data-delta="1">＋</button>
+</div>
+        </div>
+      </div>
+
+      <div class="line-multi">
+        <span>*5</span>
+        <span>*1</span>
+      </div>
+
+      <div class="line-group">
+        <div class="line-num-label">2</div>
+        <div class="line-box">
+          <div class="line-step">
+            <button type="button" class="line-pm" data-for="line2-main" data-delta="-1">−</button>
+            <input id="line2-main" class="line-big-input" type="number" inputmode="numeric" value="0">
+            <button type="button" class="line-pm" data-for="line2-main" data-delta="1">＋</button>
+          </div>
+          <div class="line-sub-step">
+<button type="button" class="line-pm line-sub-pm" data-for="line2-sub" data-delta="-1">−</button>
+<input id="line2-sub" class="line-small-input" type="number" inputmode="numeric" value="0">
+<button type="button" class="line-pm line-sub-pm" data-for="line2-sub" data-delta="1">＋</button>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="line-result-row">
+      <div class="line-result-part" id="line-one">0</div>
+      <div class="line-result-spacer"></div>
+      <div class="line-result-part" id="line-two">0</div>
+    </div>
+
+    <div class="line-sum-center">
+      <span>합</span>
+      <strong id="line-total">0</strong>
+    </div>
+
+    <div class="line-input-three">
+      <div class="line-stat">
+        <span>출근부</span>
+        <input id="line-attendance-input" type="number" inputmode="numeric" value="0">
+      </div>
+      <div class="line-stat">
+        <span>인솔</span>
+        <input id="line-guide" type="number" inputmode="numeric" value="0">
+      </div>
+      <div class="line-stat">
+        <span>교육장</span>
+        <input id="line-training" type="number" inputmode="numeric" value="0">
+      </div>
+    </div>
+
+    <div class="line-grand-row">
+      <div class="line-grand-value"><span>총</span><strong id="line-grand">0</strong></div>
+      <div id="line-check" class="line-check ok">차이 0</div>
+    </div>
+  </div>
+</div></div>
 </div>
 <script>
 const names=["심대원","김담희","유희연"];
@@ -152,6 +1051,156 @@ document.querySelectorAll("[data-person]").forEach(el=>el.addEventListener("chan
 
 async function copyText(text){if(navigator.clipboard&&window.isSecureContext){try{await navigator.clipboard.writeText(text);return true}catch(e){}}const ta=document.createElement("textarea");ta.value=text;ta.setAttribute("readonly","");ta.style.position="fixed";ta.style.left="-9999px";document.body.appendChild(ta);ta.select();ta.setSelectionRange(0,ta.value.length);let ok=false;try{ok=document.execCommand("copy")}catch(e){}document.body.removeChild(ta);return ok}
 document.querySelectorAll("[data-copy]").forEach(btn=>btn.addEventListener("click",async()=>{const box=document.getElementById("preview-"+btn.dataset.copy),ok=await copyText(box.textContent);if(ok){btn.textContent="✓ 복사 완료";btn.classList.add("ok");setTimeout(()=>{btn.textContent="📋 복사";btn.classList.remove("ok")},1200)}else{const range=document.createRange();range.selectNodeContents(box);const sel=window.getSelection();sel.removeAllRanges();sel.addRange(range);alert("브라우저가 자동 복사를 차단했습니다. 선택된 내용을 길게 눌러 복사해주세요.")}}));
+
+// 보고용: 이미지 문구 + 선택한 특이사항만 퇴근 문구에 추가
+function openBoard(target){
+  document.querySelectorAll(".top-tab").forEach(x=>x.classList.toggle("active",x.dataset.target===target));
+  document.querySelectorAll(".board-page").forEach(x=>x.classList.toggle("active",x.id===target));
+}
+document.querySelectorAll(".top-tab").forEach(btn=>{
+  btn.addEventListener("click",()=>{
+    openBoard(btn.dataset.target);
+    try{localStorage.setItem("dayboard-active-tab",btn.dataset.target)}catch(e){}
+  });
+});
+try{
+  const savedTab=localStorage.getItem("dayboard-active-tab");
+  if(savedTab && document.getElementById(savedTab)) openBoard(savedTab);
+}catch(e){}
+
+function reportDate(){
+  const d=new Date();
+  const days=["일","월","화","수","목","금","토"];
+  return `${d.getMonth()+1}월 ${d.getDate()}일 (${days[d.getDay()]})`;
+}
+function reportMessages(){
+  const dateLine=`컬리K팀 ${reportDate()}`;
+  const coldExtension=document.getElementById("opt-cold-extension").checked;
+  const inAreas=coldExtension ? "상온OB, IB" : "상온OB, IB, 냉장IB";
+  const inHeader=`${dateLine}\n${inAreas} 13시30분조`;
+  const outHeader=`${dateLine}\n상온OB, IB, 냉장IB 13시30분조`;
+  const extras=[];
+  if(document.getElementById("opt-early").checked) extras.push("•조퇴 1명(000)");
+  if(document.getElementById("opt-nosign").checked) extras.push("•퇴근 미서명 1명(000)");
+  if(document.getElementById("opt-wage").checked) extras.push("•임금공제동의서 1명(000)");
+  return {
+    in:`${inHeader}\n컬리로 불가인원 없습니다.`,
+    out:`${outHeader}\n퇴근 완료했습니다. (연장X)${extras.length?"\n"+extras.join("\n"):""}`
+  };
+}
+function drawReport(){
+  const m=reportMessages();
+  document.querySelector('[data-kind="in"]').textContent=m.in;
+  document.querySelector('[data-kind="out"]').textContent=m.out;
+}
+["opt-cold-extension","opt-early","opt-nosign","opt-wage"].forEach(id=>{
+  document.getElementById(id).addEventListener("change",drawReport);
+});
+drawReport();
+
+document.querySelectorAll("[data-copy-kind]").forEach(btn=>{
+  btn.addEventListener("click",async()=>{
+    const msg=reportMessages()[btn.dataset.copyKind];
+    const ok=await copyText(msg);
+    if(ok){
+      btn.textContent="✓";
+      setTimeout(()=>btn.textContent="복사",1000);
+    }else{
+      alert("복사가 차단되었습니다. 문구를 길게 눌러 복사해주세요.");
+    }
+  });
+});
+
+// 줄 탭 계산 + 일일 저장/초기화 - v39
+(function(){
+  const LINE_KEY="dayboard-line-daily";
+  const inputIds=[
+    "line1-main","line1-sub","line2-main","line2-sub",
+    "line-attendance-input","line-guide","line-training"
+  ];
+
+  function dateKey(){
+    const d=new Date();
+    return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")}`;
+  }
+  const value=id=>{
+    const el=document.getElementById(id);
+    return el ? Math.max(0,Number(el.value)||0) : 0;
+  };
+  function calculate(){
+    const one=value("line1-main")*5+value("line1-sub");
+    const two=value("line2-main")*5+value("line2-sub");
+    const sum=one+two;
+    const guide=value("line-guide");
+    const training=value("line-training");
+    const attendance=value("line-attendance-input");
+    const grand=sum+guide+training;
+
+    document.getElementById("line-one").textContent=one;
+    document.getElementById("line-two").textContent=two;
+    document.getElementById("line-total").textContent=sum;
+    document.getElementById("line-grand").textContent=grand;
+
+    const diff=sum-attendance;
+    const check=document.getElementById("line-check");
+    check.textContent=(diff>0?"+":"")+diff;
+    check.classList.toggle("ok",diff===0);
+    check.classList.toggle("bad",diff!==0);
+  }
+  function saveLine(){
+    const values={};
+    inputIds.forEach(id=>values[id]=value(id));
+    try{localStorage.setItem(LINE_KEY,JSON.stringify({date:dateKey(),values}))}catch(e){}
+  }
+  function resetLine(save=true){
+    inputIds.forEach(id=>{
+      const el=document.getElementById(id);
+      if(el) el.value=0;
+    });
+    calculate();
+    if(save) saveLine();
+  }
+  function loadLine(){
+    try{
+      const saved=JSON.parse(localStorage.getItem(LINE_KEY));
+      if(!saved || saved.date!==dateKey()){
+        resetLine(true);
+        return;
+      }
+      inputIds.forEach(id=>{
+        const el=document.getElementById(id);
+        if(el) el.value=Math.max(0,Number(saved.values?.[id])||0);
+      });
+    }catch(e){
+      resetLine(false);
+    }
+    calculate();
+  }
+
+  document.querySelectorAll(".line-pm").forEach(btn=>{
+    btn.addEventListener("click",()=>{
+      const el=document.getElementById(btn.dataset.for);
+      if(!el)return;
+      el.value=Math.max(0,(Number(el.value)||0)+Number(btn.dataset.delta));
+      calculate();
+      saveLine();
+    });
+  });
+
+  inputIds.forEach(id=>{
+    const el=document.getElementById(id);
+    if(el) el.addEventListener("input",()=>{
+      calculate();
+      saveLine();
+    });
+  });
+
+  const resetBtn=document.getElementById("line-reset");
+  if(resetBtn) resetBtn.addEventListener("click",()=>resetLine(true));
+
+  loadLine();
+})();
+
 </script>
 </body>
 </html>
