@@ -946,14 +946,12 @@ input[type=number]::-webkit-inner-spin-button,input[type=number]::-webkit-outer-
     <section class="report-section in">
       <div class="report-heading">출근</div>
       <div class="report-item"><div class="report-text" data-kind="in"></div><button class="report-copy" data-copy-kind="in">복사</button></div>
-      <div class="report-options">
-        <label><input type="checkbox" id="opt-cold-extension"> 냉장IB 연장</label>
-      </div>
     </section>
     <section class="report-section out">
       <div class="report-heading">퇴근</div>
       <div class="report-item"><div class="report-text" data-kind="out"></div><button class="report-copy" data-copy-kind="out">복사</button></div>
       <div class="report-options">
+        <label><input type="checkbox" id="opt-cold-extension"> 냉장IB 연장</label>
         <label><input type="checkbox" id="opt-early"> 조퇴</label>
         <label><input type="checkbox" id="opt-nosign"> 퇴근 미서명</label>
         <label><input type="checkbox" id="opt-wage"> 임금공제동의서</label>
@@ -1110,9 +1108,9 @@ function reportDate(){
 function reportMessages(){
   const dateLine=`컬리K팀 ${reportDate()}`;
   const coldExtension=document.getElementById("opt-cold-extension").checked;
-  const inAreas=coldExtension ? "상온OB, IB" : "상온OB, IB, 냉장IB";
-  const inHeader=`${dateLine}\n${inAreas} 13시30분조`;
-  const outHeader=`${dateLine}\n상온OB, IB, 냉장IB 13시30분조`;
+  const inHeader=`${dateLine}\n상온OB, IB, 냉장IB 13시30분조`;
+  const outAreas=coldExtension ? "상온OB, IB" : "상온OB, IB, 냉장IB";
+  const outHeader=`${dateLine}\n${outAreas} 13시30분조`;
   const extras=[];
   if(document.getElementById("opt-early").checked) extras.push("•조퇴 1명(000)");
   if(document.getElementById("opt-nosign").checked) extras.push("•퇴근 미서명 1명(000)");
