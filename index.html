@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>주간조 보드</title>
+<title>인솔보드 v3</title>
 <style>
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
@@ -947,11 +947,1757 @@ input[type=number]::-webkit-inner-spin-button,input[type=number]::-webkit-outer-
   padding:6px 9px;
   font-weight:800;
 }
+
+/* v2 - 간결한 2단 드롭다운 + 줄 고정 */
+.nav-groups{display:flex;gap:6px;margin-bottom:10px;align-items:center}
+.nav-select{height:38px;border:1px solid #E3E3E6;border-radius:10px;background:#fff;color:#222;font-size:13px;font-weight:800;padding:0 30px 0 11px;min-width:0;-webkit-appearance:auto;appearance:auto}
+#sectionSelect{flex:1}
+#shiftSelect{flex:1}
+.line-nav{height:38px;flex:0 0 54px;border:1px solid #E3E3E6;border-radius:10px;background:#fff;color:#333;font-size:13px;font-weight:800;padding:0}
+.line-nav.active{background:#161616;color:#fff;border-color:#161616}
+@media(max-width:340px){.nav-select{font-size:12px;padding-left:8px;padding-right:22px}.line-nav{flex-basis:48px;font-size:12px}}
+
+/* v14: 인원보고/보고용 안에 시간대를 넣은 드롭다운 */
+#mainNav{overflow:visible !important;position:relative;z-index:1000}
+#mainNav .nav-dropdown{position:relative;min-width:0}
+#mainNav .nav-drop-btn{width:100%;height:40px;border:1px solid #E3E3E6;border-radius:10px;background:#fff;color:#222;font-size:13px;font-weight:800;padding:0 10px;display:flex;align-items:center;justify-content:space-between;cursor:pointer}
+#mainNav .nav-drop-btn span{font-size:15px;line-height:1}
+#mainNav .nav-dropdown.open .nav-drop-btn{border-color:#161616}
+#mainNav .nav-drop-menu{display:none;position:absolute;top:44px;left:0;right:0;background:#fff;border:1px solid #E3E3E6;border-radius:10px;padding:5px;box-shadow:0 8px 24px rgba(0,0,0,.12);z-index:2000}
+#mainNav .nav-dropdown.open .nav-drop-menu{display:block}
+#mainNav .nav-drop-menu button{display:block;width:100%;height:38px;border:0;border-radius:8px;background:#fff;color:#222;text-align:left;padding:0 10px;font-size:13px;font-weight:700;cursor:pointer}
+#mainNav .nav-drop-menu button:active,#mainNav .nav-drop-menu button:hover{background:#f3f3f5}
+#mainNav .nav-dropdown.active .nav-drop-btn{background:#161616;color:#fff;border-color:#161616}
+
+/* v20: 인원보고/보고용 가로 시작·끝선 완전 통일 */
+#weeklyBoard,#reportBoard{width:100%;margin:0;padding-left:0;padding-right:0;}
+#weeklyBoard .summary,#weeklyBoard #app,#weeklyBoard .card,
+#reportBoard .report-list,#reportBoard .report-section{width:100%;max-width:none;margin-left:0;margin-right:0;}
+#reportBoard .report-section{border-radius:14px;border:1px solid #E8E8E8;}
+#reportBoard .report-list{box-sizing:border-box;}
+/* 탭 전환 시 세로 스크롤바 유무로 폭이 흔들리지 않게 */
+html{overflow-y:scroll;}
+
+
+
+/* v25 - 교육장 입력을 빠르게 누를 수 있는 4행 리스트형으로 정리 */
+#julBoard .line-education-grid{
+  display:grid !important;
+  grid-template-columns:1fr !important;
+  gap:6px !important;
+  margin:0 0 8px !important;
+}
+#julBoard .line-education-grid .line-stat{
+  min-height:52px !important;
+  height:52px !important;
+  padding:5px 7px 5px 13px !important;
+  box-sizing:border-box !important;
+  display:flex !important;
+  flex-direction:row !important;
+  align-items:center !important;
+  justify-content:space-between !important;
+  border:1px solid #E2DDF5 !important;
+  border-radius:12px !important;
+  background:#fff !important;
+}
+#julBoard .line-education-grid .line-stat > span{
+  margin:0 !important;
+  font-size:12px !important;
+  font-weight:900 !important;
+  color:#55565D !important;
+  white-space:nowrap !important;
+}
+#julBoard .line-education-grid .line-stat-step{
+  width:176px !important;
+  height:40px !important;
+  margin:0 !important;
+  display:grid !important;
+  grid-template-columns:40px 1fr 40px !important;
+  gap:4px !important;
+  align-items:center !important;
+  padding:0 !important;
+  border-radius:10px !important;
+  background:#F6F6F8 !important;
+}
+#julBoard .line-education-grid .line-pm{
+  width:40px !important;
+  height:40px !important;
+  min-width:40px !important;
+  padding:0 !important;
+  border:0 !important;
+  border-radius:9px !important;
+  font-size:24px !important;
+  line-height:40px !important;
+}
+#julBoard .line-education-grid input{
+  color:#111 !important;
+  -webkit-text-fill-color:#111 !important;
+  opacity:1 !important;
+  width:100% !important;
+  min-width:0 !important;
+  height:40px !important;
+  padding:0 !important;
+  border:0 !important;
+  background:transparent !important;
+  text-align:center !important;
+  font-size:20px !important;
+  font-weight:900 !important;
+  outline:none !important;
+}
+#julBoard .line-training-total{
+  height:50px !important;
+  padding:0 13px !important;
+  border:1px solid #CFC5F3 !important;
+  border-radius:12px !important;
+  background:#F7F4FF !important;
+}
+#julBoard .line-training-total > span{
+  font-size:12px !important;
+  color:#5E547D !important;
+}
+#julBoard #line-training-total{
+  left:auto !important;
+  right:14px !important;
+  top:50% !important;
+  transform:translateY(-50%) !important;
+  width:80px !important;
+  height:40px !important;
+  text-align:right !important;
+  font-size:23px !important;
+  font-weight:900 !important;
+  color:#554A77 !important;
+}
+
+/* v26 - 교육장 입력 숫자가 확실히 보이도록 모바일 브라우저 표시값 강제 */
+#julBoard .line-education-grid .line-stat-step input[type="number"]{
+  display:block !important;
+  visibility:visible !important;
+  opacity:1 !important;
+  color:#111 !important;
+  -webkit-text-fill-color:#111 !important;
+  caret-color:#111 !important;
+  font-size:20px !important;
+  font-weight:900 !important;
+  line-height:40px !important;
+  text-align:center !important;
+}
+
+</style>
+<style>
+/* 최근 업로드 파일의 줄 탭 스타일 */
+
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body{margin:0;background:#FAFAFA;font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",Arial,sans-serif;color:#161616;-webkit-tap-highlight-color:transparent}
+.wrap{width:96%;max-width:720px;margin:10px auto}
+.summary{display:flex;margin-bottom:10px;border-radius:14px;overflow:hidden;border:1px solid #E8E8E8;background:#fff;box-shadow:0 2px 10px rgba(0,0,0,.035);position:sticky;top:0;z-index:100}
+.summary-col{width:33.333%;border-right:1px solid #EEE;background:#fff}
+.summary-col:last-child{border-right:0}
+.summary-head{padding:6px 7px;font-size:14px;font-weight:700;border-bottom:3px solid transparent;text-align:center}
+.summary-ob .summary-head{border-bottom-color:#4BA3FF}
+.summary-ib .summary-head{border-bottom-color:#F36AA0}
+.summary-cold .summary-head{border-bottom-color:#F4B83A}
+.summary-body{padding:6px 7px;font-size:12px;min-height:54px}
+.sum-table{width:100%;border-collapse:collapse;table-layout:fixed;text-align:center}
+.sum-table th:first-child,.sum-table td:first-child{width:34%}
+.sum-table th:not(:first-child),.sum-table td:not(:first-child){width:22%}
+.sum-table td:first-child{white-space:nowrap;font-size:12px}
+.sum-table th{font-size:10px;font-weight:700;color:#777;padding:2px 0 4px;border-right:1px solid #EEE;line-height:1.25}
+.sum-table td{font-size:13px;font-weight:700;padding:4px 0 2px;border-right:1px solid #EEE;line-height:1.25}
+.sum-table th:last-child,.sum-table td:last-child{border-right:0}
+.sum-table.mismatch td{color:#E5484D}
+.sum-table td.positive-purple{color:#F28C28}
+.summary-bottom{display:flex;border-top:1px solid #EEE}
+.summary-extra{width:50%;padding:5px 3px;font-size:11px;text-align:center;white-space:nowrap}
+.summary-guide{background:#F5FAFF}
+.summary-line{background:#FFF6FA;border-left:1px solid #EEE}
+.summary-edu{background:#FFF3E6}
+.summary-empty{background:#fff;border-left:1px solid #EEE}
+.card{background:#fff;border:1px solid #E8E8E8;border-radius:14px;overflow:hidden;margin-bottom:10px;box-shadow:0 2px 10px rgba(0,0,0,.035)}
+.title{padding:8px 10px 8px 18px;font-size:17px;font-weight:700;border-bottom:1px solid #F0F0F0;position:relative}
+.title:before{content:"";position:absolute;left:8px;top:9px;bottom:9px;width:4px;border-radius:10px}
+.ob .title:before{background:#4BA3FF}.ib .title:before{background:#F36AA0}.cold .title:before{background:#F4B83A}
+.body{display:flex;gap:8px;padding:8px;background:#fff}
+.left{width:39%;min-width:0;border-right:1px solid #F0F0F0;padding-right:8px}
+.right{width:61%;min-width:0}
+.people-row{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:7px}
+.people-title{flex:none;font-size:12px;font-weight:700;padding-top:1px}
+.people{width:94px;flex:none;margin:0}
+.person{display:block;font-size:11px;margin:0 0 4px 0;white-space:nowrap}
+.person input{width:15px;height:15px;margin:0 3px 0 0;vertical-align:-3px}
+.field{display:flex;align-items:center;justify-content:space-between;margin:4px 0}
+.field label{font-size:11px;font-weight:700;white-space:nowrap}
+.field input{width:46px;height:27px;background:#fff;border:1px solid #D9D9D9;border-radius:5px;color:#161616;text-align:center;font-size:16px;padding:0;-webkit-appearance:none;appearance:none}
+.stepper{display:flex;align-items:center;gap:2px}
+.step-controls{display:flex;align-items:center;gap:3px}
+.step-btn{width:24px;height:24px;padding:0;border:1px solid #D9D9D9;border-radius:4px;background:#F7F7F8;color:#555;font-size:16px;line-height:24px;text-align:center;font-weight:600;-webkit-appearance:none;appearance:none;touch-action:manipulation;display:flex;align-items:center;justify-content:center;line-height:1;padding:0;text-align:center}
+.step-btn:active{background:#EDEDEF}
+.field input:focus{outline:none;border-color:#B8B8BC}
+.field input.mismatch{color:#E53935;font-weight:700;border-color:#F1A7A5;background:#FFF7F7}
+.preview{white-space:pre-wrap;background:#F8F8F9;border:1px solid #EBEBED;border-radius:6px;padding:7px;font-size:10.5px;line-height:1.45;min-height:196px;overflow-wrap:anywhere;color:#252525}
+.copy{width:100%;height:34px;border:0;border-radius:8px;margin-top:6px;font-size:12px;font-weight:700;color:#fff;-webkit-appearance:none;appearance:none;touch-action:manipulation}
+.ob .copy{background:#3295F6}.ib .copy{background:#E85D93}.cold .copy{background:#E5A526}
+.copy:active{transform:scale(.985)}.copy.ok{opacity:.65}
+input[type=number]::-webkit-inner-spin-button,input[type=number]::-webkit-outer-spin-button{-webkit-appearance:none;margin:0}
+@supports(padding:max(0px)){body{padding-left:env(safe-area-inset-left);padding-right:env(safe-area-inset-right);padding-bottom:env(safe-area-inset-bottom)}}
+@media(max-width:430px){
+  .wrap{width:calc(100% - 12px);margin:6px auto}
+  .summary{top:0}
+  .summary-head{font-size:13px;padding:6px 3px}
+  .summary-body{padding:5px 3px}
+  .sum-table th{font-size:9px}
+  .sum-table td{font-size:12px}
+  .summary-extra{font-size:10px;padding:5px 1px}
+  .body{gap:6px;padding:7px}
+  .left{width:42%;padding-right:6px}
+  .right{width:58%}
+  .people-title{font-size:11px}
+  .people{width:90px}
+  .person{font-size:10.5px}
+  .field label{font-size:10px}
+  .field input{width:40px;height:27px;font-size:16px}
+  .stepper{gap:1px}
+  .step-controls{gap:1px}
+  .step-btn{width:23px;height:23px;font-size:12px;line-height:20px}
+  .preview{font-size:9.7px;padding:6px;line-height:1.42}
+}
+@media(max-width:375px){
+  .left{width:44%}
+  .right{width:56%}
+  .people{width:86px}
+  .field input{width:37px}
+  .step-btn{width:22px;height:22px}
+  .preview{font-size:9.2px}
+}
+@media(max-width:340px){
+  .body{gap:4px;padding:6px}
+  .left{width:46%;padding-right:4px}
+  .right{width:54%}
+  .field input{width:34px}
+  .step-btn{width:21px;height:21px;font-size:11px}
+  .preview{font-size:8.8px}
+}
+
+.top-tabs{display:flex;gap:6px;margin-bottom:10px}
+.top-tab{flex:1;height:40px;border:1px solid #E3E3E6;border-radius:11px;background:#fff;color:#777;font-size:14px;font-weight:800}
+.top-tab.active{background:#161616;color:#fff;border-color:#161616}
+.board-page{display:none}.board-page.active{display:block}
+.report-list{display:grid;gap:10px}
+.report-section{background:#fff;border:1px solid #E7E7E9;border-radius:14px;overflow:hidden}
+.report-heading{padding:10px 12px;font-size:17px;font-weight:900}
+.report-section.in .report-heading{background:#DCEFFD;color:#095CC5}
+.report-section.out .report-heading{background:#F7DCE8;color:#B000C8}
+.report-item{padding:8px 10px;border-top:1px solid #EEEEF0;display:flex;align-items:stretch;gap:7px}
+.report-text{flex:1;min-width:0;white-space:pre-wrap;background:#F7F7F8;border:1px solid #E7E7E9;border-radius:9px;padding:8px;font-size:12px;line-height:1.45}
+.report-copy{flex:0 0 58px;width:58px;min-width:58px;margin:0;border:0;border-radius:8px;background:#D9D9DC;color:#444;font-size:12px;font-weight:800}
+
+
+.report-options{display:flex;gap:5px;padding:8px 10px 0;flex-wrap:wrap}
+.report-options label{display:flex;align-items:center;gap:4px;background:#F2F2F3;border:1px solid #E0E0E2;border-radius:7px;padding:6px 8px;font-size:11px;font-weight:700;color:#555}
+.report-options input{accent-color:#777}
+
+/* 보고용 - 주간조 디자인 톤과 통일 */
+#reportBoard{padding-bottom:8px}
+.report-list{gap:8px}
+.report-section{
+  background:#fff;
+  border:1px solid #E6E6E8;
+  border-radius:12px;
+  box-shadow:none;
+  overflow:hidden;
+}
+.report-heading{
+  background:#fff !important;
+  color:#222 !important;
+  padding:10px 12px 7px;
+  font-size:14px;
+  font-weight:800;
+  border-bottom:1px solid #EEEEF0;
+}
+.report-item{
+  padding:8px 10px;
+  display:flex;
+  align-items:stretch;
+  gap:6px;
+  border-top:0;
+}
+.report-text{
+  flex:1;
+  min-width:0;
+  padding:8px 9px;
+  background:#F4F4F5;
+  border:1px solid #E3E3E5;
+  border-radius:7px;
+  font-size:12px;
+  line-height:1.45;
+}
+.report-copy{
+  flex:0 0 58px;
+  width:58px;
+  min-width:58px;
+  margin:0;
+  border:1px solid #D4D4D7;
+  border-radius:7px;
+  background:#E5E5E7;
+  color:#444;
+  font-size:12px;
+  font-weight:800;
+}
+.report-options{
+  display:flex;
+  flex-wrap:wrap;
+  gap:6px;
+  padding:0 10px 9px;
+}
+.report-options label{
+  min-height:30px;
+  display:flex;
+  align-items:center;
+  gap:5px;
+  padding:5px 8px;
+  background:#F3F3F4;
+  border:1px solid #E1E1E3;
+  border-radius:7px;
+  color:#555;
+  font-size:11px;
+  font-weight:700;
+}
+.report-options input{
+  width:15px;
+  height:15px;
+  margin:0;
+  accent-color:#7D22FF;
+}
+
+/* 줄 탭 */
+.jul-card{background:#fff;border:1px solid #E6E6E8;border-radius:12px;padding:12px}
+.jul-date{text-align:center;font-size:13px;font-weight:700;margin-bottom:12px}
+.jul-main-title{text-align:center;font-size:12px;font-weight:800;color:#666;margin-bottom:5px}
+.jul-main-control{display:flex;align-items:center;justify-content:center;gap:7px;margin-bottom:12px}
+.jul-btn{width:36px;height:36px;border:1px solid #D8D8DB;border-radius:8px;background:#F1F1F2;font-size:22px;font-weight:700;color:#555}
+.jul-main-input{width:92px;height:52px;border:1px solid #CFCFD2;border-radius:8px;background:#F4F4F5;text-align:center;font-size:30px;font-weight:800}
+.jul-row{display:grid;grid-template-columns:72px 1fr;align-items:center;border-top:1px solid #EEEEF0;padding:9px 0}
+.jul-label{font-size:12px;font-weight:800;color:#555}
+.jul-value{font-size:20px;font-weight:800}
+.jul-subgrid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:5px}
+.jul-sub{background:#F4F4F5;border-radius:8px;padding:9px;text-align:center}
+.jul-sub span{display:block;font-size:11px;font-weight:700;color:#666;margin-bottom:3px}
+.jul-sub strong{font-size:23px}
+
+/* 줄 탭 - 원본 시트 위치 구성 */
+.line-sheet{background:#fff;border:1px solid #E6E6E8;border-radius:12px;padding:18px 10px 14px}
+.line-top{display:grid;grid-template-columns:1fr 34px 1fr;align-items:end;gap:6px;width:calc(100% - 88px);margin:0 0 10px 88px}
+.line-group{text-align:center}
+.line-num-label{font-size:15px;margin-bottom:4px}
+.line-box{border:1px solid #333;background:#F2F2F2}
+.line-step{position:relative;border-bottom:1px dotted #777;min-height:54px;display:flex;align-items:center;justify-content:center}
+.line-big-input{width:68px;height:52px;border:0;background:transparent;text-align:center;font-size:31px;outline:0}
+.line-small-input{width:100%;height:45px;border:0;background:transparent;text-align:center;font-size:28px;outline:0}
+.line-pm{position:absolute;top:50%;transform:translateY(-50%);width:27px;height:27px;border:1px solid #D0D0D3;border-radius:6px;background:#fff;color:#555;font-size:18px;line-height:1}
+.line-pm[data-delta="-1"]{left:4px}.line-pm[data-delta="1"]{right:4px}
+.line-multi{display:flex;flex-direction:column;justify-content:flex-end;gap:35px;padding-bottom:14px;text-align:center;font-size:12px}
+.line-result-row{display:grid;grid-template-columns:44px 1fr 1fr 34px 1fr;gap:0;width:100%;margin:8px 0 0;background:transparent;color:#fff;align-items:stretch}
+.line-result-title{height:50px;box-sizing:border-box;display:flex;align-items:center;justify-content:center;text-align:center;font-size:16px;font-weight:800;border-right:1px dotted #fff;background:#6D6D6D}
+.line-result-main{height:50px;box-sizing:border-box;display:flex;align-items:center;justify-content:center;text-align:center;font-size:27px;font-weight:900;font-style:italic;background:#6D6D6D}
+.line-result-part{height:50px;box-sizing:border-box;display:flex;align-items:center;justify-content:center;text-align:center;font-size:24px;background:#6D6D6D}
+.line-attendance-row{display:grid;grid-template-columns:88px 1fr;align-items:center;margin-bottom:22px}
+.line-attendance-row span{font-size:12px;padding:8px 4px}
+.line-attendance-row strong{font-size:24px;font-weight:500;color:#CF6666}
+.line-bottom{display:grid;grid-template-columns:1.3fr .8fr .9fr;gap:10px;align-items:end}
+.line-total-wrap{display:grid;grid-template-columns:42px 1fr;align-items:center;border:1px solid #333;height:48px}
+.line-total-wrap span{text-align:center;font-size:15px;border-right:1px dotted #555}
+.line-total-wrap input{width:100%;height:46px;border:0;background:#fff;text-align:center;font-size:27px;font-weight:800;font-style:italic;outline:0}
+.line-stat{text-align:center}
+.line-stat span{display:block;font-size:15px;font-weight:700;margin-bottom:4px}
+.line-stat input{width:100%;height:44px;border:0;background:#F1F1F1;text-align:center;font-size:25px;outline:0}
+@media(max-width:380px){
+ .line-sheet{padding-left:6px;padding-right:6px}
+ .line-top{grid-template-columns:1fr 28px 1fr}
+ .line-pm{width:24px;height:24px;font-size:16px}
+ .line-big-input{width:54px}
+ .line-result-row{grid-template-columns:44px 1fr 1fr 34px 1fr}
+}
+
+.line-sub-step{position:relative;height:45px;display:flex;align-items:center;justify-content:center}
+.line-sub-step .line-small-input{width:58px;height:43px}
+.line-sub-pm{top:50%}
+.line-result-blank{height:50px;background:#6D6D6D}
+.line-final-row{display:grid;grid-template-columns:88px 1fr;align-items:center;margin:-14px 0 22px}
+.line-final-row span{font-size:12px;padding:8px 4px;font-weight:800}
+.line-final-row strong{font-size:27px;font-weight:900;font-style:italic}
+
+/* 줄 탭 최종 디자인 - 주간조 톤 */
+#lineBoard{}
+#julBoard{padding-bottom:8px}
+.line-sheet{
+  background:transparent;
+  border:0;
+  border-radius:0;
+  padding:2px 0 10px;
+}
+.line-top{
+  width:100%;
+  margin:0 0 8px;
+  grid-template-columns:1fr 30px 1fr;
+  gap:7px;
+}
+.line-group{
+  background:#fff;
+  border:1px solid #E6E6E8;
+  border-radius:12px;
+  padding:8px;
+}
+.line-num-label{
+  margin:0 0 7px;
+  font-size:13px;
+  font-weight:800;
+  color:#333;
+}
+.line-box{
+  border:0;
+  background:transparent;
+}
+.line-step,.line-sub-step{
+  height:40px;
+  min-height:40px;
+  margin-bottom:6px;
+  border:0;
+  border-radius:8px;
+  background:#F2F2F3;
+}
+.line-sub-step{margin-bottom:0}
+.line-big-input,.line-small-input,
+.line-sub-step .line-small-input{
+  width:52px;
+  height:38px;
+  font-size:22px;
+  font-weight:800;
+  background:transparent;
+}
+.line-pm{
+  width:29px;
+  height:29px;
+  border:0;
+  border-radius:7px;
+  background:#E7E1FF;
+  color:#6D3BEA;
+  font-size:18px;
+  font-weight:900;
+}
+.line-pm[data-delta="-1"]{left:5px}
+.line-pm[data-delta="1"]{right:5px}
+.line-multi{
+  gap:29px;
+  padding-bottom:14px;
+  color:#777;
+  font-size:11px;
+  font-weight:800;
+}
+.line-result-row{
+  width:100%;
+  grid-template-columns:42px 1fr 1fr 30px 1fr;
+  margin:0 0 7px;
+}
+.line-result-title,.line-result-blank,.line-result-main,.line-result-part{
+  height:44px;
+}
+.line-result-title,.line-result-blank{
+  background:#707073;
+}
+.line-result-title{
+  border-radius:9px 0 0 9px;
+  font-size:13px;
+}
+.line-result-blank{border-radius:0 9px 9px 0}
+.line-result-part{
+  border-radius:9px;
+  background:#707073;
+  font-size:21px;
+  font-weight:800;
+}
+.line-attendance-row{
+  grid-template-columns:72px 1fr;
+  min-height:42px;
+  margin:0 0 8px;
+  padding:0 9px;
+  border:1px solid #E6E6E8;
+  border-radius:10px;
+  background:#fff;
+}
+.line-attendance-row span{
+  padding:0;
+  font-size:12px;
+  font-weight:800;
+  color:#555;
+}
+.line-attendance-row strong{
+  font-size:20px;
+  font-weight:800;
+  color:#D26767;
+}
+.line-final-row{
+  grid-template-columns:72px 1fr;
+  min-height:46px;
+  margin:0 0 9px;
+  padding:0 9px;
+  border-radius:10px;
+  background:#F1ECFF;
+}
+.line-final-row span{
+  padding:0;
+  font-size:12px;
+  font-weight:800;
+  color:#6542B8;
+}
+.line-final-row strong{
+  font-size:24px;
+  color:#4D2BA4;
+  font-style:normal;
+}
+.line-bottom{
+  grid-template-columns:1.15fr .9fr .9fr;
+  gap:7px;
+}
+.line-total-wrap,.line-stat{
+  min-height:62px;
+  box-sizing:border-box;
+  border:1px solid #E6E6E8;
+  border-radius:10px;
+  background:#fff;
+}
+.line-total-wrap{
+  height:62px;
+  grid-template-columns:38px 1fr;
+  overflow:hidden;
+}
+.line-total-wrap span{
+  height:100%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-right:1px solid #EEEEF0;
+  font-size:12px;
+  font-weight:800;
+  color:#555;
+}
+.line-total-wrap input{
+  height:60px;
+  font-size:23px;
+  font-style:normal;
+  background:#F5F5F6;
+}
+.line-stat{
+  padding:7px 6px 6px;
+}
+.line-stat span{
+  margin:0 0 4px;
+  font-size:11px;
+  color:#555;
+}
+.line-stat input{
+  height:34px;
+  border-radius:7px;
+  background:#F2F2F3;
+  font-size:20px;
+  font-weight:800;
+}
+@media(max-width:380px){
+ .line-top{grid-template-columns:1fr 26px 1fr}
+ .line-result-row{grid-template-columns:38px 1fr 1fr 26px 1fr}
+ .line-group{padding:7px 5px}
+ .line-pm{width:26px;height:26px}
+}
+
+/* 줄 탭 간격 축소 */
+.line-sheet{padding:0 0 6px}
+.line-top{grid-template-columns:1fr 24px 1fr;gap:5px;margin-bottom:5px}
+.line-group{padding:6px;border-radius:10px}
+.line-num-label{margin-bottom:4px;font-size:12px}
+.line-step,.line-sub-step{height:36px;min-height:36px;margin-bottom:4px;border-radius:7px}
+.line-sub-step{margin-bottom:0}
+.line-big-input,.line-small-input,.line-sub-step .line-small-input{height:34px;font-size:20px}
+.line-pm{width:25px;height:25px;border-radius:6px;font-size:16px}
+.line-pm[data-delta="-1"]{left:4px}.line-pm[data-delta="1"]{right:4px}
+.line-multi{gap:24px;padding-bottom:10px;font-size:10px}
+
+/* 1번/2번 합계는 위 카드와 같은 열에 바로 정렬 */
+.line-result-row{
+  display:grid;
+  grid-template-columns:1fr 24px 1fr;
+  gap:5px;
+  width:100%;
+  margin:0 0 5px;
+}
+.line-result-part{
+  height:38px;
+  border-radius:8px;
+  background:#707073;
+  font-size:19px;
+}
+.line-result-spacer{height:38px}
+
+.line-attendance-row{
+  grid-template-columns:64px 1fr;
+  min-height:36px;
+  margin-bottom:5px;
+  padding:0 7px;
+  border-radius:8px;
+}
+.line-attendance-row span{font-size:11px}
+.line-attendance-row strong{font-size:18px}
+
+.line-final-row{
+  grid-template-columns:64px 1fr;
+  min-height:38px;
+  margin:0 0 6px;
+  padding:0 7px;
+  border-radius:8px;
+}
+.line-final-row span{font-size:11px}
+.line-final-row strong{font-size:21px}
+
+.line-bottom{gap:5px}
+.line-total-wrap,.line-stat{min-height:54px;border-radius:8px}
+.line-total-wrap{height:54px;grid-template-columns:34px 1fr}
+.line-total-wrap input{height:52px;font-size:21px}
+.line-total-wrap span{font-size:11px}
+.line-stat{padding:5px}
+.line-stat span{margin-bottom:2px;font-size:10px}
+.line-stat input{height:31px;border-radius:6px;font-size:18px}
+
+@media(max-width:380px){
+ .line-top,.line-result-row{grid-template-columns:1fr 20px 1fr}
+ .line-group{padding:5px 4px}
+}
+
+/* 줄 탭 v31 - compact clean */
+#julBoard{padding-bottom:6px}
+.line-sheet{padding:0;background:transparent}
+.line-top{grid-template-columns:1fr 22px 1fr;gap:5px;margin-bottom:5px}
+.line-group{
+  padding:6px;
+  border:1px solid #E7E7EC;
+  border-radius:10px;
+  background:#fff;
+}
+.line-group:first-child{box-shadow:inset 0 3px 0 #DDE8FF}
+.line-group:last-child{box-shadow:inset 0 3px 0 #F1E3FF}
+.line-num-label{margin-bottom:4px;font-size:12px;font-weight:900;color:#3F4148}
+.line-step,.line-sub-step{
+  height:35px;min-height:35px;margin-bottom:4px;
+  border:0;border-radius:7px;background:#F5F5F7
+}
+.line-sub-step{margin-bottom:0}
+.line-big-input,.line-small-input,.line-sub-step .line-small-input{
+  height:33px;width:50px;font-size:20px;font-weight:900;color:#25262B
+}
+.line-pm{
+  width:25px;height:25px;border:0;border-radius:6px;
+  background:#E9E5FF;color:#6952C8;font-size:16px;font-weight:900
+}
+.line-pm[data-delta="-1"]{left:4px}.line-pm[data-delta="1"]{right:4px}
+.line-multi{gap:23px;padding-bottom:9px;font-size:10px;font-weight:900;color:#96969E}
+
+.line-result-row{
+  grid-template-columns:1fr 22px 1fr;
+  gap:5px;margin:0 0 5px;width:100%
+}
+.line-result-part{
+  height:37px;border-radius:8px;
+  background:#ECECF0;color:#33343A;
+  font-size:19px;font-weight:900
+}
+.line-result-spacer{height:37px}
+
+/* 출근부 + 합 : 같은 줄 반반 */
+.line-half-row{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:5px;
+  margin-bottom:5px
+}
+.line-half-card{
+  height:45px;
+  display:grid;
+  grid-template-columns:auto 1fr;
+  align-items:center;
+  gap:6px;
+  padding:0 8px;
+  box-sizing:border-box;
+  border:1px solid #E5E5EA;
+  border-radius:9px;
+  background:#fff
+}
+.line-half-card span{
+  font-size:11px;font-weight:900;color:#62636A;white-space:nowrap
+}
+.line-half-card input{
+  width:100%;min-width:0;height:31px;
+  border:0;border-radius:6px;
+  background:#F3F3F5;text-align:center;
+  font-size:18px;font-weight:900;outline:0
+}
+.line-half-card.sum{
+  background:#F2EEFF;border-color:#E4DCFF
+}
+.line-half-card.sum span{color:#6952C8}
+.line-half-card.sum strong{
+  text-align:center;font-size:21px;font-weight:900;color:#5B45B5
+}
+
+/* 하단 */
+.line-bottom{grid-template-columns:1.1fr .9fr .9fr;gap:5px}
+.line-total-wrap,.line-stat{
+  min-height:51px;border:1px solid #E6E6EB;
+  border-radius:9px;background:#fff
+}
+.line-total-wrap{height:51px;grid-template-columns:32px 1fr;overflow:hidden}
+.line-total-wrap span{
+  height:100%;display:flex;align-items:center;justify-content:center;
+  border-right:1px solid #ECECEF;font-size:11px;font-weight:900;color:#5E6067
+}
+.line-total-wrap input{
+  height:49px;background:#F5F5F7;font-size:20px;font-weight:900;font-style:normal
+}
+.line-stat{padding:4px 5px}
+.line-stat span{margin:0 0 2px;font-size:10px;color:#65666D}
+.line-stat input{
+  height:29px;border-radius:6px;background:#F4F4F6;
+  font-size:18px;font-weight:900
+}
+@media(max-width:380px){
+ .line-top,.line-result-row{grid-template-columns:1fr 18px 1fr}
+ .line-group{padding:5px 4px}
+ .line-half-card{padding:0 6px}
+}
+
+.line-sum-center{
+  width:48%;
+  height:42px;
+  margin:0 auto 5px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 12px;
+  box-sizing:border-box;
+  border-radius:9px;
+  background:#F0ECFF;
+  color:#5D49B5;
+}
+.line-sum-center span{font-size:11px;font-weight:900}
+.line-sum-center strong{font-size:21px;font-weight:900}
+
+.line-input-three{
+  display:grid;
+  grid-template-columns:1fr 1fr 1fr;
+  gap:5px;
+  margin-bottom:5px;
+}
+.line-input-three .line-stat{
+  min-height:51px;
+  padding:4px 5px;
+  border:1px solid #E6E6EB;
+  border-radius:9px;
+  background:#fff;
+}
+.line-input-three .line-stat span{
+  display:block;
+  margin:0 0 2px;
+  text-align:center;
+  font-size:10px;
+  font-weight:800;
+  color:#65666D;
+}
+.line-input-three .line-stat input{
+  width:100%;
+  height:29px;
+  border:0;
+  border-radius:6px;
+  background:#F4F4F6;
+  text-align:center;
+  font-size:18px;
+  font-weight:900;
+  outline:0;
+}
+
+.line-grand-row{
+  height:45px;
+  display:grid;
+  grid-template-columns:1fr 72px;
+  gap:5px;
+}
+.line-grand-value{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 12px;
+  border-radius:9px;
+  background:#292A2E;
+  color:#fff;
+}
+.line-grand-value span{font-size:12px;font-weight:900}
+.line-grand-value strong{font-size:22px;font-weight:900}
+.line-check{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:9px;
+  font-size:11px;
+  font-weight:900;
+}
+.line-check.ok{background:#EAF7EF;color:#27854A}
+.line-check.bad{background:#FDECEC;color:#D24A4A}
+
+/* v33 - 입력 편의성 / 합 강조 */
+.line-sheet{padding:4px 0 12px}
+.line-top{gap:7px;margin-bottom:8px}
+.line-group{padding:9px 8px;border-radius:11px}
+.line-num-label{margin-bottom:6px;font-size:13px}
+.line-step,.line-sub-step{
+  height:46px;
+  min-height:46px;
+  margin-bottom:7px;
+  border-radius:8px;
+}
+.line-sub-step{margin-bottom:0}
+.line-big-input,.line-small-input,.line-sub-step .line-small-input{
+  height:44px;
+  font-size:23px;
+}
+.line-pm{
+  width:32px;height:32px;
+  border-radius:7px;
+  font-size:19px;
+}
+.line-multi{gap:34px;padding-bottom:13px;font-size:11px}
+
+.line-result-row{gap:7px;margin-bottom:8px}
+.line-result-part,.line-result-spacer{height:43px}
+.line-result-part{font-size:21px;border-radius:9px}
+
+/* 합은 가운데 전체 폭 */
+.line-sum-center{
+  width:100%;
+  height:50px;
+  margin:0 0 8px;
+  padding:0 16px;
+  border-radius:10px;
+  background:#EEE9FF;
+}
+.line-sum-center span{font-size:12px}
+.line-sum-center strong{font-size:24px}
+
+/* 출근부 / 인솔 / 교육장 입력 높이 확대 */
+.line-input-three{gap:7px;margin-bottom:8px}
+.line-input-three .line-stat{
+  min-height:66px;
+  padding:7px;
+  border-radius:10px;
+}
+.line-input-three .line-stat span{
+  margin-bottom:5px;
+  font-size:11px;
+}
+.line-input-three .line-stat input{
+  height:37px;
+  border-radius:7px;
+  font-size:21px;
+}
+
+/* 마지막 총 + 합/출근부 차이 */
+.line-grand-row{
+  height:53px;
+  grid-template-columns:1fr 92px;
+  gap:7px;
+}
+.line-grand-value{
+  padding:0 15px;
+  border-radius:10px;
+}
+.line-grand-value span{font-size:13px}
+.line-grand-value strong{font-size:24px}
+.line-check{
+  border-radius:10px;
+  font-size:12px;
+}
+.line-check.ok{background:#EEF7F1;color:#3B7D53}
+.line-check.bad{background:#FFF0F0;color:#D25555}
+
+/* v36 총/비교 표시 색상 */
+.line-grand-value{
+  background:#667085;
+  color:#fff;
+}
+.line-check.ok{
+  background:#EEF4FF;
+  color:#4D6B9B;
+}
+.line-check.bad{
+  background:#FFF1F1;
+  color:#D25555;
+}
+
+/* v37 줄 탭 디자인 디테일 정리 */
+.line-group{
+  border-color:#E4E6EC;
+  box-shadow:0 1px 3px rgba(30,35,50,.04);
+}
+.line-group:first-child{box-shadow:inset 0 3px 0 #BFD3FF,0 1px 3px rgba(30,35,50,.04)}
+.line-group:last-child{box-shadow:inset 0 3px 0 #D9C7FF,0 1px 3px rgba(30,35,50,.04)}
+
+.line-step,.line-sub-step{background:#F6F7F9}
+.line-pm{
+  background:#ECE9FF;
+  color:#6553B8;
+  box-shadow:0 1px 2px rgba(65,50,130,.08);
+}
+
+/* 배수 표시는 가운데 작은 배지 형태 */
+.line-multi{
+  height:100%;
+  align-self:stretch;
+  justify-content:center;
+  gap:28px;
+  padding:20px 0 9px;
+  box-sizing:border-box;
+}
+.line-multi span{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  width:26px;
+  height:22px;
+  border-radius:7px;
+  background:#F0F1F4;
+  color:#777A84;
+  font-size:11px;
+  font-weight:900;
+  letter-spacing:-.3px;
+}
+
+.line-result-part{
+  background:#E9EBF0;
+  color:#30323A;
+  box-shadow:inset 0 0 0 1px #E0E2E8;
+}
+
+.line-sum-center{
+  background:linear-gradient(90deg,#F0EDFF,#EDE9FF);
+  box-shadow:inset 0 0 0 1px #E1DAFF;
+}
+.line-sum-center strong{font-size:25px}
+
+.line-input-three .line-stat{
+  box-shadow:0 1px 3px rgba(30,35,50,.035);
+}
+.line-input-three .line-stat input{background:#F5F6F8}
+
+/* 총 영역은 블루그레이보다 조금 더 부드러운 인디고 */
+.line-grand-value{
+  background:#68749A;
+  box-shadow:0 2px 5px rgba(68,78,120,.10);
+}
+
+/* 비교 숫자도 총 숫자와 비슷한 크기로 */
+.line-check{
+  font-size:21px;
+  font-weight:900;
+  letter-spacing:-.5px;
+}
+.line-check.ok{
+  background:#EEF4FF;
+  color:#5270A8;
+}
+.line-check.bad{
+  background:#FFF0F1;
+  color:#D45862;
+}
+
+/* v38 위치/정렬 보정 */
+
+/* 줄 탭 내용이 상단에 너무 붙지 않도록 전체를 아래로 */
+#julBoard{
+  padding-top:18px;
+}
+.line-sheet{
+  width:96%;
+  margin:0 auto;
+}
+
+/* 합: 라벨은 왼쪽 유지, 숫자만 정확히 중앙 */
+.line-sum-center{
+  position:relative;
+  display:flex;
+  align-items:center;
+  justify-content:flex-start;
+}
+.line-sum-center strong{
+  position:absolute;
+  left:50%;
+  transform:translateX(-50%);
+  text-align:center;
+}
+
+/* 총: 라벨은 왼쪽 유지, 숫자만 정확히 중앙 */
+.line-grand-value{
+  position:relative;
+  justify-content:flex-start;
+}
+.line-grand-value strong{
+  position:absolute;
+  left:50%;
+  transform:translateX(-50%);
+  text-align:center;
+}
+
+/* 위/아래 요소들의 좌우 중심과 여백 통일 */
+.line-top,
+.line-result-row,
+.line-sum-center,
+.line-input-three,
+.line-grand-row{
+  box-sizing:border-box;
+}
+
+/* v39 줄 초기화 버튼 */
+.line-reset-wrap{
+  width:96%;
+  margin:0 auto 7px;
+  display:flex;
+  justify-content:flex-end;
+}
+#line-reset{
+  height:31px;
+  padding:0 12px;
+  border:1px solid #E1E3E8;
+  border-radius:8px;
+  background:#fff;
+  color:#737680;
+  font-size:11px;
+  font-weight:800;
+}
+#line-reset:active{background:#F2F3F6}
+
+/* v40 줄 자유 메모칸 */
+.line-note{
+  margin:0 0 8px;
+}
+#line-note-input{
+  width:100%;
+  height:43px;
+  box-sizing:border-box;
+  padding:0 13px;
+  border:1px solid #E3E5EA;
+  border-radius:10px;
+  outline:none;
+  background:#F7F8FA;
+  color:#34363D;
+  font-size:13px;
+  font-weight:700;
+}
+#line-note-input::placeholder{
+  color:#A1A4AC;
+  font-weight:600;
+}
+#line-note-input:focus{
+  border-color:#CFC6F8;
+  background:#fff;
+  box-shadow:0 0 0 3px rgba(112,92,190,.07);
+}
+
+/* v41 메모 위치 */
+.line-grand-row{margin-bottom:8px}
+.line-note{margin:0}
+
+/* v44 연장 3개 뒤 줄바꿈 */
+.report-options .report-option-break{flex-basis:100%;width:0;height:0}
+
+/* v47 보고용 연장 옵션 - 주간조 포인트 컬러 */
+#opt-ob-extension,
+#opt-ib-extension,
+#opt-cold-extension{
+  accent-color:#705CBE;
+}
+.report-options label:has(#opt-ob-extension),
+.report-options label:has(#opt-ib-extension),
+.report-options label:has(#opt-cold-extension){
+  background:#EEE9FF;
+  color:#5F4EAA;
+  border:1px solid #DDD5FF;
+  border-radius:8px;
+  padding:6px 9px;
+  font-weight:800;
+}
+
+/* v2 - 줄 탭: 출근부 줄바꿈 / 인솔·교육장 남녀 +/- */
+.line-attendance-row{margin-bottom:8px}
+.line-attendance-row .line-stat{
+  min-height:66px;padding:7px;border:1px solid #E6E6EB;border-radius:10px;background:#fff;
+}
+.line-attendance-row .line-stat span{
+  display:block;margin-bottom:5px;text-align:center;font-size:11px;font-weight:800;color:#65666D;
+}
+.line-attendance-row .line-stat input{
+  width:100%;height:37px;box-sizing:border-box;border:0;border-radius:7px;background:#F4F4F6;
+  text-align:center;font-size:21px;font-weight:900;outline:0;
+}
+.line-stat-step{position:relative;height:37px}
+.line-stat-step input{padding:0 30px;box-sizing:border-box}
+.line-stat-step .line-pm{position:absolute;top:6px;z-index:2}
+.line-stat-step .line-pm[data-delta="-1"]{left:4px}
+.line-stat-step .line-pm[data-delta="1"]{right:4px}
+
+
+/* v3 - 줄 탭 하단 입력 2x2: 출근부/인솔 왼쪽, 교육장 남/여 오른쪽 */
+.line-2x2-grid{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-bottom:8px}
+.line-2x2-grid .line-stat{min-height:66px;padding:7px;border:1px solid #E6E6EB;border-radius:10px;background:#fff;box-sizing:border-box}
+.line-2x2-grid .line-stat span{display:block;margin-bottom:5px;text-align:center;font-size:11px;font-weight:800;color:#65666D}
+.line-2x2-grid .line-stat>input{width:100%;height:37px;box-sizing:border-box;border:0;border-radius:7px;background:#F4F4F6;text-align:center;font-size:21px;font-weight:900;outline:0}
+
+/* v4 - 2x2 입력 영역 정렬 및 +/- 버튼을 회색 입력박스 안으로 통일 */
+.line-2x2-grid{align-items:stretch}
+.line-2x2-grid .line-stat{display:flex;flex-direction:column;min-height:72px;padding:7px}
+.line-2x2-grid .line-stat span{height:16px;line-height:16px;margin-bottom:5px}
+.line-2x2-grid .line-stat>input,
+.line-2x2-grid .line-stat-step{width:100%;height:39px;min-height:39px;box-sizing:border-box;border:0;border-radius:7px;background:#F4F4F6}
+.line-2x2-grid .line-stat>input{margin:0;padding:0;text-align:center;font-size:21px;font-weight:900;outline:0}
+.line-2x2-grid .line-stat-step{position:relative;display:flex;align-items:center}
+.line-2x2-grid .line-stat-step input{width:100%;height:39px;margin:0;padding:0 34px;box-sizing:border-box;border:0;background:transparent;text-align:center;font-size:21px;font-weight:900;outline:0}
+.line-2x2-grid .line-stat-step .line-pm{top:50%;transform:translateY(-50%);width:27px;height:27px;margin:0;padding:0;display:flex;align-items:center;justify-content:center}
+.line-2x2-grid .line-stat-step .line-pm[data-delta="-1"]{left:5px}
+.line-2x2-grid .line-stat-step .line-pm[data-delta="1"]{right:5px}
+
+/* v7 - 줄 탭 +/- 버튼 회색 통일, 합 아래 구분선 */
+#julBoard .line-pm{background:#ECECEF;border-color:#D3D3D8;color:#555;min-width:34px;width:34px;height:32px;touch-action:manipulation;-webkit-user-select:none;user-select:none;}
+#julBoard .line-stat-step input{padding-left:43px;padding-right:43px;}
+#julBoard .line-2x2-grid .line-stat-step .line-pm[data-delta="-1"]{left:3px;}
+#julBoard .line-2x2-grid .line-stat-step .line-pm[data-delta="1"]{right:3px;}
+#julBoard .line-pm:active{background:#E1E1E5;}
+#julBoard .line-sum-center{position:relative;margin-bottom:17px;}
+#julBoard .line-sum-center::after{content:"";position:absolute;left:0;right:0;bottom:-9px;height:1px;background:#D9D9DE;}
+
+/* v6 - 배경색은 유지하고 테두리 색으로만 영역 구분 (합 이하 변경 없음) */
+.line-top .line-group:first-child{
+  border-color:#8FB5FF;
+  box-shadow:inset 0 3px 0 #8FB5FF,0 1px 3px rgba(30,35,50,.04);
+}
+.line-top .line-group:last-child{
+  border-color:#B79AF2;
+  box-shadow:inset 0 3px 0 #B79AF2,0 1px 3px rgba(30,35,50,.04);
+}
+.line-2x2-grid .line-stat:nth-child(1){border-color:#8FB5FF;}
+.line-2x2-grid .line-stat:nth-child(2){border-color:#E6B85C;}
+.line-2x2-grid .line-stat:nth-child(3){border-color:#A99AE8;}
+.line-2x2-grid .line-stat:nth-child(4){border-color:#E79AB8;}
+
+
+/* v9 - 교육장 남/여 아래 자동 합계 */
+.line-training-total{
+  grid-column:2;
+  min-height:36px;
+  margin-top:-1px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 12px;
+  box-sizing:border-box;
+  border:1px solid #E6B85C;
+  border-radius:9px;
+  background:#fff;
+}
+.line-training-total span{font-size:11px;font-weight:800;color:#65666D}
+.line-training-total strong{font-size:19px;font-weight:900;color:#44464D}
+.line-training-total{position:relative;justify-content:flex-start}
+#line-training-total{position:absolute;left:50%;transform:translateX(-50%);width:72px;height:30px;box-sizing:border-box;border:0;border-radius:7px;background:#F4F4F6;text-align:center;font-size:19px;font-weight:900;color:#44464D;outline:none;-moz-appearance:textfield}
+#line-training-total::-webkit-outer-spin-button,#line-training-total::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+
+
+/* v11 - 출근부/인솔 한 줄, 교육장 OB/IB 남녀, 합 배경 제거 */
+.line-basic-row{margin-bottom:10px}
+.line-basic-row .line-stat:nth-child(1){border-color:#8FB5FF}
+.line-basic-row .line-stat:nth-child(2){border-color:#A99AE8}
+.line-education-title{margin:2px 0 6px;text-align:center;font-size:12px;font-weight:900;color:#65666D}
+.line-education-grid{margin-bottom:2px}
+.line-education-grid .line-stat:nth-child(1),.line-education-grid .line-stat:nth-child(2){border-color:#E6B85C}
+.line-education-grid .line-stat:nth-child(3),.line-education-grid .line-stat:nth-child(4){border-color:#E79AB8}
+#julBoard .line-training-total{grid-column:auto;display:flex;align-items:center;justify-content:center;gap:12px;width:100%;height:38px;margin:0 0 9px;padding:0;border:0;background:transparent;box-shadow:none}
+#julBoard .line-training-total span{margin:0;font-size:12px;font-weight:900;color:#65666D}
+#julBoard #line-training-total{position:static;transform:none;width:72px;height:32px;padding:0;border:0;background:transparent;text-align:center;font-size:20px;font-weight:900;color:#44464D;outline:none}
+
+/* v12 - 교육장 입력 영역 축소 + 오른쪽 합 배치 */
+#julBoard .line-education-title{margin:3px 0 6px 2px;text-align:left;font-size:12px;font-weight:900;color:#65666D}
+#julBoard .line-education-layout{display:grid;grid-template-columns:minmax(0,1fr) 72px;gap:8px;align-items:stretch;margin-bottom:9px}
+#julBoard .line-education-grid{min-width:0;margin:0;gap:6px}
+#julBoard .line-education-grid .line-stat{min-width:0;min-height:68px;padding:6px}
+#julBoard .line-education-grid .line-stat-step input{padding-left:39px;padding-right:39px;font-size:19px}
+#julBoard .line-education-grid .line-stat-step .line-pm{min-width:31px;width:31px;height:31px}
+#julBoard .line-training-total{display:flex;position:relative;flex-direction:column;align-items:stretch;justify-content:center;gap:0;width:72px;height:auto;margin:0;padding:0;border:0;border-radius:0;background:transparent;box-shadow:none}
+#julBoard .line-training-total::before{content:"";position:absolute;left:0;right:0;top:50%;height:1px;background:#D9D9DE}
+#julBoard .line-training-total span{position:relative;z-index:1;align-self:center;margin:0 0 10px;padding:0 5px;background:#fff;font-size:11px;font-weight:900;color:#65666D}
+#julBoard #line-training-total{position:relative;z-index:1;left:auto;transform:none;width:100%;height:36px;margin:0;padding:0;border:0;background:#fff;text-align:center;font-size:24px;font-weight:900;color:#44464D;outline:none}
+
+
+/* v13 - 교육장 합을 기존 합/총처럼 배경 카드형으로 표시 */
+#julBoard .line-training-total{
+  display:flex;position:relative;flex-direction:row;align-items:center;justify-content:flex-start;
+  width:72px;height:auto;margin:0;padding:0 8px;box-sizing:border-box;
+  border:0;border-radius:9px;background:#F0ECFF;box-shadow:none;color:#5D49B5;
+}
+#julBoard .line-training-total::before{display:none}
+#julBoard .line-training-total span{
+  position:static;z-index:auto;align-self:auto;margin:0;padding:0;background:transparent;
+  font-size:11px;font-weight:900;color:#5D49B5;
+}
+#julBoard #line-training-total{
+  position:absolute;z-index:1;left:50%;top:50%;transform:translate(-50%,-50%);
+  width:42px;height:36px;margin:0;padding:0;border:0;background:transparent;
+  text-align:center;font-size:24px;font-weight:900;color:#5D49B5;outline:none;
+}
+
+/* v14 - 단독 교육장 제목 제거, 합 카드 제목을 교육장 합으로 변경 */
+#julBoard .line-education-layout{margin-top:8px}
+#julBoard .line-training-total{flex-direction:column;justify-content:center;padding:8px 4px;gap:7px}
+#julBoard .line-training-total span{font-size:11px;line-height:1.2;text-align:center;white-space:nowrap}
+#julBoard #line-training-total{position:static;left:auto;top:auto;transform:none;width:100%;height:40px;text-align:center;font-size:25px;line-height:40px}
+
+
+/* v15 - 줄 탭 상단 여백 축소 + 한 화면 밀도 조정 */
+#julBoard{padding-top:0!important;}
+#julBoard .line-reset-wrap{margin-top:-6px;margin-bottom:3px;}
+#julBoard #line-reset{height:28px;padding:0 10px;}
+#julBoard .line-sheet{padding-top:0;}
+#julBoard .line-top{margin-top:0;margin-bottom:4px;}
+#julBoard .line-sum-center{margin-bottom:12px;}
+#julBoard .line-sum-center::after{bottom:-6px;}
+#julBoard .line-basic-row{margin-bottom:5px;}
+#julBoard .line-education-layout{margin-top:4px;margin-bottom:5px;}
+#julBoard .line-note{margin-bottom:4px;}
+
+/* v16 - 초기화 버튼을 메모 옆 아이콘으로 이동 */
+#julBoard .line-reset-wrap{display:none;}
+#julBoard .line-note-row{display:flex;align-items:center;gap:7px;margin:0;}
+#julBoard .line-note-row .line-note{flex:1;min-width:0;margin:0;}
+#julBoard .line-note-row #line-note-input{height:43px;}
+#julBoard .line-reset-icon{flex:0 0 50px;width:50px;height:43px;padding:0;border:1px solid #E3E5EA;border-radius:10px;background:#FFF0EA;color:#E85D2A;font-size:24px;font-weight:800;line-height:1;display:flex;align-items:center;justify-content:center;touch-action:manipulation;}
+#julBoard .line-reset-icon:active{background:#FFE0D3;}
+
+/* v19 - 초기화 높이 메모와 동일 + 총 영역을 IB 여 끝선까지 정렬 */
+#julBoard .line-note-row{align-items:stretch;}
+#julBoard .line-note-row #line-note-input{height:43px;}
+#julBoard #line-reset.line-reset-icon{height:43px;min-height:43px;align-self:stretch;}
+#julBoard .line-grand-row{grid-template-columns:minmax(0,1fr) 72px;gap:8px;}
+
+
+/* v20 - 메모 폭 정렬 + 줄 탭 세로 간격 균형 조정 */
+#julBoard .line-note-row{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) 72px;
+  gap:8px;
+  align-items:stretch;
+  margin-top:8px;
+}
+#julBoard .line-note-row .line-note{width:100%;min-width:0;margin:0;}
+#julBoard .line-note-row #line-note-input{width:100%;height:43px;box-sizing:border-box;}
+#julBoard #line-reset.line-reset-icon{width:72px;min-width:72px;height:43px;min-height:43px;}
+#julBoard .line-top{margin-bottom:7px;}
+#julBoard .line-sum-center{margin-bottom:16px;}
+#julBoard .line-sum-center::after{bottom:-8px;}
+#julBoard .line-basic-row{margin-bottom:8px;}
+#julBoard .line-education-layout{margin-top:7px;margin-bottom:8px;}
+#julBoard .line-grand-row{margin-top:2px;margin-bottom:0;}
+
+/* v21 - 총/차이 반반 정렬 + 메모 위 구분선 */
+#julBoard .line-grand-row{grid-template-columns:1fr 1fr;gap:8px;}
+#julBoard .line-check{
+  position:relative;display:flex;align-items:center;justify-content:flex-start;
+  padding:0 12px;box-sizing:border-box;border-radius:9px;
+}
+#julBoard .line-check span{font-size:12px;font-weight:900;}
+#julBoard .line-check strong{
+  position:absolute;left:50%;transform:translateX(-50%);
+  font-size:20px;font-weight:900;text-align:center;
+}
+#julBoard .line-note-row{position:relative;margin-top:17px;}
+#julBoard .line-note-row::before{
+  content:"";position:absolute;left:0;right:0;top:-9px;height:1px;background:#D9D9DE;
+}
+
+
+/* v22 - 교육장 OB/IB 남녀와 교육장 합 색상 톤 통일 */
+#julBoard .line-education-grid .line-stat{
+  border-color:#C9BDF4!important;
+  box-shadow:none;
+}
+#julBoard .line-training-total{
+  border:1px solid #C9BDF4!important;
+  background:#F8F6FF!important;
+  color:#5D5578!important;
+}
+#julBoard .line-training-total span,
+#julBoard #line-training-total{
+  color:#5D5578!important;
+}
+
+
+/* v26 - v23 기준: 숫자 배경을 더 연하게, +/-와 숫자 영역 높이 통일 */
+#julBoard .line-stat-step,
+#julBoard .line-2x2-grid .line-stat-step{
+  height:39px;min-height:39px;background:#F8F8F9;
+}
+#julBoard .line-stat-step input,
+#julBoard .line-2x2-grid .line-stat-step input{
+  height:39px;background:transparent;
+}
+#julBoard .line-stat-step .line-pm,
+#julBoard .line-2x2-grid .line-stat-step .line-pm,
+#julBoard .line-education-grid .line-stat-step .line-pm{
+  top:0;transform:none;height:39px;min-height:39px;
+  background:#ECECEF;border-color:#D3D3D8;border-radius:7px;
+}
+#julBoard .line-stat-step .line-pm[data-delta="-1"],
+#julBoard .line-2x2-grid .line-stat-step .line-pm[data-delta="-1"]{left:0;}
+#julBoard .line-stat-step .line-pm[data-delta="1"],
+#julBoard .line-2x2-grid .line-stat-step .line-pm[data-delta="1"]{right:0;}
+
+
+
+/* v23 - 출근부/인솔 테두리 색 분리 */
+#julBoard .line-basic-row .line-stat:nth-child(1){border-color:#79A9E8 !important;}
+#julBoard .line-basic-row .line-stat:nth-child(2){border-color:#78BFA5 !important;}
+
+
+/* v27 - 상단 1/2 입력 높이를 IB와 통일, 모든 +/- 버튼 정사각형 */
+#julBoard .line-step,
+#julBoard .line-sub-step{
+  height:39px;
+  min-height:39px;
+  border-radius:7px;
+  background:#F8F8F9;
+}
+#julBoard .line-big-input,
+#julBoard .line-small-input,
+#julBoard .line-sub-step .line-small-input{
+  height:39px;
+}
+#julBoard .line-pm,
+#julBoard .line-stat-step .line-pm,
+#julBoard .line-2x2-grid .line-stat-step .line-pm,
+#julBoard .line-education-grid .line-stat-step .line-pm{
+  width:32px;
+  min-width:32px;
+  height:32px;
+  min-height:32px;
+  padding:0;
+  box-sizing:border-box;
+  border-radius:7px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  top:50%;
+  transform:translateY(-50%);
+}
+#julBoard .line-stat-step .line-pm[data-delta="-1"],
+#julBoard .line-2x2-grid .line-stat-step .line-pm[data-delta="-1"]{left:3px;}
+#julBoard .line-stat-step .line-pm[data-delta="1"],
+#julBoard .line-2x2-grid .line-stat-step .line-pm[data-delta="1"]{right:3px;}
+
+
+/* v28 - 줄 탭 입력 숫자/라벨 타이포 크기 통일 */
+#julBoard .line-big-input,
+#julBoard .line-small-input,
+#julBoard .line-sub-step .line-small-input,
+#julBoard .line-stat-step input,
+#julBoard .line-2x2-grid .line-stat-step input,
+#julBoard .line-education-grid .line-stat-step input,
+#julBoard #line-training-total{
+  font-size:20px !important;
+  font-weight:900 !important;
+  line-height:1 !important;
+}
+
+/* 입력 항목명은 같은 단계로 통일 */
+#julBoard .line-basic-row .line-stat > span,
+#julBoard .line-education-grid .line-stat > span,
+#julBoard .line-training-total > span{
+  font-size:11px !important;
+  font-weight:800 !important;
+  line-height:16px !important;
+}
+
+/* 상단 1/2는 구역 제목이라 항목명보다 한 단계 크게 */
+#julBoard .line-num-label{
+  font-size:13px !important;
+  font-weight:900 !important;
+  line-height:16px !important;
+}
+
+/* +/- 기호도 전 영역 동일 크기 */
+#julBoard .line-pm,
+#julBoard .line-stat-step .line-pm,
+#julBoard .line-2x2-grid .line-stat-step .line-pm,
+#julBoard .line-education-grid .line-stat-step .line-pm{
+  font-size:18px !important;
+  font-weight:800 !important;
+  line-height:1 !important;
+}
+
+</style>
+<style>
+/* v6 - 드롭다운 내비게이션 확정 */
+#mainNav{
+  display:grid !important;
+  grid-template-columns:minmax(0,1fr) minmax(0,1fr) 54px !important;
+  gap:6px !important;
+  align-items:center !important;
+  margin:0 0 10px !important;
+}
+#mainNav .nav-select,
+#mainNav .line-nav{
+  width:100% !important;
+  height:40px !important;
+  box-sizing:border-box !important;
+  border:1px solid #E3E3E6 !important;
+  border-radius:10px !important;
+  background:#fff !important;
+  color:#222 !important;
+  font-size:13px !important;
+  font-weight:800 !important;
+}
+#mainNav .nav-select{
+  display:block !important;
+  padding:0 28px 0 10px !important;
+  -webkit-appearance:menulist !important;
+  appearance:auto !important;
+}
+#mainNav .line-nav{padding:0 !important}
+#mainNav .line-nav.active{
+  background:#161616 !important;
+  color:#fff !important;
+  border-color:#161616 !important;
+}
+
+/* v17: 빠른 이동용 2단 탭 */
+#mainNav.quick-nav{display:block !important;margin:0 0 10px !important;overflow:visible !important;position:relative;z-index:10}
+#mainNav .mode-tabs{display:grid;grid-template-columns:1fr 1fr 54px;gap:6px;margin-bottom:6px}
+#mainNav .shift-tabs{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+#mainNav .mode-btn,#mainNav .shift-btn{height:38px;border:1px solid #E3E3E6;border-radius:10px;background:#fff;color:#555;font-size:13px;font-weight:800;padding:0;cursor:pointer}
+#mainNav .mode-btn.active{background:#161616;color:#fff;border-color:#161616}
+#mainNav .shift-btn.active{background:#f0f0f2;color:#111;border-color:#bdbdc3;box-shadow:inset 0 0 0 1px #bdbdc3}
+#mainNav .shift-tabs.hidden{display:none}
+@media(max-width:340px){#mainNav .mode-btn,#mainNav .shift-btn{font-size:12px}}
+
+/* v22 - 줄 탭 좌우 끝선을 상단 탭과 정확히 정렬 */
+#julBoard .line-sheet{
+  width:100% !important;
+  max-width:none !important;
+  margin-left:0 !important;
+  margin-right:0 !important;
+  box-sizing:border-box !important;
+}
+#julBoard .line-top{
+  width:100% !important;
+  margin-left:0 !important;
+  margin-right:0 !important;
+  box-sizing:border-box !important;
+}
+
+/* v23 - 줄 하단 레이아웃 정돈: 교육장 2x2 + 합계 가로 카드 */
+#julBoard .line-education-layout{
+  display:block !important;
+  margin:7px 0 8px !important;
+}
+#julBoard .line-education-grid{
+  display:grid !important;
+  grid-template-columns:1fr 1fr !important;
+  gap:7px !important;
+  margin:0 0 7px !important;
+}
+#julBoard .line-education-grid .line-stat{
+  min-height:72px !important;
+  padding:7px !important;
+  border:1px solid #DED9F3 !important;
+  border-radius:11px !important;
+  background:#fff !important;
+}
+#julBoard .line-training-total{
+  position:relative !important;
+  display:flex !important;
+  flex-direction:row !important;
+  align-items:center !important;
+  justify-content:flex-start !important;
+  width:100% !important;
+  height:46px !important;
+  margin:0 !important;
+  padding:0 14px !important;
+  box-sizing:border-box !important;
+  border:1px solid #DED9F3 !important;
+  border-radius:11px !important;
+  background:#F8F7FC !important;
+}
+#julBoard .line-training-total > span{
+  margin:0 !important;
+  font-size:12px !important;
+  font-weight:900 !important;
+  color:#625A7B !important;
+}
+#julBoard #line-training-total{
+  position:absolute !important;
+  left:50% !important;
+  top:50% !important;
+  transform:translate(-50%,-50%) !important;
+  width:90px !important;
+  height:36px !important;
+  margin:0 !important;
+  padding:0 !important;
+  background:transparent !important;
+  text-align:center !important;
+  font-size:21px !important;
+  color:#554A77 !important;
+}
+#julBoard .line-grand-row{
+  display:grid !important;
+  grid-template-columns:1fr 1fr !important;
+  gap:7px !important;
+  margin:0 !important;
+}
+#julBoard .line-grand-value,
+#julBoard .line-check{
+  min-height:52px !important;
+  border-radius:11px !important;
+}
+#julBoard .line-grand-value{
+  background:#737FA5 !important;
+}
+#julBoard .line-check{
+  background:#F2F5FB !important;
+  border:1px solid #E3E8F2 !important;
+}
+#julBoard .line-note-row{
+  margin-top:16px !important;
+}
+
+/* v24 - 교육장 아래 구분선 + 출근부/인솔 이동 */
+#julBoard .line-education-layout{margin-bottom:0 !important;}
+#julBoard .line-section-divider{
+  width:100%;
+  height:1px;
+  margin:12px 0 10px;
+  background:#D9D9DE;
+}
+#julBoard .line-basic-row{
+  margin:0 0 8px !important;
+}
+</style>
+
+<style>
+/* v27 - 교육장 OB/IB 그룹형 + 숫자 표시 오류 수정 */
+#julBoard .line-education-grid{display:grid!important;grid-template-columns:1fr 1fr!important;gap:8px!important;margin:0 0 8px!important}
+#julBoard .edu-group{border:1px solid #DED8F3;border-radius:13px;background:#fff;padding:8px;min-width:0}
+#julBoard .edu-group-title{text-align:center;font-size:13px;font-weight:900;color:#4E4F56;margin:0 0 6px}
+#julBoard .edu-row{display:grid;grid-template-columns:24px minmax(0,1fr);align-items:center;gap:5px;margin-top:5px}
+#julBoard .edu-row>span{text-align:center;font-size:11px;font-weight:900;color:#606168}
+#julBoard .edu-row .line-stat-step{width:100%!important;height:38px!important;display:grid!important;grid-template-columns:36px minmax(32px,1fr) 36px!important;gap:2px!important;background:#F6F6F8!important;border-radius:9px!important;overflow:hidden!important}
+#julBoard .edu-row .line-pm{width:36px!important;min-width:36px!important;height:38px!important;line-height:38px!important;font-size:22px!important}
+#julBoard .edu-row input[type="number"]{display:block!important;position:static!important;visibility:visible!important;opacity:1!important;width:100%!important;min-width:32px!important;height:38px!important;margin:0!important;padding:0!important;border:0!important;background:#fff!important;color:#000!important;-webkit-text-fill-color:#000!important;text-align:center!important;font-size:20px!important;font-weight:900!important;line-height:38px!important;z-index:5!important;appearance:textfield!important}
+#julBoard .edu-row input[type="number"]::-webkit-inner-spin-button,#julBoard .edu-row input[type="number"]::-webkit-outer-spin-button{-webkit-appearance:none;margin:0}
+@media(max-width:380px){#julBoard .line-education-grid{gap:6px!important}#julBoard .edu-group{padding:7px 5px}#julBoard .edu-row{grid-template-columns:20px minmax(0,1fr);gap:3px}#julBoard .edu-row .line-stat-step{grid-template-columns:32px minmax(28px,1fr) 32px!important}#julBoard .edu-row .line-pm{width:32px!important;min-width:32px!important}}
+</style>
+
+<style id="v28-edu-controls-match">
+/* 교육장 입력부를 위 출근부/인솔과 같은 - 숫자 + 디자인으로 통일 */
+#julBoard .line-education-grid{display:grid!important;grid-template-columns:1fr 1fr!important;gap:8px!important;}
+#julBoard .edu-group{padding:8px!important;border:1px solid #DED8F3!important;border-radius:13px!important;background:#fff!important;min-width:0!important;}
+#julBoard .edu-group-title{margin:0 0 6px!important;text-align:center!important;font-size:13px!important;font-weight:900!important;}
+#julBoard .edu-row{display:grid!important;grid-template-columns:22px minmax(0,1fr)!important;align-items:center!important;gap:5px!important;margin:5px 0 0!important;}
+#julBoard .edu-row>span{font-size:11px!important;font-weight:900!important;text-align:center!important;}
+#julBoard .edu-row .line-stat-step{position:relative!important;display:block!important;width:100%!important;height:38px!important;background:#F6F6F8!important;border-radius:9px!important;overflow:visible!important;}
+#julBoard .edu-row .line-stat-step input[type="number"]{position:absolute!important;inset:0!important;display:block!important;box-sizing:border-box!important;width:100%!important;height:38px!important;margin:0!important;padding:0 42px!important;border:0!important;outline:0!important;background:transparent!important;color:#000!important;-webkit-text-fill-color:#000!important;opacity:1!important;visibility:visible!important;text-align:center!important;font-size:20px!important;font-weight:900!important;line-height:38px!important;appearance:textfield!important;-moz-appearance:textfield!important;z-index:1!important;}
+#julBoard .edu-row .line-stat-step .line-pm{position:absolute!important;top:3px!important;width:34px!important;min-width:34px!important;height:32px!important;padding:0!important;border:0!important;border-radius:8px!important;background:#ECECF0!important;color:#3F4148!important;font-size:22px!important;line-height:32px!important;z-index:3!important;}
+#julBoard .edu-row .line-stat-step .line-pm[data-delta="-1"]{left:3px!important;}
+#julBoard .edu-row .line-stat-step .line-pm[data-delta="1"]{right:3px!important;}
+#julBoard .edu-row input[type="number"]::-webkit-inner-spin-button,#julBoard .edu-row input[type="number"]::-webkit-outer-spin-button{-webkit-appearance:none!important;margin:0!important;}
+@media(max-width:380px){#julBoard .edu-row{grid-template-columns:19px minmax(0,1fr)!important;gap:3px!important}#julBoard .edu-row .line-stat-step input[type="number"]{padding:0 37px!important}}
+</style>
+
+<style id="v29-edu-spacing-fix">
+/* v29 - 교육장 OB/IB: 위 입력 컨트롤과 동일한 간격/높이 */
+#julBoard .line-education-grid{gap:8px!important;margin-bottom:8px!important}
+#julBoard .edu-group{padding:6px 7px 7px!important}
+#julBoard .edu-group-title{height:18px!important;line-height:18px!important;margin:0 0 4px!important}
+#julBoard .edu-row{display:grid!important;grid-template-columns:18px minmax(0,1fr)!important;gap:4px!important;align-items:center!important;margin:0!important}
+#julBoard .edu-row + .edu-row{margin-top:5px!important}
+#julBoard .edu-row>span{display:flex!important;align-items:center!important;justify-content:center!important;height:39px!important;font-size:11px!important;line-height:1!important}
+#julBoard .edu-row .line-stat-step{position:relative!important;display:block!important;width:100%!important;height:39px!important;min-height:39px!important;background:#F8F8F9!important;border-radius:7px!important;overflow:hidden!important}
+#julBoard .edu-row .line-stat-step input[type="number"]{position:absolute!important;inset:0!important;width:100%!important;height:39px!important;box-sizing:border-box!important;padding:0 42px!important;margin:0!important;border:0!important;background:transparent!important;color:#000!important;-webkit-text-fill-color:#000!important;text-align:center!important;font-size:20px!important;font-weight:900!important;line-height:39px!important;z-index:1!important}
+#julBoard .edu-row .line-stat-step .line-pm{position:absolute!important;top:0!important;transform:none!important;width:39px!important;min-width:39px!important;height:39px!important;min-height:39px!important;padding:0!important;border:0!important;border-radius:7px!important;background:#ECECEF!important;display:flex!important;align-items:center!important;justify-content:center!important;font-size:22px!important;line-height:1!important;z-index:3!important}
+#julBoard .edu-row .line-stat-step .line-pm[data-delta="-1"]{left:0!important}
+#julBoard .edu-row .line-stat-step .line-pm[data-delta="1"]{right:0!important}
+@media(max-width:380px){#julBoard .edu-group{padding-left:5px!important;padding-right:5px!important}#julBoard .edu-row{grid-template-columns:16px minmax(0,1fr)!important;gap:3px!important}#julBoard .edu-row .line-stat-step input[type="number"]{padding-left:39px!important;padding-right:39px!important}}
+</style>
+
+<style id="v30-line-compact-alignment">
+/* v30 - 줄 탭 입력 컨트롤 높이/여백 최종 정리 */
+
+/* 상단 1/2: 연한 회색 바 높이를 +/- 버튼과 동일하게 */
+#julBoard .line-step,
+#julBoard .line-sub-step{
+  height:32px !important;
+  min-height:32px !important;
+  border-radius:7px !important;
+  background:#F8F8F9 !important;
+}
+#julBoard .line-big-input,
+#julBoard .line-small-input,
+#julBoard .line-sub-step .line-small-input{
+  height:32px !important;
+  min-height:32px !important;
+  line-height:32px !important;
+}
+#julBoard .line-step > .line-pm,
+#julBoard .line-sub-step > .line-pm{
+  top:0 !important;
+  transform:none !important;
+  width:32px !important;
+  min-width:32px !important;
+  height:32px !important;
+  min-height:32px !important;
+}
+
+/* 교육장: 남/여 라벨 좌우 여백을 동일하게 확보하고 컨트롤 폭을 조금 줄임 */
+#julBoard .edu-group{
+  padding:6px 9px 8px !important;
+}
+#julBoard .edu-row{
+  display:grid !important;
+  grid-template-columns:24px minmax(0,1fr) 24px !important;
+  column-gap:5px !important;
+  align-items:center !important;
+}
+#julBoard .edu-row::after{
+  content:"";
+  display:block;
+  width:24px;
+}
+#julBoard .edu-row > span{
+  width:24px !important;
+  height:32px !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  margin:0 !important;
+}
+#julBoard .edu-row .line-stat-step{
+  width:100% !important;
+  height:32px !important;
+  min-height:32px !important;
+  border-radius:7px !important;
+  background:#F8F8F9 !important;
+}
+#julBoard .edu-row .line-stat-step input[type="number"]{
+  height:32px !important;
+  min-height:32px !important;
+  padding:0 34px !important;
+  line-height:32px !important;
+}
+#julBoard .edu-row .line-stat-step .line-pm{
+  top:0 !important;
+  transform:none !important;
+  width:32px !important;
+  min-width:32px !important;
+  height:32px !important;
+  min-height:32px !important;
+}
+#julBoard .edu-row .line-stat-step .line-pm[data-delta="-1"]{left:0 !important;}
+#julBoard .edu-row .line-stat-step .line-pm[data-delta="1"]{right:0 !important;}
+
+/* 출근부/인솔: 회색 숫자 바도 +/- 버튼과 같은 32px 높이 */
+#julBoard .line-basic-row .line-stat-step{
+  height:32px !important;
+  min-height:32px !important;
+  border-radius:7px !important;
+  background:#F8F8F9 !important;
+}
+#julBoard .line-basic-row .line-stat-step input{
+  height:32px !important;
+  min-height:32px !important;
+  line-height:32px !important;
+  padding-top:0 !important;
+  padding-bottom:0 !important;
+}
+#julBoard .line-basic-row .line-stat-step .line-pm{
+  top:0 !important;
+  transform:none !important;
+  width:32px !important;
+  min-width:32px !important;
+  height:32px !important;
+  min-height:32px !important;
+}
+#julBoard .line-basic-row .line-stat-step .line-pm[data-delta="-1"]{left:0 !important;}
+#julBoard .line-basic-row .line-stat-step .line-pm[data-delta="1"]{right:0 !important;}
+
+@media(max-width:380px){
+  #julBoard .edu-group{padding-left:7px !important;padding-right:7px !important;}
+  #julBoard .edu-row{grid-template-columns:22px minmax(0,1fr) 22px !important;column-gap:4px !important;}
+  #julBoard .edu-row::after,#julBoard .edu-row > span{width:22px !important;}
+}
+</style>
+
+
+<style id="v32-education-only">
+/* v32 - 교육장 영역만 확정 디자인으로 변경 */
+#julBoard .line-education-grid{gap:8px!important;margin-bottom:8px!important}
+#julBoard .edu-group{padding:0 8px 8px!important;overflow:hidden!important}
+#julBoard .edu-group-title{height:29px!important;line-height:29px!important;margin:0 -8px 7px!important;border-radius:10px 10px 6px 6px!important;font-size:12px!important;font-weight:900!important}
+#julBoard .edu-group:first-child .edu-group-title{background:#EEF2FF!important}
+#julBoard .edu-group:last-child .edu-group-title{background:#EDF8F2!important}
+#julBoard .edu-row{display:grid!important;grid-template-columns:32px minmax(0,156px) 32px!important;justify-content:center!important;column-gap:5px!important;align-items:center!important;margin:0!important}
+#julBoard .edu-row + .edu-row{margin-top:7px!important}
+#julBoard .edu-row::after{content:""!important;display:block!important;width:32px!important}
+#julBoard .edu-row>span{width:32px!important;height:32px!important;display:flex!important;align-items:center!important;justify-content:center!important;margin:0!important;font-size:11px!important}
+#julBoard .edu-row .line-stat-step{position:relative!important;width:100%!important;max-width:156px!important;height:32px!important;min-height:32px!important;margin:0 auto!important;background:#F7F7F9!important;border-radius:7px!important;overflow:hidden!important}
+#julBoard .edu-row .line-stat-step input[type="number"]{position:absolute!important;inset:0!important;width:100%!important;height:32px!important;min-height:32px!important;box-sizing:border-box!important;padding:0 34px!important;border:0!important;background:transparent!important;text-align:center!important;font-size:18px!important;font-weight:900!important;line-height:32px!important;color:#111!important}
+#julBoard .edu-row .line-stat-step .line-pm{top:0!important;transform:none!important;width:32px!important;min-width:32px!important;height:32px!important;min-height:32px!important;background:#ECECF0!important;font-size:19px!important}
+#julBoard .edu-row .line-stat-step .line-pm[data-delta="-1"]{left:0!important}
+#julBoard .edu-row .line-stat-step .line-pm[data-delta="1"]{right:0!important}
+@media(max-width:380px){
+ #julBoard .edu-group{padding-left:6px!important;padding-right:6px!important}
+ #julBoard .edu-group-title{margin-left:-6px!important;margin-right:-6px!important}
+ #julBoard .edu-row{grid-template-columns:28px minmax(0,1fr) 28px!important;column-gap:4px!important}
+ #julBoard .edu-row::after,#julBoard .edu-row>span{width:28px!important}
+}
+</style>
+
+<style id="v33-education-spacing">
+/* v33 - 교육장 남/여와 +/- 입력부 사이 여백 확대 */
+#julBoard .edu-row{
+  grid-template-columns:38px minmax(0,144px) 38px!important;
+  column-gap:10px!important;
+}
+#julBoard .edu-row>span{width:38px!important;}
+#julBoard .edu-row::after{width:38px!important;}
+#julBoard .edu-row .line-stat-step{max-width:144px!important;}
+@media(max-width:380px){
+  #julBoard .edu-row{grid-template-columns:34px minmax(0,136px) 34px!important;column-gap:7px!important;}
+  #julBoard .edu-row>span,#julBoard .edu-row::after{width:34px!important;}
+  #julBoard .edu-row .line-stat-step{max-width:136px!important;}
+}
 </style>
 </head>
 <body>
 <div class="wrap">
-<div class="top-tabs"><button class="top-tab active" data-target="weeklyBoard">주간조</button><button class="top-tab" data-target="reportBoard">보고용</button><button class="top-tab" data-target="julBoard">줄</button></div>
+<div class="quick-nav" id="mainNav">
+  <div class="mode-tabs">
+    <button type="button" class="mode-btn" data-mode="weeklyBoard">인원보고</button>
+    <button type="button" class="mode-btn" data-mode="reportBoard">보고용</button>
+    <button type="button" class="mode-btn line-nav" id="lineNav">줄</button>
+  </div>
+  <div class="shift-tabs" id="shiftTabs">
+    <button type="button" class="shift-btn" data-shift="day">주간조</button>
+    <button type="button" class="shift-btn" data-shift="full">풀타임</button>
+    <button type="button" class="shift-btn" data-shift="part">파트</button>
+    <button type="button" class="shift-btn" data-shift="21">21시</button>
+  </div>
+</div>
 <div id="weeklyBoard" class="board-page active">
 <div class="summary">
 <div class="summary-col summary-ob"><div class="summary-head">상온 OB</div><div class="summary-body" id="sum-ob"></div><div class="summary-bottom"><div class="summary-extra summary-guide" id="sum-guide">인솔 : 0</div><div class="summary-extra summary-line" id="sum-line">줄 : 0</div></div></div>
@@ -984,7 +2730,6 @@ input[type=number]::-webkit-inner-spin-button,input[type=number]::-webkit-outer-
 </div>
 
 <div id="julBoard" class="board-page">
-  <div class="line-reset-wrap"><button type="button" id="line-reset">초기화</button></div>
   <div class="line-sheet">
     <div class="line-top">
       <div class="line-group">
@@ -1036,49 +2781,111 @@ input[type=number]::-webkit-inner-spin-button,input[type=number]::-webkit-outer-
       <strong id="line-total">0</strong>
     </div>
 
-    <div class="line-input-three">
+    <div class="line-education-layout">
+      <div class="line-education-grid">
+        <div class="edu-group">
+          <div class="edu-group-title">OB</div>
+          <div class="edu-row"><span>남</span><div class="line-stat-step"><button type="button" class="line-pm" data-for="line-training-male" data-delta="-1">−</button><input id="line-training-male" type="number" inputmode="numeric" value="0"><button type="button" class="line-pm" data-for="line-training-male" data-delta="1">＋</button></div></div>
+          <div class="edu-row"><span>여</span><div class="line-stat-step"><button type="button" class="line-pm" data-for="line-training-female" data-delta="-1">−</button><input id="line-training-female" type="number" inputmode="numeric" value="0"><button type="button" class="line-pm" data-for="line-training-female" data-delta="1">＋</button></div></div>
+        </div>
+        <div class="edu-group">
+          <div class="edu-group-title">IB</div>
+          <div class="edu-row"><span>남</span><div class="line-stat-step"><button type="button" class="line-pm" data-for="line-training-ib-male" data-delta="-1">−</button><input id="line-training-ib-male" type="number" inputmode="numeric" value="0"><button type="button" class="line-pm" data-for="line-training-ib-male" data-delta="1">＋</button></div></div>
+          <div class="edu-row"><span>여</span><div class="line-stat-step"><button type="button" class="line-pm" data-for="line-training-ib-female" data-delta="-1">−</button><input id="line-training-ib-female" type="number" inputmode="numeric" value="0"><button type="button" class="line-pm" data-for="line-training-ib-female" data-delta="1">＋</button></div></div>
+        </div>
+      </div>
+      <div class="line-training-total"><span>교육장 합</span><input id="line-training-total" type="number" inputmode="numeric" value="0" min="0" aria-label="교육장 합"></div>
+    </div>
+
+
+    <div class="line-section-divider" aria-hidden="true"></div>
+
+    <div class="line-2x2-grid line-basic-row">
       <div class="line-stat">
         <span>출근부</span>
-        <input id="line-attendance-input" type="number" inputmode="numeric" value="0">
+        <div class="line-stat-step">
+          <button type="button" class="line-pm" data-for="line-attendance-input" data-delta="-1">−</button>
+          <input id="line-attendance-input" type="number" inputmode="numeric" value="0">
+          <button type="button" class="line-pm" data-for="line-attendance-input" data-delta="1">＋</button>
+        </div>
       </div>
       <div class="line-stat">
         <span>인솔</span>
-        <input id="line-guide" type="number" inputmode="numeric" value="0">
-      </div>
-      <div class="line-stat">
-        <span>교육장</span>
-        <input id="line-training" type="number" inputmode="numeric" value="0">
+        <div class="line-stat-step">
+          <button type="button" class="line-pm" data-for="line-guide" data-delta="-1">−</button>
+          <input id="line-guide" type="number" inputmode="numeric" value="0">
+          <button type="button" class="line-pm" data-for="line-guide" data-delta="1">＋</button>
+        </div>
       </div>
     </div>
 
     <div class="line-grand-row">
       <div class="line-grand-value"><span>총</span><strong id="line-grand">0</strong></div>
-      <div id="line-check" class="line-check ok">차이 0</div>
+      <div id="line-check" class="line-check ok"><span>차이</span><strong id="line-diff">0</strong></div>
     </div>
-    <div class="line-note">
-      <input id="line-note-input" type="text" placeholder="메모" autocomplete="off">
+    <div class="line-note-row">
+      <div class="line-note">
+        <input id="line-note-input" type="text" placeholder="메모" autocomplete="off">
+      </div>
+      <button type="button" id="line-reset" class="line-reset-icon" aria-label="초기화" title="초기화">↻</button>
     </div>
   </div>
 </div></div>
 </div>
 <script>
-const names=["심대원","김담희","유희연"];
+const DAY_NAMES=["심대원","김담희","유희연"];
+const OTHER_NAMES=["김승혜","신선웅","위다희","이재관"];
+const names=[...DAY_NAMES,...OTHER_NAMES];
+function namesForShift(){return activeShift==="day"?DAY_NAMES:OTHER_NAMES;}
 const data=[
-{key:"ob",title:"상온 OB",target:25,planned:32,existing:31,newcomer:1,training:0,extension:0,manual:0,selected:["김담희","유희연"]},
-{key:"ib",title:"상온 IB",target:10,planned:13,existing:13,newcomer:0,training:0,extension:0,manual:0,selected:[]},
-{key:"cold",title:"냉장 IB",target:5,planned:5,existing:5,newcomer:0,training:0,extension:0,manual:0,selected:[]}
+{key:"ob",title:"상온 OB",target:0,planned:0,existing:0,newcomer:0,training:0,extension:0,manual:0,selected:[]},
+{key:"ib",title:"상온 IB",target:0,planned:0,existing:0,newcomer:0,training:0,extension:0,manual:0,selected:[]},
+{key:"cold",title:"냉장 IB",target:0,planned:0,existing:0,newcomer:0,training:0,extension:0,manual:0,selected:[]}
 ];
-const STORAGE_KEY="dayboard-persistent";
-function saveData(){try{localStorage.setItem(STORAGE_KEY,JSON.stringify(data))}catch(e){}}
-function loadData(){try{const saved=JSON.parse(localStorage.getItem(STORAGE_KEY));if(!Array.isArray(saved))return;saved.forEach(savedItem=>{const x=data.find(d=>d.key===savedItem.key);if(!x)return;["target","planned","existing","newcomer","training","extension","manual"].forEach(k=>{if(Number.isFinite(Number(savedItem[k])))x[k]=Number(savedItem[k])});if(Array.isArray(savedItem.selected))x.selected=savedItem.selected.filter(n=>names.includes(n))})}catch(e){}}
+const SHIFT_LABELS={day:"주간조",full:"풀타임",part:"파트","21":"21시"};
+const SHIFT_TIMES={day:"13:30 ~ 22:30",full:"16:00 ~ 00:50",part:"19:30 ~ 00:50","21":"21:00 ~ 00:50"};
+const SHIFT_START_LABELS={day:"13시30분",full:"풀타임",part:"파트","21":"21시"};
+const ACTIVE_SECTION_KEY="dayboard-v1-section";
+const ACTIVE_SHIFT_KEY="dayboard-v1-shared-shift";
+let activeSection="weeklyBoard";
+let activeShift="day";
+try{
+  activeSection=localStorage.getItem(ACTIVE_SECTION_KEY)||"weeklyBoard";
+  if(!["weeklyBoard","reportBoard","julBoard"].includes(activeSection)) activeSection="weeklyBoard";
+  activeShift=localStorage.getItem(ACTIVE_SHIFT_KEY)||"day";
+  if(!Object.prototype.hasOwnProperty.call(SHIFT_LABELS,activeShift)) activeShift="day";
+}catch(e){}
+const DEFAULT_DATA=JSON.parse(JSON.stringify(data));
+function storageKey(){return `dayboard-v3-${activeShift}`}
+function saveData(){try{localStorage.setItem(storageKey(),JSON.stringify(data))}catch(e){}}
+function resetDataToDefault(){
+  DEFAULT_DATA.forEach(def=>{
+    const x=data.find(d=>d.key===def.key);
+    if(!x)return;
+    Object.keys(def).forEach(k=>x[k]=Array.isArray(def[k])?[...def[k]]:def[k]);
+  });
+}
+function loadData(){
+  resetDataToDefault();
+  if(activeShift!=="day") data.forEach(x=>x.selected=[]);
+  try{
+    const saved=JSON.parse(localStorage.getItem(storageKey()));
+    if(!Array.isArray(saved))return;
+    saved.forEach(savedItem=>{
+      const x=data.find(d=>d.key===savedItem.key);if(!x)return;
+      ["target","planned","existing","newcomer","training","extension","manual"].forEach(k=>{if(Number.isFinite(Number(savedItem[k])))x[k]=Number(savedItem[k])});
+      if(Array.isArray(savedItem.selected))x.selected=savedItem.selected.filter(n=>namesForShift().includes(n));
+    });
+  }catch(e){}
+}
 loadData();
 const labels=[["target","목표 T/O"],["planned","예정 T/O"],["existing","기존"],["newcomer","신규"],["training","재교육"],["extension","연장가능"],["manual","수기작성"]];
 function today(){const d=new Date(),w=["일","월","화","수","목","금","토"];return `${d.getMonth()+1}월 ${d.getDate()}일 (${w[d.getDay()]})`}
 function item(key){return data.find(x=>x.key===key)}
 function report(x){const p=x.selected;return `컬리 K팀 ${today()}
 
-${x.title} 13시30분 인원투입 공유
-(13:30 ~ 22:30)
+${x.title} ${SHIFT_START_LABELS[activeShift]||"13시30분"} 인원투입 공유
+(${SHIFT_TIMES[activeShift]||SHIFT_TIMES.day})
 
 인솔담당 - ${p.length}명${p.length?` (${p.join(", ")})`:""}
 
@@ -1090,8 +2897,8 @@ ${x.title} 13시30분 인원투입 공유
 
 연장 가능 인원 : ${x.extension}명
 
-총 투입 인원 : ${x.planned+x.extension}명`}
-function card(x){return `<section class="card ${x.key}"><div class="title">${x.title}</div><div class="body"><div class="left"><div class="people-row"><div class="people-title">인솔담당</div><div class="people">${names.map(n=>`<label class="person"><input type="checkbox" data-person="${n}" data-key="${x.key}" ${x.selected.includes(n)?"checked":""}>${n}</label>`).join("")}</div></div>${labels.map(([k,l])=>`<div class="field"><label>${l}</label><div class="stepper"><input inputmode="numeric" type="number" min="0" value="${x[k]}" data-field="${k}" data-key="${x.key}"><div class="step-controls"><button type="button" class="step-btn" data-step="-1" data-step-field="${k}" data-key="${x.key}">−</button><button type="button" class="step-btn" data-step="1" data-step-field="${k}" data-key="${x.key}">+</button></div></div></div>`).join("")}</div><div class="right"><div class="preview" id="preview-${x.key}"></div><button class="copy" data-copy="${x.key}">📋 복사</button></div></div></section>`}
+총 투입 인원 : ${x.planned}명`}
+function card(x){return `<section class="card ${x.key}"><div class="title">${x.title}</div><div class="body"><div class="left"><div class="people-row"><div class="people-title">인솔담당</div><div class="people">${names.map(n=>`<label class="person" data-person-label="${n}"><input type="checkbox" data-person="${n}" data-key="${x.key}" ${x.selected.includes(n)?"checked":""}>${n}</label>`).join("")}</div></div>${labels.map(([k,l])=>`<div class="field"><label>${l}</label><div class="stepper"><input inputmode="numeric" type="number" min="0" value="${x[k]}" data-field="${k}" data-key="${x.key}"><div class="step-controls"><button type="button" class="step-btn" data-step="-1" data-step-field="${k}" data-key="${x.key}">−</button><button type="button" class="step-btn" data-step="1" data-step-field="${k}" data-key="${x.key}">+</button></div></div></div>`).join("")}</div><div class="right"><div class="preview" id="preview-${x.key}"></div><button class="copy" data-copy="${x.key}">📋 복사</button></div></div></section>`}
 document.getElementById("app").innerHTML=data.map(card).join("");
 function update(key){const x=item(key),detailTotal=x.existing+x.newcomer+x.training,mismatch=detailTotal!==x.planned;
   const edu=document.getElementById("sum-edu");
@@ -1108,20 +2915,59 @@ async function copyText(text){if(navigator.clipboard&&window.isSecureContext){tr
 document.querySelectorAll("[data-copy]").forEach(btn=>btn.addEventListener("click",async()=>{const box=document.getElementById("preview-"+btn.dataset.copy),ok=await copyText(box.textContent);if(ok){btn.textContent="✓ 복사 완료";btn.classList.add("ok");setTimeout(()=>{btn.textContent="📋 복사";btn.classList.remove("ok")},1200)}else{const range=document.createRange();range.selectNodeContents(box);const sel=window.getSelection();sel.removeAllRanges();sel.addRange(range);alert("브라우저가 자동 복사를 차단했습니다. 선택된 내용을 길게 눌러 복사해주세요.")}}));
 
 // 보고용: 이미지 문구 + 선택한 특이사항만 퇴근 문구에 추가
-function openBoard(target){
-  document.querySelectorAll(".top-tab").forEach(x=>x.classList.toggle("active",x.dataset.target===target));
+function openBoard(target,shift){
   document.querySelectorAll(".board-page").forEach(x=>x.classList.toggle("active",x.id===target));
+  document.querySelectorAll(".mode-btn").forEach(btn=>btn.classList.toggle("active",btn.dataset.mode===target || (target==="julBoard" && btn.id==="lineNav")));
+  document.querySelectorAll(".shift-btn").forEach(btn=>btn.classList.toggle("active",btn.dataset.shift===activeShift));
+  const shiftTabs=document.getElementById("shiftTabs");
+  if(shiftTabs) shiftTabs.classList.toggle("hidden",target==="julBoard");
 }
-document.querySelectorAll(".top-tab").forEach(btn=>{
-  btn.addEventListener("click",()=>{
-    openBoard(btn.dataset.target);
-    try{localStorage.setItem("dayboard-active-tab",btn.dataset.target)}catch(e){}
+openBoard(activeSection,activeShift);
+function syncWeeklyControls(){
+  data.forEach(x=>{
+    ["target","planned","existing","newcomer","training","extension","manual"].forEach(field=>{
+      const el=document.querySelector(`[data-field="${field}"][data-key="${x.key}"]`);
+      if(el)el.value=x[field];
+    });
+    const allowed=namesForShift();
+    document.querySelectorAll(`[data-person][data-key="${x.key}"]`).forEach(el=>{
+      const visible=allowed.includes(el.dataset.person);
+      el.closest(".person").style.display=visible?"":"none";
+      el.checked=visible && x.selected.includes(el.dataset.person);
+    });
+    update(x.key);
   });
+}
+syncWeeklyControls();
+function goToBoard(section,shift){
+  if(activeSection==="weeklyBoard") saveData();
+  activeSection=section;
+  activeShift=shift;
+  try{
+    localStorage.setItem(ACTIVE_SECTION_KEY,section);
+    localStorage.setItem(ACTIVE_SHIFT_KEY,shift);
+  }catch(e){}
+  if(section==="weeklyBoard"){
+    loadData();
+    syncWeeklyControls();
+  }
+  openBoard(section,shift);
+  if(typeof drawReport==="function") drawReport();
+}
+
+document.querySelectorAll(".mode-btn[data-mode]").forEach(btn=>btn.addEventListener("click",()=>{
+  goToBoard(btn.dataset.mode,activeShift);
+}));
+document.querySelectorAll(".shift-btn").forEach(btn=>btn.addEventListener("click",()=>{
+  const target=activeSection==="julBoard" ? "weeklyBoard" : activeSection;
+  goToBoard(target,btn.dataset.shift);
+}));
+document.getElementById("lineNav").addEventListener("click",()=>{
+  if(activeSection==="weeklyBoard") saveData();
+  activeSection="julBoard";
+  try{localStorage.setItem(ACTIVE_SECTION_KEY,"julBoard")}catch(e){}
+  openBoard("julBoard",activeShift);
 });
-try{
-  const savedTab=localStorage.getItem("dayboard-active-tab");
-  if(savedTab && document.getElementById(savedTab)) openBoard(savedTab);
-}catch(e){}
 
 function reportDate(){
   const d=new Date();
@@ -1133,13 +2979,15 @@ function reportMessages(){
   const coldExtension=document.getElementById("opt-cold-extension").checked;
   const obExtension=document.getElementById("opt-ob-extension").checked;
   const ibExtension=document.getElementById("opt-ib-extension").checked;
-  const inHeader=`${dateLine}\n상온OB, IB, 냉장IB 13시30분조`;
+  const shiftName=SHIFT_LABELS[activeShift]||"주간조";
+  const shiftText=activeShift==="day"?"13시30분조":shiftName;
+  const inHeader=`${dateLine}\n상온OB, IB, 냉장IB ${shiftText}`;
   const outAreaList=[];
   if(!obExtension) outAreaList.push("상온OB");
   if(!ibExtension) outAreaList.push(obExtension ? "상온IB" : "IB");
   if(!coldExtension) outAreaList.push("냉장IB");
   const outAreas=outAreaList.join(", ");
-  const outHeader=`${dateLine}\n${outAreas}${outAreas ? " " : ""}13시30분조`;
+  const outHeader=`${dateLine}\n${outAreas}${outAreas ? " " : ""}${shiftText}`;
   const extras=[];
   if(document.getElementById("opt-early").checked) extras.push("•조퇴 1명(000)");
   if(document.getElementById("opt-nosign").checked) extras.push("•퇴근 미서명 1명(000)");
@@ -1174,10 +3022,10 @@ document.querySelectorAll("[data-copy-kind]").forEach(btn=>{
 
 // 줄 탭 계산 + 일일 저장/초기화 - v39
 (function(){
-  const LINE_KEY="dayboard-line-daily";
+  const LINE_KEY="dayboard-line-daily-v21";
   const inputIds=[
     "line1-main","line1-sub","line2-main","line2-sub",
-    "line-attendance-input","line-guide","line-training"
+    "line-attendance-input","line-guide","line-training-male","line-training-female","line-training-ib-male","line-training-ib-female","line-training-total"
   ];
   const noteId="line-note-input";
 
@@ -1194,18 +3042,28 @@ document.querySelectorAll("[data-copy-kind]").forEach(btn=>{
     const two=value("line2-main")*5+value("line2-sub");
     const sum=one+two;
     const guide=value("line-guide");
-    const training=value("line-training");
+    const trainingMale=value("line-training-male");
+    const trainingFemale=value("line-training-female");
+    const trainingIbMale=value("line-training-ib-male");
+    const trainingIbFemale=value("line-training-ib-female");
+    const trainingSum=trainingMale+trainingFemale+trainingIbMale+trainingIbFemale;
+    const trainingTotalEl=document.getElementById("line-training-total");
+    const manualTotal=trainingTotalEl?.dataset.manual==="1";
+    const training=manualTotal ? value("line-training-total") : trainingSum;
+    if(!manualTotal && trainingTotalEl) trainingTotalEl.value=trainingSum;
     const attendance=value("line-attendance-input");
     const grand=sum+guide+training;
 
     document.getElementById("line-one").textContent=one;
     document.getElementById("line-two").textContent=two;
     document.getElementById("line-total").textContent=sum;
+    
     document.getElementById("line-grand").textContent=grand;
 
-    const diff=sum-attendance;
+    const diff=grand-attendance;
     const check=document.getElementById("line-check");
-    check.textContent=(diff>0?"+":"")+diff;
+    const diffEl=document.getElementById("line-diff");
+    if(diffEl) diffEl.textContent=(diff>0?"+":"")+diff;
     check.classList.toggle("ok",diff===0);
     check.classList.toggle("bad",diff!==0);
   }
@@ -1213,13 +3071,15 @@ document.querySelectorAll("[data-copy-kind]").forEach(btn=>{
     const values={};
     inputIds.forEach(id=>values[id]=value(id));
     const note=document.getElementById(noteId)?.value || "";
-    try{localStorage.setItem(LINE_KEY,JSON.stringify({date:dateKey(),values,note}))}catch(e){}
+    try{localStorage.setItem(LINE_KEY,JSON.stringify({date:dateKey(),values,note,trainingManual:document.getElementById("line-training-total")?.dataset.manual==="1"}))}catch(e){}
   }
   function resetLine(save=true){
     inputIds.forEach(id=>{
       const el=document.getElementById(id);
       if(el) el.value=0;
     });
+    const totalEl=document.getElementById("line-training-total");
+    if(totalEl) totalEl.dataset.manual="0";
     const note=document.getElementById(noteId);
     if(note) note.value="";
     calculate();
@@ -1236,6 +3096,8 @@ document.querySelectorAll("[data-copy-kind]").forEach(btn=>{
         const el=document.getElementById(id);
         if(el) el.value=Math.max(0,Number(saved.values?.[id])||0);
       });
+      const totalEl=document.getElementById("line-training-total");
+      if(totalEl) totalEl.dataset.manual=saved.trainingManual?"1":"0";
       const note=document.getElementById(noteId);
       if(note) note.value=saved.note || "";
     }catch(e){
@@ -1249,6 +3111,10 @@ document.querySelectorAll("[data-copy-kind]").forEach(btn=>{
       const el=document.getElementById(btn.dataset.for);
       if(!el)return;
       el.value=Math.max(0,(Number(el.value)||0)+Number(btn.dataset.delta));
+      if(["line-training-male","line-training-female","line-training-ib-male","line-training-ib-female"].includes(btn.dataset.for)){
+        const totalEl=document.getElementById("line-training-total");
+        if(totalEl){ totalEl.dataset.manual="0"; totalEl.value=value("line-training-male")+value("line-training-female")+value("line-training-ib-male")+value("line-training-ib-female"); }
+      }
       calculate();
       saveLine();
     });
@@ -1257,6 +3123,12 @@ document.querySelectorAll("[data-copy-kind]").forEach(btn=>{
   inputIds.forEach(id=>{
     const el=document.getElementById(id);
     if(el) el.addEventListener("input",()=>{
+      if(["line-training-male","line-training-female","line-training-ib-male","line-training-ib-female"].includes(id)){
+        const totalEl=document.getElementById("line-training-total");
+        if(totalEl){ totalEl.dataset.manual="0"; totalEl.value=value("line-training-male")+value("line-training-female")+value("line-training-ib-male")+value("line-training-ib-female"); }
+      } else if(id==="line-training-total"){
+        el.dataset.manual="1";
+      }
       calculate();
       saveLine();
     });
