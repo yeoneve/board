@@ -2706,6 +2706,101 @@ input[type=number]::-webkit-inner-spin-button,input[type=number]::-webkit-outer-
   #julBoard .edu-row .line-stat-step .line-pm[data-delta="1"]{right:0!important;}
 }
 </style>
+
+<style id="v35-number-typography">
+/* v35 - 줄 탭 숫자 크기 통일 / 합·교육장 합·총만 볼드 */
+#julBoard .line-big-input,
+#julBoard .line-small-input,
+#julBoard .line-result-part,
+#julBoard .edu-row .line-stat-step input[type="number"],
+#julBoard .line-basic-row .line-stat-step input,
+#julBoard #line-training-total,
+#julBoard #line-total,
+#julBoard #line-grand,
+#julBoard #line-diff{
+  font-size:18px !important;
+  font-weight:500 !important;
+}
+/* 합 / 교육장 합 / 총만 강조 */
+#julBoard .line-sum-center span,
+#julBoard #line-total,
+#julBoard .line-training-total > span,
+#julBoard #line-training-total,
+#julBoard .line-grand-value > span,
+#julBoard #line-grand{
+  font-weight:900 !important;
+}
+/* 차이는 강조하지 않음 */
+#julBoard .line-check > span,
+#julBoard #line-diff{
+  font-weight:500 !important;
+}
+</style>
+
+
+<style id="v36-number-weight-fix">
+/* v36 - 일반 숫자는 모두 보통 굵기, 합/교육장 합/총만 볼드 */
+#julBoard .line-big-input,
+#julBoard .line-small-input,
+#julBoard .line-result-part,
+#julBoard .edu-row .line-stat-step input[type="number"],
+#julBoard .line-basic-row .line-stat-step input,
+#julBoard #line-diff{
+  font-size:18px !important;
+  font-weight:400 !important;
+}
+/* 합 / 교육장 합 / 총의 숫자만 볼드 */
+#julBoard #line-total,
+#julBoard #line-training-total,
+#julBoard #line-grand{
+  font-size:18px !important;
+  font-weight:800 !important;
+}
+/* 합 / 교육장 합 / 총 라벨만 볼드 */
+#julBoard .line-sum-center span,
+#julBoard .line-training-total > span,
+#julBoard .line-grand-value > span{
+  font-weight:800 !important;
+}
+</style>
+
+
+<style id="v37-one-unit-weight-fix">
+/* v37 - 1단위 숫자를 5단위 숫자와 동일한 일반 굵기로 */
+#julBoard #line1-main,
+#julBoard #line2-main,
+#julBoard #line1-sub,
+#julBoard #line2-sub{
+  font-size:18px !important;
+  font-weight:400 !important;
+  font-family:inherit !important;
+}
+</style>
+
+
+<style id="v38-bold-summary-fix">
+/* v38 - 1/2 합계와 차이도 강조 */
+#julBoard #line-one,
+#julBoard #line-two,
+#julBoard #line-total,
+#julBoard #line-training-total,
+#julBoard #line-grand,
+#julBoard #line-diff{
+  font-size:18px !important;
+  font-weight:800 !important;
+}
+#julBoard .line-check > span{
+  font-weight:800 !important;
+}
+/* 5단위/1단위 입력 숫자는 일반 굵기 유지 */
+#julBoard #line1-main,
+#julBoard #line2-main,
+#julBoard #line1-sub,
+#julBoard #line2-sub{
+  font-weight:400 !important;
+}
+</style>
+
 </head>
 <body>
 <div class="wrap">
