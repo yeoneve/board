@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>인솔보드 v3</title>
+<title>인솔보드 v41</title>
 <style>
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
@@ -1082,6 +1082,11 @@ html{overflow-y:scroll;}
   text-align:center !important;
 }
 
+
+/* v41: 인원보고 현재 시간대 초기화 */
+.weekly-reset-wrap{display:flex;justify-content:flex-end;margin:2px 0 12px;}
+#weekly-reset{height:36px;padding:0 13px;border:1px solid #E3E5EA;border-radius:10px;background:#FFF0EA;color:#E85D2A;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;gap:4px;touch-action:manipulation;}
+#weekly-reset:active{background:#FFE0D3;}
 </style>
 <style>
 /* 최근 업로드 파일의 줄 탭 스타일 */
@@ -2801,6 +2806,33 @@ input[type=number]::-webkit-inner-spin-button,input[type=number]::-webkit-outer-
 }
 </style>
 
+
+<style>
+/* v42: 인원보고 초기화 버튼 - 상단 아이콘 + 초기화 */
+#weeklyBoard .weekly-reset-wrap{
+  display:flex !important;
+  justify-content:flex-end !important;
+  align-items:center !important;
+  margin:0 0 8px !important;
+}
+#weeklyBoard #weekly-reset{
+  width:auto !important;
+  height:30px !important;
+  padding:0 9px !important;
+  border:1px solid #E3E5EA !important;
+  border-radius:9px !important;
+  background:#fff !important;
+  color:#555 !important;
+  font-size:12px !important;
+  font-weight:600 !important;
+  display:inline-flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  gap:4px !important;
+}
+#weeklyBoard #weekly-reset .weekly-reset-icon{font-size:15px;line-height:1;font-weight:500;}
+#weeklyBoard #weekly-reset:active{background:#F3F4F6 !important;}
+</style>
 </head>
 <body>
 <div class="wrap">
@@ -2818,6 +2850,7 @@ input[type=number]::-webkit-inner-spin-button,input[type=number]::-webkit-outer-
   </div>
 </div>
 <div id="weeklyBoard" class="board-page active">
+<div class="weekly-reset-wrap"><button type="button" id="weekly-reset" aria-label="초기화" title="초기화"><span class="weekly-reset-icon">↻</span><span>초기화</span></button></div>
 <div class="summary">
 <div class="summary-col summary-ob"><div class="summary-head">상온 OB</div><div class="summary-body" id="sum-ob"></div><div class="summary-bottom"><div class="summary-extra summary-guide" id="sum-guide">인솔 : 0</div><div class="summary-extra summary-line" id="sum-line">줄 : 0</div></div></div>
 <div class="summary-col summary-ib"><div class="summary-head">상온 IB</div><div class="summary-body" id="sum-ib"></div><div class="summary-bottom"><div class="summary-extra summary-edu" id="sum-edu">교육장 : 0</div><div class="summary-extra summary-empty"></div></div></div>
@@ -2831,14 +2864,19 @@ input[type=number]::-webkit-inner-spin-button,input[type=number]::-webkit-outer-
     <section class="report-section in">
       <div class="report-heading">출근</div>
       <div class="report-item"><div class="report-text" data-kind="in"></div><button class="report-copy" data-copy-kind="in">복사</button></div>
+      <div class="report-options">
+        <label><input type="checkbox" id="opt-in-ob-exclude"> 상온OB 제외</label>
+        <label><input type="checkbox" id="opt-in-ib-exclude"> 상온IB 제외</label>
+        <label><input type="checkbox" id="opt-in-cold-exclude"> 냉장IB 제외</label>
+      </div>
     </section>
     <section class="report-section out">
       <div class="report-heading">퇴근</div>
       <div class="report-item"><div class="report-text" data-kind="out"></div><button class="report-copy" data-copy-kind="out">복사</button></div>
       <div class="report-options">
-        <label><input type="checkbox" id="opt-ob-extension"> 상온OB 연장</label>
-        <label><input type="checkbox" id="opt-ib-extension"> 상온IB 연장</label>
-        <label><input type="checkbox" id="opt-cold-extension"> 냉장IB 연장</label>
+        <label><input type="checkbox" id="opt-ob-extension"> 상온OB 제외</label>
+        <label><input type="checkbox" id="opt-ib-extension"> 상온IB 제외</label>
+        <label><input type="checkbox" id="opt-cold-extension"> 냉장IB 제외</label>
         <span class="report-option-break"></span>
         <label><input type="checkbox" id="opt-early"> 조퇴</label>
         <label><input type="checkbox" id="opt-nosign"> 퇴근 미서명</label>
@@ -3030,6 +3068,18 @@ document.querySelectorAll("[data-field]").forEach(el=>el.addEventListener("input
 document.querySelectorAll("[data-step]").forEach(btn=>btn.addEventListener("click",()=>{const x=item(btn.dataset.key),field=btn.dataset.stepField,next=Math.max(0,(Number(x[field])||0)+Number(btn.dataset.step));x[field]=next;const input=document.querySelector(`[data-field="${field}"][data-key="${x.key}"]`);if(input)input.value=next;update(x.key);saveData()}));
 document.querySelectorAll("[data-person]").forEach(el=>el.addEventListener("change",()=>{const x=item(el.dataset.key);x.selected=[...document.querySelectorAll(`[data-person][data-key="${x.key}"]:checked`)].map(e=>e.dataset.person);update(x.key);saveData()}));
 
+// 현재 선택된 인원보고 시간대만 숫자 0 + 인솔담당 체크 해제
+const weeklyResetBtn=document.getElementById("weekly-reset");
+if(weeklyResetBtn) weeklyResetBtn.addEventListener("click",()=>{
+  data.forEach(x=>{
+    ["target","planned","existing","newcomer","training","extension","manual"].forEach(k=>x[k]=0);
+    x.selected=[];
+  });
+  try{localStorage.removeItem(storageKey())}catch(e){}
+  syncWeeklyControls();
+  saveData();
+});
+
 async function copyText(text){if(navigator.clipboard&&window.isSecureContext){try{await navigator.clipboard.writeText(text);return true}catch(e){}}const ta=document.createElement("textarea");ta.value=text;ta.setAttribute("readonly","");ta.style.position="fixed";ta.style.left="-9999px";document.body.appendChild(ta);ta.select();ta.setSelectionRange(0,ta.value.length);let ok=false;try{ok=document.execCommand("copy")}catch(e){}document.body.removeChild(ta);return ok}
 document.querySelectorAll("[data-copy]").forEach(btn=>btn.addEventListener("click",async()=>{const box=document.getElementById("preview-"+btn.dataset.copy),ok=await copyText(box.textContent);if(ok){btn.textContent="✓ 복사 완료";btn.classList.add("ok");setTimeout(()=>{btn.textContent="📋 복사";btn.classList.remove("ok")},1200)}else{const range=document.createRange();range.selectNodeContents(box);const sel=window.getSelection();sel.removeAllRanges();sel.addRange(range);alert("브라우저가 자동 복사를 차단했습니다. 선택된 내용을 길게 눌러 복사해주세요.")}}));
 
@@ -3100,7 +3150,15 @@ function reportMessages(){
   const ibExtension=document.getElementById("opt-ib-extension").checked;
   const shiftName=SHIFT_LABELS[activeShift]||"주간조";
   const shiftText=activeShift==="day"?"13시30분조":shiftName;
-  const inHeader=`${dateLine}\n상온OB, IB, 냉장IB ${shiftText}`;
+  const inObExclude=document.getElementById("opt-in-ob-exclude").checked;
+  const inIbExclude=document.getElementById("opt-in-ib-exclude").checked;
+  const inColdExclude=document.getElementById("opt-in-cold-exclude").checked;
+  const inAreaList=[];
+  if(!inObExclude) inAreaList.push("상온OB");
+  if(!inIbExclude) inAreaList.push(inObExclude ? "상온IB" : "IB");
+  if(!inColdExclude) inAreaList.push("냉장IB");
+  const inAreas=inAreaList.join(", ");
+  const inHeader=`${dateLine}\n${inAreas}${inAreas ? " " : ""}${shiftText}`;
   const outAreaList=[];
   if(!obExtension) outAreaList.push("상온OB");
   if(!ibExtension) outAreaList.push(obExtension ? "상온IB" : "IB");
@@ -3121,7 +3179,7 @@ function drawReport(){
   document.querySelector('[data-kind="in"]').textContent=m.in;
   document.querySelector('[data-kind="out"]').textContent=m.out;
 }
-["opt-cold-extension","opt-ob-extension","opt-ib-extension","opt-early","opt-nosign","opt-wage"].forEach(id=>{
+["opt-in-ob-exclude","opt-in-ib-exclude","opt-in-cold-exclude","opt-cold-extension","opt-ob-extension","opt-ib-extension","opt-early","opt-nosign","opt-wage"].forEach(id=>{
   document.getElementById(id).addEventListener("change",drawReport);
 });
 drawReport();
