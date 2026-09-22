@@ -2852,6 +2852,56 @@ input[type=number]::-webkit-inner-spin-button,input[type=number]::-webkit-outer-
   box-shadow:none !important;
 }
 </style>
+
+<style>
+/* v53 - 배수 배지 스타일 통일 및 각 행 중앙 정렬 */
+.line-multi{
+  transform:none !important;
+}
+.line-multi span{
+  background:#F0F1F4 !important;
+  color:#777A84 !important;
+  border:1px solid #E2E4E8 !important;
+}
+.line-multi span:first-child{
+  transform:translateY(5px);
+}
+.line-multi span:last-child{
+  transform:translateY(-4px);
+}
+</style>
+
+<style>
+/* v54 - 배수 배지 세로 위치 미세조정 */
+.line-multi span:first-child{transform:translateY(9px) !important;}
+.line-multi span:last-child{transform:translateY(-4px) !important;}
+</style>
+
+<style id="v55-line-multi-align">
+/* 1라인/2라인 사이 배수 배지 위치 미세조정 */
+.line-multi{
+  transform:translateX(-4px) !important;
+}
+.line-multi span:first-child{
+  transform:translateY(13px) !important;
+}
+.line-multi span:last-child{
+  transform:translateY(-4px) !important;
+}
+</style>
+
+<style id="v56-line-multi-align">
+/* 배수 배지 위치 미세조정: 전체는 오른쪽, *1은 아래로 */
+.line-multi{
+  transform:translateX(-1px) !important;
+}
+.line-multi span:first-child{
+  transform:translateY(13px) !important;
+}
+.line-multi span:last-child{
+  transform:translateY(1px) !important;
+}
+</style>
 </head>
 <body>
 <div class="wrap">
@@ -3450,5 +3500,22 @@ document.querySelectorAll("[data-copy-kind]").forEach(btn=>{
 #opt-overtime:checked{
   background:#F28C38 !important;
   border-color:#F28C38 !important;
+}
+</style>
+<style>
+/* v52 - 줄 배수 배지 위치/색상 조정 */
+.line-multi{
+  transform:translateY(6px);
+}
+.line-multi span{
+  background:#EEF3FF;
+  color:#5F6F96;
+  border:1px solid #DCE6FA;
+  font-weight:800;
+}
+.line-multi span:last-child{
+  background:#F4F0FF;
+  color:#75629B;
+  border-color:#E5DBFA;
 }
 </style>
