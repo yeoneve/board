@@ -2931,6 +2931,80 @@ input[type=number]::-webkit-inner-spin-button,input[type=number]::-webkit-outer-
   border-radius:0 !important;
 }
 </style>
+
+<style id="v59-edu-center-sex-labels">
+/* v59 - 남/여를 가운데 구분선에 한 번만 표시 */
+#julBoard .line-education-grid.edu-center-labels{
+  position:relative !important;
+  grid-template-columns:1fr 1fr !important;
+  overflow:visible !important;
+}
+#julBoard .edu-center-labels .edu-group:first-child{
+  border-right:1px solid #DED8F3 !important;
+}
+#julBoard .edu-center-labels .edu-row{
+  display:block !important;
+  margin:0 !important;
+  padding:0 12px !important;
+}
+#julBoard .edu-center-labels .edu-row + .edu-row{margin-top:7px !important;}
+#julBoard .edu-center-labels .edu-row::after{display:none !important;content:none !important;}
+#julBoard .edu-center-labels .edu-row .line-stat-step{
+  width:100% !important;
+  max-width:none !important;
+  margin:0 !important;
+}
+#julBoard .edu-sex-labels{
+  position:absolute;
+  z-index:8;
+  left:50%;
+  top:36px;
+  bottom:8px;
+  width:28px;
+  transform:translateX(-50%);
+  display:grid;
+  grid-template-rows:1fr 1fr;
+  align-items:center;
+  justify-items:center;
+  pointer-events:none;
+}
+#julBoard .edu-sex-labels span{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  width:24px;
+  height:22px;
+  background:#fff;
+  color:#606168;
+  font-size:11px;
+  font-weight:800;
+  line-height:1;
+}
+@media(max-width:430px){
+  #julBoard .edu-center-labels .edu-row{padding:0 10px !important;}
+}
+</style>
+
+<style id="v60-top-line-control-width">
+/* v60 - 1/2라인 입력 컨트롤 폭을 교육장 입력과 같은 컴팩트 길이로 통일 */
+#julBoard .line-top .line-step,
+#julBoard .line-top .line-sub-step{
+  width:157px !important;
+  max-width:100% !important;
+  margin-left:auto !important;
+  margin-right:auto !important;
+}
+</style>
+
+<style id="v61-education-control-width">
+/* v61 - OB/IB 숫자 입력 컨트롤도 1/2라인과 같은 컴팩트 길이로 통일 */
+#julBoard .edu-center-labels .edu-row .line-stat-step{
+  width:157px !important;
+  max-width:100% !important;
+  margin-left:auto !important;
+  margin-right:auto !important;
+}
+</style>
 </head>
 <body>
 <div class="wrap">
@@ -3038,16 +3112,17 @@ input[type=number]::-webkit-inner-spin-button,input[type=number]::-webkit-outer-
     </div>
 
     <div class="line-education-layout">
-      <div class="line-education-grid">
+      <div class="line-education-grid edu-center-labels">
         <div class="edu-group">
           <div class="edu-group-title">OB</div>
-          <div class="edu-row"><span>남</span><div class="line-stat-step"><button type="button" class="line-pm" data-for="line-training-male" data-delta="-1">−</button><input id="line-training-male" type="number" inputmode="numeric" value="0"><button type="button" class="line-pm" data-for="line-training-male" data-delta="1">＋</button></div></div>
-          <div class="edu-row"><span>여</span><div class="line-stat-step"><button type="button" class="line-pm" data-for="line-training-female" data-delta="-1">−</button><input id="line-training-female" type="number" inputmode="numeric" value="0"><button type="button" class="line-pm" data-for="line-training-female" data-delta="1">＋</button></div></div>
+          <div class="edu-row"><div class="line-stat-step"><button type="button" class="line-pm" data-for="line-training-male" data-delta="-1">−</button><input id="line-training-male" type="number" inputmode="numeric" value="0"><button type="button" class="line-pm" data-for="line-training-male" data-delta="1">＋</button></div></div>
+          <div class="edu-row"><div class="line-stat-step"><button type="button" class="line-pm" data-for="line-training-female" data-delta="-1">−</button><input id="line-training-female" type="number" inputmode="numeric" value="0"><button type="button" class="line-pm" data-for="line-training-female" data-delta="1">＋</button></div></div>
         </div>
+        <div class="edu-sex-labels" aria-hidden="true"><span>남</span><span>여</span></div>
         <div class="edu-group">
           <div class="edu-group-title">IB</div>
-          <div class="edu-row"><span>남</span><div class="line-stat-step"><button type="button" class="line-pm" data-for="line-training-ib-male" data-delta="-1">−</button><input id="line-training-ib-male" type="number" inputmode="numeric" value="0"><button type="button" class="line-pm" data-for="line-training-ib-male" data-delta="1">＋</button></div></div>
-          <div class="edu-row"><span>여</span><div class="line-stat-step"><button type="button" class="line-pm" data-for="line-training-ib-female" data-delta="-1">−</button><input id="line-training-ib-female" type="number" inputmode="numeric" value="0"><button type="button" class="line-pm" data-for="line-training-ib-female" data-delta="1">＋</button></div></div>
+          <div class="edu-row"><div class="line-stat-step"><button type="button" class="line-pm" data-for="line-training-ib-male" data-delta="-1">−</button><input id="line-training-ib-male" type="number" inputmode="numeric" value="0"><button type="button" class="line-pm" data-for="line-training-ib-male" data-delta="1">＋</button></div></div>
+          <div class="edu-row"><div class="line-stat-step"><button type="button" class="line-pm" data-for="line-training-ib-female" data-delta="-1">−</button><input id="line-training-ib-female" type="number" inputmode="numeric" value="0"><button type="button" class="line-pm" data-for="line-training-ib-female" data-delta="1">＋</button></div></div>
         </div>
       </div>
       <div class="line-training-total"><span>교육장 합</span><input id="line-training-total" type="number" inputmode="numeric" value="0" min="0" aria-label="교육장 합"></div>
