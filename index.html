@@ -2878,6 +2878,7 @@ input[type=number]::-webkit-inner-spin-button,input[type=number]::-webkit-outer-
         <label><input type="checkbox" id="opt-ib-extension"> 상온IB 제외</label>
         <label><input type="checkbox" id="opt-cold-extension"> 냉장IB 제외</label>
         <span class="report-option-break"></span>
+        <label><input type="checkbox" id="opt-overtime"> 연장</label>
         <label><input type="checkbox" id="opt-early"> 조퇴</label>
         <label><input type="checkbox" id="opt-nosign"> 퇴근 미서명</label>
         <label><input type="checkbox" id="opt-wage"> 임금공제동의서</label>
@@ -3171,7 +3172,7 @@ function reportMessages(){
   if(document.getElementById("opt-wage").checked) extras.push("•임금공제동의서 1명(000)");
   return {
     in:`${inHeader}\n컬리로 불가인원 없습니다.`,
-    out:`${outHeader}\n퇴근 완료했습니다. (연장X)${extras.length?"\n"+extras.join("\n"):""}`
+    out:`${outHeader}\n퇴근 완료했습니다. (연장${document.getElementById("opt-overtime").checked?"O":"X"})${extras.length?"\n"+extras.join("\n"):""}`
   };
 }
 function drawReport(){
@@ -3179,7 +3180,7 @@ function drawReport(){
   document.querySelector('[data-kind="in"]').textContent=m.in;
   document.querySelector('[data-kind="out"]').textContent=m.out;
 }
-["opt-in-ob-exclude","opt-in-ib-exclude","opt-in-cold-exclude","opt-cold-extension","opt-ob-extension","opt-ib-extension","opt-early","opt-nosign","opt-wage"].forEach(id=>{
+["opt-in-ob-exclude","opt-in-ib-exclude","opt-in-cold-exclude","opt-cold-extension","opt-ob-extension","opt-ib-extension","opt-overtime","opt-early","opt-nosign","opt-wage"].forEach(id=>{
   document.getElementById(id).addEventListener("change",drawReport);
 });
 drawReport();
