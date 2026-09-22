@@ -2682,6 +2682,30 @@ input[type=number]::-webkit-inner-spin-button,input[type=number]::-webkit-outer-
   #julBoard .edu-row .line-stat-step{max-width:136px!important;}
 }
 </style>
+
+<style id="v34-education-mobile-spacing">
+/* v34 - 모바일 교육장 입력부 좌우 여백 확대, + 버튼을 오른쪽으로 */
+#julBoard .edu-row{
+  grid-template-columns:30px minmax(0,158px) 30px!important;
+  column-gap:7px!important;
+}
+#julBoard .edu-row>span,#julBoard .edu-row::after{width:30px!important;}
+#julBoard .edu-row .line-stat-step{max-width:158px!important;}
+#julBoard .edu-row .line-stat-step input[type="number"]{padding-left:40px!important;padding-right:40px!important;}
+@media(max-width:430px){
+  #julBoard .edu-group{padding-left:5px!important;padding-right:5px!important;}
+  #julBoard .edu-group-title{margin-left:-5px!important;margin-right:-5px!important;}
+  #julBoard .edu-row{
+    grid-template-columns:24px minmax(0,1fr) 24px!important;
+    column-gap:6px!important;
+    padding:0 2px!important;
+  }
+  #julBoard .edu-row>span,#julBoard .edu-row::after{width:24px!important;}
+  #julBoard .edu-row .line-stat-step{width:100%!important;max-width:none!important;}
+  #julBoard .edu-row .line-stat-step input[type="number"]{padding-left:42px!important;padding-right:42px!important;}
+  #julBoard .edu-row .line-stat-step .line-pm[data-delta="1"]{right:0!important;}
+}
+</style>
 </head>
 <body>
 <div class="wrap">
