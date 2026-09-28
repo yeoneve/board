@@ -3269,6 +3269,123 @@ input[type=number]::-webkit-inner-spin-button,input[type=number]::-webkit-outer-
   }
 }
 </style>
+
+<style id="edu-border-v26">
+/* 교육장 영역 구분선 정리 */
+.edu-combined-wrap, .edu-wrap, .education-wrap, .edu-combined {
+  border-bottom: 1px solid #d9dce6 !important;
+  overflow: hidden !important;
+}
+/* OB / IB 카드 내부 구분 */
+.edu-card, .edu-zone, .education-card {
+  overflow: hidden !important;
+}
+.edu-card .edu-title, .edu-zone .edu-title, .education-card .edu-title,
+.edu-card > h4, .edu-zone > h4, .education-card > h4 {
+  border-bottom: 1px solid #d9dce6 !important;
+}
+/* OB와 IB 사이 세로선 */
+.edu-card + .edu-card, .edu-zone + .edu-zone, .education-card + .education-card {
+  border-left: 1px solid #d9dce6 !important;
+}
+/* 교육장 합 위 구분선 */
+.edu-total, .education-total, .edu-sum {
+  border-top: 1px solid #d9dce6 !important;
+  border-bottom: 0 !important;
+}
+</style>
+
+<style id="v88-line-title-center-bridge">
+/* index_32: 제목 아래 가로선의 중앙 22px 구간을 실제 중앙 열에서 연결 */
+#julBoard .line-combined-panel .line-multi{
+  position:relative !important;
+  overflow:visible !important;
+}
+#julBoard .line-combined-panel .line-multi::before{
+  content:"";
+  position:absolute;
+  left:0;
+  right:0;
+  top:31px;
+  height:1px;
+  background:#D9DFF0;
+  z-index:9999;
+  pointer-events:none;
+}
+</style>
+
+<style id="v89-line-title-divider-real-element">
+/* index_33: 제목 아래 선을 실제 요소로 만들어 중앙 끊김 완전 제거 */
+#julBoard .line-combined-panel .line-top::after{
+  display:none !important;
+  content:none !important;
+}
+#julBoard .line-combined-panel .line-top{
+  position:relative !important;
+}
+#julBoard .line-combined-panel .line-title-divider{
+  position:absolute !important;
+  left:0 !important;
+  right:0 !important;
+  top:31px !important;
+  height:1px !important;
+  background:#D9DFF0 !important;
+  z-index:9999 !important;
+  pointer-events:none !important;
+}
+/* 제목 자체의 개별 밑줄은 사용하지 않음 */
+#julBoard .line-combined-panel .line-num-label{
+  border-bottom:0 !important;
+}
+</style>
+
+<style id="v90-line-top-accent-fix">
+/* index_34: 1/2라인 상단 포인트선을 중앙까지 정확히 연결 */
+#julBoard .line-combined-panel .line-group .line-num-label{
+  border-top:0 !important;
+}
+#julBoard .line-combined-panel .line-group{
+  position:relative !important;
+}
+#julBoard .line-combined-panel .line-group::before{
+  content:"";
+  position:absolute;
+  top:0;
+  height:2px;
+  z-index:30;
+  pointer-events:none;
+}
+#julBoard .line-combined-panel .line-group:first-child::before{
+  left:0;
+  right:-11px;
+  background:#BFD3FF;
+}
+#julBoard .line-combined-panel .line-group:last-of-type::before{
+  left:-11px;
+  right:0;
+  background:#D9C7FF;
+}
+</style>
+
+<style id="v91-line-top-accent-selector-fix">
+/* index_35: 실제 DOM 순서에 맞춰 1/2라인 상단 포인트선 복원 */
+#julBoard .line-combined-panel .line-top > .line-group:first-child::before{
+  left:0 !important;
+  right:-22px !important;
+  background:#BFD3FF !important;
+}
+#julBoard .line-combined-panel .line-top > .line-group:nth-child(3)::before{
+  content:"" !important;
+  position:absolute !important;
+  top:0 !important;
+  left:-22px !important;
+  right:0 !important;
+  height:2px !important;
+  background:#D9C7FF !important;
+  z-index:30 !important;
+  pointer-events:none !important;
+}
+</style>
 </head>
 <body>
 <div class="wrap">
@@ -3363,6 +3480,7 @@ input[type=number]::-webkit-inner-spin-button,input[type=number]::-webkit-outer-
 </div>
         </div>
       </div>
+      <div class="line-title-divider" aria-hidden="true"></div>
     </div>
 
     <div class="line-result-row">
@@ -4206,5 +4324,196 @@ document.querySelectorAll("[data-copy-kind]").forEach(btn=>{
     width:100% !important;
     padding:0 !important;
   }
+}
+</style>
+<style id="v83-education-outer-bottom-border-fix">
+/* 교육장 전체 외곽 박스 하단 테두리 복원 */
+#julBoard .line-education-layout.edu-horizontal-v2{
+  border-bottom:1px solid #DED8F3 !important;
+  border-bottom-left-radius:13px !important;
+  border-bottom-right-radius:13px !important;
+}
+</style>
+<style id="v84-education-line-layout">
+/* index_28: 교육장 내부 박스 대신 얇은 선으로 구분 */
+#julBoard .line-education-layout.edu-horizontal-v2{
+  border:1px solid #DED8F3 !important;
+  border-radius:13px !important;
+  overflow:hidden !important;
+  padding:0 !important;
+  background:#fff !important;
+}
+#julBoard .line-education-layout.edu-horizontal-v2 .line-education-grid{
+  gap:0 !important;
+  padding:0 !important;
+  margin:0 !important;
+}
+#julBoard .line-education-layout.edu-horizontal-v2 .edu-group{
+  border:0 !important;
+  border-radius:0 !important;
+  box-shadow:none !important;
+  padding:0 8px 8px !important;
+  overflow:hidden !important;
+}
+#julBoard .line-education-layout.edu-horizontal-v2 .edu-group:first-child{
+  border-right:1px solid #DED8F3 !important;
+}
+#julBoard .line-education-layout.edu-horizontal-v2 .edu-group-title{
+  margin:0 -8px 7px !important;
+  border-radius:0 !important;
+  border-bottom:1px solid #E5E7ED !important;
+}
+#julBoard .line-education-layout.edu-horizontal-v2 .line-training-total{
+  width:100% !important;
+  margin:0 !important;
+  border:0 !important;
+  border-top:1px solid #DED8F3 !important;
+  border-radius:0 !important;
+  box-shadow:none !important;
+}
+</style>
+<style id="v85-line-inner-line-layout">
+/* index_29: 1/2라인 내부 카드형 테두리 대신 얇은 선으로 구분 */
+#julBoard .line-combined-panel{
+  border:1px solid #DED8F3 !important;
+  border-radius:13px !important;
+  overflow:hidden !important;
+  padding:0 !important;
+  background:#fff !important;
+}
+#julBoard .line-combined-panel .line-top{
+  grid-template-columns:minmax(0,1fr) 22px minmax(0,1fr) !important;
+  gap:0 !important;
+  margin:0 !important;
+}
+#julBoard .line-combined-panel .line-group{
+  border:0 !important;
+  border-radius:0 !important;
+  box-shadow:none !important;
+  padding:0 8px 8px !important;
+  background:#fff !important;
+}
+#julBoard .line-combined-panel .line-group:first-child{
+  border-right:1px solid #D9DFF0 !important;
+}
+#julBoard .line-combined-panel .line-num-label{
+  margin:0 -8px 7px !important;
+  padding:6px 8px 5px !important;
+  border-bottom:1px solid #E5E7ED !important;
+  border-radius:0 !important;
+}
+#julBoard .line-combined-panel .line-group:first-child .line-num-label{
+  border-top:2px solid #BFD3FF !important;
+}
+#julBoard .line-combined-panel .line-group:last-child .line-num-label{
+  border-top:2px solid #D9C7FF !important;
+}
+#julBoard .line-combined-panel .line-multi{
+  position:relative !important;
+  z-index:2 !important;
+  background:#fff !important;
+}
+#julBoard .line-combined-panel .line-result-row{
+  grid-template-columns:minmax(0,1fr) 22px minmax(0,1fr) !important;
+  gap:0 !important;
+  margin:0 !important;
+  border-top:1px solid #DED8F3 !important;
+}
+#julBoard .line-combined-panel .line-result-part{
+  border:0 !important;
+  border-radius:0 !important;
+  box-shadow:none !important;
+  background:#E9EBF1 !important;
+}
+#julBoard .line-combined-panel .line-result-part:first-child{
+  border-right:1px solid #D9DFF0 !important;
+}
+#julBoard .line-combined-panel .line-result-spacer{
+  border:0 !important;
+  background:#fff !important;
+}
+#julBoard .line-combined-panel .line-sum-center{
+  width:100% !important;
+  margin:0 !important;
+  border:0 !important;
+  border-top:1px solid #DED8F3 !important;
+  border-radius:0 !important;
+  box-shadow:none !important;
+}
+</style>
+<style id="v86-line-option1-clean">
+/* index_30: 1번 시안 - 중앙 기본 라인 + 제목 아래 선 끊김 없이 연결 */
+#julBoard .line-combined-panel .line-top{
+  position:relative !important;
+  grid-template-columns:minmax(0,1fr) 22px minmax(0,1fr) !important;
+  gap:0 !important;
+}
+/* 1라인/2라인 제목 아래 가로선을 전체 폭으로 한 번에 연결 */
+#julBoard .line-combined-panel .line-top::after{
+  content:"";
+  position:absolute;
+  left:0;
+  right:0;
+  top:31px;
+  height:1px;
+  background:#D9DFF0;
+  z-index:1;
+  pointer-events:none;
+}
+/* 중앙 세로선 */
+#julBoard .line-combined-panel .line-top::before{
+  content:"";
+  position:absolute;
+  top:0;
+  bottom:0;
+  left:50%;
+  width:1px;
+  background:#D9DFF0;
+  transform:translateX(-.5px);
+  z-index:1;
+  pointer-events:none;
+}
+#julBoard .line-combined-panel .line-group:first-child{
+  border-right:0 !important;
+}
+#julBoard .line-combined-panel .line-num-label{
+  position:relative;
+  z-index:2;
+  border-bottom:0 !important;
+  background:transparent !important;
+}
+#julBoard .line-combined-panel .line-multi{
+  position:relative !important;
+  z-index:3 !important;
+  background:transparent !important;
+}
+#julBoard .line-combined-panel .line-multi span{
+  position:relative;
+  z-index:4;
+  background:#F4F5F7 !important;
+}
+/* 각 라인 합계 사이의 흰 띠 제거하고 얇은 중앙선만 유지 */
+#julBoard .line-combined-panel .line-result-row{
+  grid-template-columns:minmax(0,1fr) 1px minmax(0,1fr) !important;
+}
+#julBoard .line-combined-panel .line-result-spacer{
+  width:1px !important;
+  min-width:1px !important;
+  background:#D9DFF0 !important;
+}
+#julBoard .line-combined-panel .line-result-part:first-child{
+  border-right:0 !important;
+}
+</style>
+<style id="v87-line-title-divider-connect">
+/* index_31: 1라인/2라인 제목 아래 가로선 중앙 끊김 제거 */
+#julBoard .line-combined-panel .line-top::after{
+  left:0 !important;
+  right:0 !important;
+  width:auto !important;
+  z-index:20 !important;
+}
+#julBoard .line-combined-panel .line-multi{
+  background:transparent !important;
 }
 </style>
