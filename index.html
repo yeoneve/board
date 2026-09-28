@@ -3005,6 +3005,239 @@ input[type=number]::-webkit-inner-spin-button,input[type=number]::-webkit-outer-
   margin-right:auto !important;
 }
 </style>
+<style id="v62-education-four-rows">
+#julBoard .edu-sex-labels{justify-content:flex-start !important;}
+#julBoard .edu-sex-labels span{white-space:nowrap;font-size:11px;}
+</style>
+
+<style id="v63-edu-horizontal-v2">
+/* 교육장: 2번 가로 정렬형 - OB 왼쪽 / IB 오른쪽 */
+#julBoard .edu-horizontal-v2 .line-education-grid{
+  display:grid !important;grid-template-columns:1fr 1fr !important;gap:8px !important;
+  border:0 !important;background:transparent !important;overflow:visible !important;
+}
+#julBoard .edu-horizontal-v2 .edu-group{
+  min-width:0 !important;border:1px solid #DED8F3 !important;border-radius:12px !important;
+  overflow:hidden !important;background:#fff !important;
+}
+#julBoard .edu-horizontal-v2 .edu-group:first-child{border-right:1px solid #DED8F3 !important;}
+#julBoard .edu-horizontal-v2 .edu-group-title{height:32px !important;display:flex !important;align-items:center !important;justify-content:center !important;}
+#julBoard .edu-horizontal-v2 .edu-table-head,
+#julBoard .edu-horizontal-v2 .edu-table-row{
+  display:grid;grid-template-columns:20px minmax(0,1fr) minmax(0,1fr);gap:4px;align-items:center;
+  padding:5px 5px;
+}
+#julBoard .edu-horizontal-v2 .edu-table-head{padding-top:7px;padding-bottom:2px;}
+#julBoard .edu-horizontal-v2 .edu-table-head span{font-size:11px;font-weight:800;text-align:center;color:#555;}
+#julBoard .edu-horizontal-v2 .edu-gender{font-size:11px;font-weight:800;text-align:center;color:#555;}
+#julBoard .edu-horizontal-v2 .line-stat-step{
+  width:100% !important;max-width:none !important;height:32px !important;margin:0 !important;display:grid !important;
+  grid-template-columns:24px minmax(22px,1fr) 24px !important;
+}
+#julBoard .edu-horizontal-v2 .line-stat-step .line-pm{width:24px !important;min-width:24px !important;height:32px !important;padding:0 !important;font-size:16px !important;}
+#julBoard .edu-horizontal-v2 .line-stat-step input{width:100% !important;min-width:0 !important;height:32px !important;padding:0 !important;text-align:center !important;font-size:14px !important;}
+#julBoard .edu-horizontal-v2 .edu-sex-labels{display:none !important;}
+@media(max-width:380px){
+ #julBoard .edu-horizontal-v2 .line-education-grid{gap:5px !important;}
+ #julBoard .edu-horizontal-v2 .edu-table-head,#julBoard .edu-horizontal-v2 .edu-table-row{grid-template-columns:16px minmax(0,1fr) minmax(0,1fr);gap:2px;padding-left:3px;padding-right:3px;}
+ #julBoard .edu-horizontal-v2 .line-stat-step{grid-template-columns:21px minmax(18px,1fr) 21px !important;}
+ #julBoard .edu-horizontal-v2 .line-stat-step .line-pm{width:21px !important;min-width:21px !important;}
+}
+</style>
+
+<style id="v64-edu-number-visible-fix">
+/* 교육장 가로형: 숫자 입력값을 - / + 사이에 항상 표시 */
+#julBoard .edu-horizontal-v2 .line-stat-step{
+  position:relative !important;
+  display:grid !important;
+  grid-template-columns:24px minmax(22px,1fr) 24px !important;
+  overflow:hidden !important;
+}
+#julBoard .edu-horizontal-v2 .line-stat-step input[type="number"]{
+  position:static !important;
+  inset:auto !important;
+  display:block !important;
+  visibility:visible !important;
+  opacity:1 !important;
+  z-index:auto !important;
+  width:100% !important;
+  min-width:0 !important;
+  height:32px !important;
+  margin:0 !important;
+  padding:0 !important;
+  border:0 !important;
+  background:transparent !important;
+  color:#000 !important;
+  -webkit-text-fill-color:#000 !important;
+  text-align:center !important;
+  font-size:14px !important;
+  font-weight:500 !important;
+  line-height:32px !important;
+}
+#julBoard .edu-horizontal-v2 .line-stat-step .line-pm{
+  position:static !important;
+  top:auto !important;
+  left:auto !important;
+  right:auto !important;
+  transform:none !important;
+  z-index:auto !important;
+}
+@media(max-width:380px){
+  #julBoard .edu-horizontal-v2 .line-stat-step{grid-template-columns:21px minmax(18px,1fr) 21px !important;}
+}
+</style>
+
+<style id="v65-edu-rect-pm-fix">
+/* 교육장 OB/IB +/- 버튼: 정사각형이 아닌 세로형 직사각형 */
+#julBoard .edu-horizontal-v2 .line-stat-step{
+  grid-template-columns:28px minmax(22px,1fr) 28px !important;
+}
+#julBoard .edu-horizontal-v2 .line-stat-step .line-pm{
+  width:28px !important;
+  min-width:28px !important;
+  height:32px !important;
+  min-height:32px !important;
+  border-radius:6px !important;
+  padding:0 !important;
+  line-height:32px !important;
+}
+@media(max-width:380px){
+  #julBoard .edu-horizontal-v2 .line-stat-step{grid-template-columns:25px minmax(18px,1fr) 25px !important;}
+  #julBoard .edu-horizontal-v2 .line-stat-step .line-pm{width:25px !important;min-width:25px !important;height:32px !important;}
+}
+</style>
+
+<style id="v66-edu-control-shape-fix">
+/* 교육장 입력부: 회색 입력 바는 짧게, +/-는 가로 직사각형으로 통일 */
+#julBoard .edu-horizontal-v2 .line-stat-step{
+  height:28px !important;
+  min-height:28px !important;
+  grid-template-columns:30px minmax(18px,1fr) 30px !important;
+  border-radius:7px !important;
+}
+#julBoard .edu-horizontal-v2 .line-stat-step input[type="number"]{
+  height:28px !important;
+  min-height:28px !important;
+  line-height:28px !important;
+}
+#julBoard .edu-horizontal-v2 .line-stat-step .line-pm{
+  width:30px !important;
+  min-width:30px !important;
+  height:24px !important;
+  min-height:24px !important;
+  align-self:center !important;
+  border-radius:5px !important;
+  line-height:24px !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+}
+#julBoard .edu-horizontal-v2 .edu-table-row{
+  padding-top:4px !important;
+  padding-bottom:4px !important;
+}
+@media(max-width:380px){
+  #julBoard .edu-horizontal-v2 .line-stat-step{grid-template-columns:27px minmax(16px,1fr) 27px !important;}
+  #julBoard .edu-horizontal-v2 .line-stat-step .line-pm{width:27px !important;min-width:27px !important;height:23px !important;min-height:23px !important;}
+}
+</style>
+
+<style id="v67-edu-new-retraining-gap">
+/* 교육장: 신규와 재교육 열 사이 간격만 확대 */
+#julBoard .edu-horizontal-v2 .edu-table-head > :nth-child(3),
+#julBoard .edu-horizontal-v2 .edu-table-row > :nth-child(3){
+  margin-left:8px !important;
+}
+@media(max-width:380px){
+  #julBoard .edu-horizontal-v2 .edu-table-head > :nth-child(3),
+  #julBoard .edu-horizontal-v2 .edu-table-row > :nth-child(3){
+    margin-left:6px !important;
+  }
+}
+</style>
+
+<style id="v70-line-combined-panel">
+/* 1라인/2라인 + 각 라인 합계 + 전체 합: 내용은 유지하고 하나의 영역처럼 정리 */
+#julBoard .line-combined-panel{
+  border:1px solid #DED8F3;
+  border-radius:13px;
+  background:#fff;
+  overflow:hidden;
+  margin:0 0 10px;
+  padding:8px 8px 0;
+  box-sizing:border-box;
+}
+#julBoard .line-combined-panel .line-top{
+  width:100% !important;
+  margin:0 !important;
+  grid-template-columns:minmax(0,1fr) 22px minmax(0,1fr) !important;
+  gap:7px !important;
+  align-items:stretch !important;
+}
+#julBoard .line-combined-panel .line-group{
+  border:0 !important;
+  border-radius:9px !important;
+  box-shadow:none !important;
+  padding:4px 5px 7px !important;
+  background:#fff !important;
+}
+#julBoard .line-combined-panel .line-group:first-child{
+  box-shadow:inset 0 2px 0 #BFD3FF !important;
+}
+#julBoard .line-combined-panel .line-group:last-child{
+  box-shadow:inset 0 2px 0 #D9C7FF !important;
+}
+#julBoard .line-combined-panel .line-result-row{
+  width:100% !important;
+  margin:5px 0 0 !important;
+  grid-template-columns:minmax(0,1fr) 22px minmax(0,1fr) !important;
+  gap:7px !important;
+}
+#julBoard .line-combined-panel .line-result-part{
+  height:40px !important;
+  border-radius:7px !important;
+}
+#julBoard .line-combined-panel .line-result-spacer{
+  height:40px !important;
+}
+#julBoard .line-combined-panel .line-sum-center{
+  margin:7px -8px 0 !important;
+  border-radius:0 !important;
+  min-height:47px !important;
+  border-top:1px solid #E1DAFF !important;
+  box-shadow:none !important;
+}
+</style>
+
+<style id="v72-line-simplified">
+/* 줄 영역 단순화: 내용/계산은 유지하고 겹치는 테두리만 제거 */
+#julBoard .line-combined-panel{
+  border:0 !important;
+  border-radius:11px !important;
+  background:#fff !important;
+  padding:6px 6px 0 !important;
+}
+#julBoard .line-combined-panel .line-group{
+  border:0 !important;
+  border-radius:8px 8px 0 0 !important;
+  box-shadow:none !important;
+}
+#julBoard .line-combined-panel .line-group:first-child{
+  box-shadow:inset 0 2px 0 #BFD3FF !important;
+}
+#julBoard .line-combined-panel .line-group:last-child{
+  box-shadow:inset 0 2px 0 #D9C7FF !important;
+}
+#julBoard .line-combined-panel .line-result-part{
+  border:0 !important;
+  border-top:1px solid #ECEEF3 !important;
+  border-radius:0 0 8px 8px !important;
+}
+#julBoard .line-combined-panel .line-sum-center{
+  margin:7px -6px 0 !important;
+  border-top:0 !important;
+}
+</style>
 </head>
 <body>
 <div class="wrap">
@@ -3061,6 +3294,7 @@ input[type=number]::-webkit-inner-spin-button,input[type=number]::-webkit-outer-
 
 <div id="julBoard" class="board-page">
   <div class="line-sheet">
+    <div class="line-combined-panel">
     <div class="line-top">
       <div class="line-group">
         <div class="line-num-label">1 라인</div>
@@ -3111,23 +3345,41 @@ input[type=number]::-webkit-inner-spin-button,input[type=number]::-webkit-outer-
       <strong id="line-total">0</strong>
     </div>
 
-    <div class="line-education-layout">
-      <div class="line-education-grid edu-center-labels">
-        <div class="edu-group">
+    </div>
+
+    <div class="line-education-layout edu-horizontal-v2">
+      <div class="line-education-grid">
+        <div class="edu-group edu-ob">
           <div class="edu-group-title">OB</div>
-          <div class="edu-row"><div class="line-stat-step"><button type="button" class="line-pm" data-for="line-training-male" data-delta="-1">−</button><input id="line-training-male" type="number" inputmode="numeric" value="0"><button type="button" class="line-pm" data-for="line-training-male" data-delta="1">＋</button></div></div>
-          <div class="edu-row"><div class="line-stat-step"><button type="button" class="line-pm" data-for="line-training-female" data-delta="-1">−</button><input id="line-training-female" type="number" inputmode="numeric" value="0"><button type="button" class="line-pm" data-for="line-training-female" data-delta="1">＋</button></div></div>
+          <div class="edu-table-head"><span></span><span>신규</span><span>재교육</span></div>
+          <div class="edu-table-row">
+            <span class="edu-gender">남</span>
+            <div class="line-stat-step"><button type="button" class="line-pm" data-for="line-training-male" data-delta="-1">−</button><input id="line-training-male" type="number" inputmode="numeric" value="0"><button type="button" class="line-pm" data-for="line-training-male" data-delta="1">＋</button></div>
+            <div class="line-stat-step"><button type="button" class="line-pm" data-for="line-retraining-male" data-delta="-1">−</button><input id="line-retraining-male" type="number" inputmode="numeric" value="0"><button type="button" class="line-pm" data-for="line-retraining-male" data-delta="1">＋</button></div>
+          </div>
+          <div class="edu-table-row">
+            <span class="edu-gender">여</span>
+            <div class="line-stat-step"><button type="button" class="line-pm" data-for="line-training-female" data-delta="-1">−</button><input id="line-training-female" type="number" inputmode="numeric" value="0"><button type="button" class="line-pm" data-for="line-training-female" data-delta="1">＋</button></div>
+            <div class="line-stat-step"><button type="button" class="line-pm" data-for="line-retraining-female" data-delta="-1">−</button><input id="line-retraining-female" type="number" inputmode="numeric" value="0"><button type="button" class="line-pm" data-for="line-retraining-female" data-delta="1">＋</button></div>
+          </div>
         </div>
-        <div class="edu-sex-labels" aria-hidden="true"><span>남</span><span>여</span></div>
-        <div class="edu-group">
+        <div class="edu-group edu-ib">
           <div class="edu-group-title">IB</div>
-          <div class="edu-row"><div class="line-stat-step"><button type="button" class="line-pm" data-for="line-training-ib-male" data-delta="-1">−</button><input id="line-training-ib-male" type="number" inputmode="numeric" value="0"><button type="button" class="line-pm" data-for="line-training-ib-male" data-delta="1">＋</button></div></div>
-          <div class="edu-row"><div class="line-stat-step"><button type="button" class="line-pm" data-for="line-training-ib-female" data-delta="-1">−</button><input id="line-training-ib-female" type="number" inputmode="numeric" value="0"><button type="button" class="line-pm" data-for="line-training-ib-female" data-delta="1">＋</button></div></div>
+          <div class="edu-table-head"><span></span><span>신규</span><span>재교육</span></div>
+          <div class="edu-table-row">
+            <span class="edu-gender">남</span>
+            <div class="line-stat-step"><button type="button" class="line-pm" data-for="line-training-ib-male" data-delta="-1">−</button><input id="line-training-ib-male" type="number" inputmode="numeric" value="0"><button type="button" class="line-pm" data-for="line-training-ib-male" data-delta="1">＋</button></div>
+            <div class="line-stat-step"><button type="button" class="line-pm" data-for="line-retraining-ib-male" data-delta="-1">−</button><input id="line-retraining-ib-male" type="number" inputmode="numeric" value="0"><button type="button" class="line-pm" data-for="line-retraining-ib-male" data-delta="1">＋</button></div>
+          </div>
+          <div class="edu-table-row">
+            <span class="edu-gender">여</span>
+            <div class="line-stat-step"><button type="button" class="line-pm" data-for="line-training-ib-female" data-delta="-1">−</button><input id="line-training-ib-female" type="number" inputmode="numeric" value="0"><button type="button" class="line-pm" data-for="line-training-ib-female" data-delta="1">＋</button></div>
+            <div class="line-stat-step"><button type="button" class="line-pm" data-for="line-retraining-ib-female" data-delta="-1">−</button><input id="line-retraining-ib-female" type="number" inputmode="numeric" value="0"><button type="button" class="line-pm" data-for="line-retraining-ib-female" data-delta="1">＋</button></div>
+          </div>
         </div>
       </div>
       <div class="line-training-total"><span>교육장 합</span><input id="line-training-total" type="number" inputmode="numeric" value="0" min="0" aria-label="교육장 합"></div>
     </div>
-
 
     <div class="line-section-divider" aria-hidden="true"></div>
 
@@ -3165,9 +3417,10 @@ input[type=number]::-webkit-inner-spin-button,input[type=number]::-webkit-outer-
 </div>
 <script>
 const DAY_NAMES=["심대원","김담희","유희연"];
-const OTHER_NAMES=["김승혜","신선웅","위다희","이재관"];
+const OTHER_NAMES=["김승혜","위다희","이재관"];
+const FULL_NAMES=["김승혜","위다희","이재관"];
 const names=[...DAY_NAMES,...OTHER_NAMES];
-function namesForShift(){return activeShift==="day"?DAY_NAMES:OTHER_NAMES;}
+function namesForShift(){return activeShift==="day"?DAY_NAMES:activeShift==="full"?FULL_NAMES:OTHER_NAMES;}
 const data=[
 {key:"ob",title:"상온 OB",target:0,planned:0,existing:0,newcomer:0,training:0,extension:0,manual:0,selected:[]},
 {key:"ib",title:"상온 IB",target:0,planned:0,existing:0,newcomer:0,training:0,extension:0,manual:0,selected:[]},
@@ -3238,8 +3491,8 @@ function update(key){const x=item(key),detailTotal=x.existing+x.newcomer+x.train
     edu.textContent=`교육장 : ${eduTotal}`;
   }document.getElementById("preview-"+key).textContent=report(x);const sum=document.getElementById("sum-"+key);sum.innerHTML=`<table class="sum-table"><tr><th>T</th><th>기</th><th>신</th><th>재</th></tr><tr><td>${x.target}/${x.planned}</td><td>${x.existing}</td><td class="${x.newcomer>0?'positive-purple':''}">${x.newcomer}</td><td class="${x.training>0?'positive-purple':''}">${x.training}</td></tr></table>`;["existing","newcomer","training"].forEach(field=>{const el=document.querySelector(`[data-field="${field}"][data-key="${key}"]`);if(el)el.classList.toggle("mismatch",mismatch)});if(key==="ob"){document.getElementById("sum-guide").textContent=`인솔 : ${x.selected.length}`;document.getElementById("sum-line").textContent=`줄 : ${Math.max(0,x.existing-x.selected.length)}`}}
 data.forEach(x=>update(x.key));
-document.querySelectorAll("[data-field]").forEach(el=>el.addEventListener("input",()=>{const x=item(el.dataset.key);x[el.dataset.field]=Number(el.value)||0;update(x.key);saveData()}));
-document.querySelectorAll("[data-step]").forEach(btn=>btn.addEventListener("click",()=>{const x=item(btn.dataset.key),field=btn.dataset.stepField,next=Math.max(0,(Number(x[field])||0)+Number(btn.dataset.step));x[field]=next;const input=document.querySelector(`[data-field="${field}"][data-key="${x.key}"]`);if(input)input.value=next;update(x.key);saveData()}));
+document.querySelectorAll("[data-field]").forEach(el=>el.addEventListener("input",()=>{const x=item(el.dataset.key),field=el.dataset.field,value=Number(el.value)||0;x[field]=value;if(field==="target"){x.planned=value;x.existing=value;const plannedInput=document.querySelector(`[data-field="planned"][data-key="${x.key}"]`);const existingInput=document.querySelector(`[data-field="existing"][data-key="${x.key}"]`);if(plannedInput)plannedInput.value=value;if(existingInput)existingInput.value=value}update(x.key);saveData()}));
+document.querySelectorAll("[data-step]").forEach(btn=>btn.addEventListener("click",()=>{const x=item(btn.dataset.key),field=btn.dataset.stepField,next=Math.max(0,(Number(x[field])||0)+Number(btn.dataset.step));x[field]=next;const input=document.querySelector(`[data-field="${field}"][data-key="${x.key}"]`);if(input)input.value=next;if(field==="target"){x.planned=next;x.existing=next;const plannedInput=document.querySelector(`[data-field="planned"][data-key="${x.key}"]`);const existingInput=document.querySelector(`[data-field="existing"][data-key="${x.key}"]`);if(plannedInput)plannedInput.value=next;if(existingInput)existingInput.value=next}update(x.key);saveData()}));
 document.querySelectorAll("[data-person]").forEach(el=>el.addEventListener("change",()=>{const x=item(el.dataset.key);x.selected=[...document.querySelectorAll(`[data-person][data-key="${x.key}"]:checked`)].map(e=>e.dataset.person);update(x.key);saveData()}));
 
 // 현재 선택된 인원보고 시간대만 숫자 0 + 인솔담당 체크 해제
@@ -3376,7 +3629,7 @@ document.querySelectorAll("[data-copy-kind]").forEach(btn=>{
   const LINE_KEY="dayboard-line-daily-v21";
   const inputIds=[
     "line1-main","line1-sub","line2-main","line2-sub",
-    "line-attendance-input","line-guide","line-training-male","line-training-female","line-training-ib-male","line-training-ib-female","line-training-total"
+    "line-attendance-input","line-guide","line-training-male","line-training-female","line-retraining-male","line-retraining-female","line-training-ib-male","line-training-ib-female","line-retraining-ib-male","line-retraining-ib-female","line-training-total"
   ];
   const noteId="line-note-input";
 
@@ -3397,7 +3650,11 @@ document.querySelectorAll("[data-copy-kind]").forEach(btn=>{
     const trainingFemale=value("line-training-female");
     const trainingIbMale=value("line-training-ib-male");
     const trainingIbFemale=value("line-training-ib-female");
-    const trainingSum=trainingMale+trainingFemale+trainingIbMale+trainingIbFemale;
+    const retrainingMale=value("line-retraining-male");
+    const retrainingFemale=value("line-retraining-female");
+    const retrainingIbMale=value("line-retraining-ib-male");
+    const retrainingIbFemale=value("line-retraining-ib-female");
+    const trainingSum=trainingMale+trainingFemale+trainingIbMale+trainingIbFemale+retrainingMale+retrainingFemale+retrainingIbMale+retrainingIbFemale;
     const trainingTotalEl=document.getElementById("line-training-total");
     const manualTotal=trainingTotalEl?.dataset.manual==="1";
     const training=manualTotal ? value("line-training-total") : trainingSum;
@@ -3462,9 +3719,9 @@ document.querySelectorAll("[data-copy-kind]").forEach(btn=>{
       const el=document.getElementById(btn.dataset.for);
       if(!el)return;
       el.value=Math.max(0,(Number(el.value)||0)+Number(btn.dataset.delta));
-      if(["line-training-male","line-training-female","line-training-ib-male","line-training-ib-female"].includes(btn.dataset.for)){
+      if(["line-training-male","line-training-female","line-retraining-male","line-retraining-female","line-training-ib-male","line-training-ib-female","line-retraining-ib-male","line-retraining-ib-female"].includes(btn.dataset.for)){
         const totalEl=document.getElementById("line-training-total");
-        if(totalEl){ totalEl.dataset.manual="0"; totalEl.value=value("line-training-male")+value("line-training-female")+value("line-training-ib-male")+value("line-training-ib-female"); }
+        if(totalEl){ totalEl.dataset.manual="0"; totalEl.value=value("line-training-male")+value("line-training-female")+value("line-retraining-male")+value("line-retraining-female")+value("line-training-ib-male")+value("line-training-ib-female")+value("line-retraining-ib-male")+value("line-retraining-ib-female"); }
       }
       calculate();
       saveLine();
@@ -3474,9 +3731,9 @@ document.querySelectorAll("[data-copy-kind]").forEach(btn=>{
   inputIds.forEach(id=>{
     const el=document.getElementById(id);
     if(el) el.addEventListener("input",()=>{
-      if(["line-training-male","line-training-female","line-training-ib-male","line-training-ib-female"].includes(id)){
+      if(["line-training-male","line-training-female","line-retraining-male","line-retraining-female","line-training-ib-male","line-training-ib-female","line-retraining-ib-male","line-retraining-ib-female"].includes(id)){
         const totalEl=document.getElementById("line-training-total");
-        if(totalEl){ totalEl.dataset.manual="0"; totalEl.value=value("line-training-male")+value("line-training-female")+value("line-training-ib-male")+value("line-training-ib-female"); }
+        if(totalEl){ totalEl.dataset.manual="0"; totalEl.value=value("line-training-male")+value("line-training-female")+value("line-retraining-male")+value("line-retraining-female")+value("line-training-ib-male")+value("line-training-ib-female")+value("line-retraining-ib-male")+value("line-retraining-ib-female"); }
       } else if(id==="line-training-total"){
         el.dataset.manual="1";
       }
@@ -3495,6 +3752,87 @@ document.querySelectorAll("[data-copy-kind]").forEach(btn=>{
 })();
 
 </script>
+
+<style id="v74-line-simple-inner-border">
+/* 바깥 테두리는 유지 + 1/2라인 안쪽 테두리는 얇게 한 겹만 */
+#julBoard .line-combined-panel{
+  border:1px solid #DED8F3 !important;
+  border-radius:13px !important;
+  background:#fff !important;
+  overflow:hidden !important;
+  padding:7px 7px 0 !important;
+}
+#julBoard .line-combined-panel .line-group{
+  border:1px solid #E3E6ED !important;
+  border-bottom:0 !important;
+  border-radius:9px 9px 0 0 !important;
+  box-shadow:none !important;
+}
+#julBoard .line-combined-panel .line-group:first-child{ border-color:#D4DDF3 !important; }
+#julBoard .line-combined-panel .line-group:last-child{ border-color:#E1D8F1 !important; }
+#julBoard .line-combined-panel .line-result-part{
+  border:1px solid #E3E6ED !important;
+  border-top:1px solid #ECEEF3 !important;
+  border-radius:0 0 9px 9px !important;
+}
+#julBoard .line-combined-panel .line-result-part:first-child{ border-color:#D4DDF3 !important; }
+#julBoard .line-combined-panel .line-result-part:last-child{ border-color:#E1D8F1 !important; }
+#julBoard .line-combined-panel .line-sum-center{
+  margin:7px -7px 0 !important;
+  border:0 !important;
+  border-top:1px solid #E7E1FA !important;
+  border-radius:0 !important;
+  box-shadow:none !important;
+}
+</style>
+
+<style id="v76-education-combined-panel">
+/* 교육장도 상단 1/2라인과 동일한 구조: OB/IB + 교육장 합을 하나의 외곽 패널로 묶음 */
+#julBoard .line-education-layout.edu-horizontal-v2{
+  display:block !important;
+  border:1px solid #DED8F3 !important;
+  border-radius:13px !important;
+  background:#fff !important;
+  overflow:hidden !important;
+  padding:8px 8px 0 !important;
+  margin:0 0 10px !important;
+  box-sizing:border-box !important;
+}
+#julBoard .line-education-layout.edu-horizontal-v2 .line-education-grid{
+  display:grid !important;
+  grid-template-columns:minmax(0,1fr) minmax(0,1fr) !important;
+  gap:8px !important;
+  margin:0 !important;
+  border:0 !important;
+  background:transparent !important;
+  overflow:visible !important;
+}
+#julBoard .line-education-layout.edu-horizontal-v2 .edu-group{
+  margin:0 !important;
+  border:1px solid #E1E4EB !important;
+  border-radius:10px !important;
+  background:#fff !important;
+  box-shadow:none !important;
+  overflow:hidden !important;
+}
+#julBoard .line-education-layout.edu-horizontal-v2 .edu-group.edu-ob{
+  border-color:#CBD9F8 !important;
+}
+#julBoard .line-education-layout.edu-horizontal-v2 .edu-group.edu-ib{
+  border-color:#CFE9DC !important;
+}
+#julBoard .line-education-layout.edu-horizontal-v2 .line-training-total{
+  width:calc(100% + 16px) !important;
+  min-height:47px !important;
+  margin:8px -8px 0 !important;
+  box-sizing:border-box !important;
+  border:0 !important;
+  border-top:1px solid #E7E1FA !important;
+  border-radius:0 !important;
+  box-shadow:none !important;
+}
+</style>
+
 </body>
 </html><style>
 /* v49 보고용 체크박스 색상 구분
@@ -3621,5 +3959,134 @@ document.querySelectorAll("[data-copy-kind]").forEach(btn=>{
   background:#F4F0FF;
   color:#75629B;
   border-color:#E5DBFA;
+}
+</style>
+<style id="v71-line-thin-section-divider">
+/* 1라인/2라인 영역을 얇은 선으로 각각 구분 */
+#julBoard .line-combined-panel .line-group{
+  border:1px solid #D9DDE7 !important;
+  border-bottom:0 !important;
+  border-radius:9px 9px 0 0 !important;
+}
+#julBoard .line-combined-panel .line-group:first-child{
+  border-color:#C9D7F8 !important;
+  box-shadow:inset 0 2px 0 #BFD3FF !important;
+}
+#julBoard .line-combined-panel .line-group:last-child{
+  border-color:#DDD0F6 !important;
+  box-shadow:inset 0 2px 0 #D9C7FF !important;
+}
+#julBoard .line-combined-panel .line-result-row{
+  margin-top:0 !important;
+}
+#julBoard .line-combined-panel .line-result-part{
+  border-top:1px solid #ECEEF3 !important;
+  border-left:1px solid #D9DDE7 !important;
+  border-right:1px solid #D9DDE7 !important;
+  border-bottom:1px solid #D9DDE7 !important;
+  border-radius:0 0 9px 9px !important;
+}
+#julBoard .line-combined-panel .line-result-part:first-child{
+  border-color:#C9D7F8 !important;
+}
+#julBoard .line-combined-panel .line-result-part:last-child{
+  border-color:#DDD0F6 !important;
+}
+</style>
+
+<style id="v73-line-outer-border-simple-inner">
+/* 가장 바깥 테두리는 유지하고, 안쪽 테두리는 최소화 */
+#julBoard .line-combined-panel{
+  border:1px solid #DED8F3 !important;
+  border-radius:13px !important;
+  background:#fff !important;
+  overflow:hidden !important;
+  padding:7px 7px 0 !important;
+  box-sizing:border-box !important;
+}
+#julBoard .line-combined-panel .line-group{
+  border:0 !important;
+  border-radius:8px 8px 0 0 !important;
+  box-shadow:none !important;
+}
+#julBoard .line-combined-panel .line-group:first-child{
+  box-shadow:inset 0 2px 0 #BFD3FF !important;
+}
+#julBoard .line-combined-panel .line-group:last-child{
+  box-shadow:inset 0 2px 0 #D9C7FF !important;
+}
+#julBoard .line-combined-panel .line-result-part{
+  border:0 !important;
+  border-top:1px solid #ECEEF3 !important;
+  border-radius:0 0 8px 8px !important;
+}
+#julBoard .line-combined-panel .line-sum-center{
+  margin:7px -7px 0 !important;
+  border:0 !important;
+  border-top:1px solid #E7E1FA !important;
+  border-radius:0 !important;
+  box-shadow:none !important;
+}
+</style>
+<style id="v74-line-card-cleanup">
+/* 1/2라인 카드 정돈: 바깥 패널 유지 + 각 라인을 한 장의 카드처럼 연결 */
+#julBoard .line-combined-panel{
+  border:1px solid #DED8F3 !important;
+  border-radius:13px !important;
+  background:#fff !important;
+  overflow:hidden !important;
+  padding:8px 8px 0 !important;
+  box-sizing:border-box !important;
+}
+#julBoard .line-combined-panel .line-top{
+  margin-bottom:0 !important;
+}
+#julBoard .line-combined-panel .line-group{
+  border:1px solid #E1E4EB !important;
+  border-bottom:0 !important;
+  border-radius:10px 10px 0 0 !important;
+  box-shadow:none !important;
+  background:#fff !important;
+}
+#julBoard .line-combined-panel .line-group:first-child{
+  border-color:#CBD9F8 !important;
+}
+#julBoard .line-combined-panel .line-group:last-child{
+  border-color:#DED2F4 !important;
+}
+#julBoard .line-combined-panel .line-result-row{
+  margin-top:0 !important;
+  margin-bottom:0 !important;
+}
+#julBoard .line-combined-panel .line-result-part{
+  margin-top:0 !important;
+  border:1px solid #E1E4EB !important;
+  border-top:0 !important;
+  border-radius:0 0 10px 10px !important;
+  background:#E9EBF1 !important;
+  box-shadow:none !important;
+}
+#julBoard .line-combined-panel .line-result-part:first-child{
+  border-color:#CBD9F8 !important;
+  border-top:0 !important;
+}
+#julBoard .line-combined-panel .line-result-part:last-child{
+  border-color:#DED2F4 !important;
+  border-top:0 !important;
+}
+#julBoard .line-combined-panel .line-sum-center{
+  margin:8px -8px 0 !important;
+  border:0 !important;
+  border-top:1px solid #E7E1FA !important;
+  border-radius:0 !important;
+  box-shadow:none !important;
+}
+</style>
+<style id="v75-line-sum-full-width-fix">
+/* 전체 합 영역이 바깥 패널 오른쪽 끝까지 정확히 차도록 보정 */
+#julBoard .line-combined-panel .line-sum-center{
+  width:calc(100% + 16px) !important;
+  margin:8px -8px 0 !important;
+  box-sizing:border-box !important;
 }
 </style>
