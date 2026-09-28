@@ -3238,6 +3238,37 @@ input[type=number]::-webkit-inner-spin-button,input[type=number]::-webkit-outer-
   border-top:0 !important;
 }
 </style>
+
+<style id="v80-mobile-edu-fit">
+/* 모바일 교육장 OB/IB: +/-가 잘리지 않도록 실제 사용 폭 재배분 */
+@media(max-width:767px){
+  #julBoard .edu-horizontal-v2 .line-education-grid{gap:8px !important;}
+  #julBoard .edu-horizontal-v2 .edu-table-head,
+  #julBoard .edu-horizontal-v2 .edu-table-row{
+    grid-template-columns:16px minmax(0,1fr) minmax(0,1fr) !important;
+    gap:3px !important;
+    padding-left:5px !important;
+    padding-right:5px !important;
+  }
+  #julBoard .edu-horizontal-v2 .edu-table-head > :nth-child(3),
+  #julBoard .edu-horizontal-v2 .edu-table-row > :nth-child(3){
+    margin-left:4px !important;
+  }
+  #julBoard .edu-horizontal-v2 .line-stat-step{
+    grid-template-columns:26px minmax(20px,1fr) 26px !important;
+    width:100% !important;
+    min-width:0 !important;
+  }
+  #julBoard .edu-horizontal-v2 .line-stat-step .line-pm{
+    width:26px !important;
+    min-width:26px !important;
+  }
+  #julBoard .edu-horizontal-v2 .line-stat-step input[type="number"]{
+    min-width:0 !important;
+    width:100% !important;
+  }
+}
+</style>
 </head>
 <body>
 <div class="wrap">
@@ -3833,6 +3864,13 @@ document.querySelectorAll("[data-copy-kind]").forEach(btn=>{
 }
 </style>
 
+
+<style id="v77-education-bottom-divider-remove">
+/* 교육장 합 아래 구분선 제거 */
+#julBoard .line-education-layout.edu-horizontal-v2{
+  border-bottom-color:transparent !important;
+}
+</style>
 </body>
 </html><style>
 /* v49 보고용 체크박스 색상 구분
@@ -4088,5 +4126,47 @@ document.querySelectorAll("[data-copy-kind]").forEach(btn=>{
   width:calc(100% + 16px) !important;
   margin:8px -8px 0 !important;
   box-sizing:border-box !important;
+}
+
+/* index_24: 모바일 교육장 OB/IB 입력 폭 조정 */
+@media (max-width: 767px) {
+  .edu-card .edu-body {
+    column-gap: 8px !important;
+    padding-left: 8px !important;
+    padding-right: 8px !important;
+  }
+  .edu-card .edu-row {
+    column-gap: 6px !important;
+  }
+  .edu-card .edu-gender {
+    width: 18px !important;
+    min-width: 18px !important;
+    margin-right: 2px !important;
+  }
+  .edu-card .stepper,
+  .edu-card .counter,
+  .edu-card .num-control {
+    min-width: 0 !important;
+    width: 100% !important;
+  }
+  .edu-card .stepper button,
+  .edu-card .counter button,
+  .edu-card .num-control button {
+    flex: 0 0 30px !important;
+    width: 30px !important;
+    min-width: 30px !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+  .edu-card .stepper input,
+  .edu-card .counter input,
+  .edu-card .num-control input {
+    flex: 1 1 auto !important;
+    min-width: 24px !important;
+    width: 24px !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    text-align: center !important;
+  }
 }
 </style>
